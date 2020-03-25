@@ -1,0 +1,56 @@
+body{
+    background-color: #967bb6;
+}
+
+#new{
+    margin: 10% 25% 5% 25%;
+    background-color: #b19cd9;
+    border-radius: 5px;
+}
+
+#username, #firstlabel{
+    margin-top: 5%;
+}
+
+.align label {
+    float: left;
+    width: 10em;
+    margin-top: 5px;
+    text-align: right;
+}
+
+.align input {
+    margin-left: 1em;
+    margin-bottom: .5em;
+}
+
+.align button{
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 20%
+}
+
+#create{
+    margin-top: 2.5%;
+    margin-left: 32.5%;
+    margin-right: 32.5%;
+}
+
+#check_button{
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+hr{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+p{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 15px;
+    
+}

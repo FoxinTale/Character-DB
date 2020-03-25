@@ -1,0 +1,49 @@
+body{
+    background-color: #b19cd9;
+}
+
+section{
+    margin: 2.5% 5% 2.5% 5%;
+    border: 2px solid black;
+    border-radius: 3px;
+    background-color: #d3c7e9;
+}
+
+ul li{
+    list-style-type: none;
+    padding: 5px 0px;
+    font-family:'coming';
+}
+
+ul li a{
+    text-decoration: none;
+}
+
+.desc{
+    text-align: center;
+    font-family: 'handlee';
+    font-size: 1.5em;
+}
+
+#sep{
+    margin: 0% 10%;
+}
+
+@media screen and (max-width: 992px){
+    section{
+        margin-left: 2.5%;
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+    
+    ul li{
+        padding-right: 10px;
+    }
+    
+    .desc{
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+}

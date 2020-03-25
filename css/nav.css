@@ -1,0 +1,134 @@
+
+.sidenav {
+    margin: 6% 1% 2% 1%;
+    height: 70%;
+    width: 17.5%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+    border: 2px solid black;
+    background: rgba(135,128, 206, 0.5);
+    border-radius: 3px;
+
+}
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    margin-left: 1%;
+    text-decoration: none;
+    font-size: 24px;
+    color: black;
+    display: block;
+    font-family: 'handlee';
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+    margin-left: 5%;
+}
+
+#logout{
+    color: red;
+}
+
+.main {
+    margin-left: 160px; 
+    padding: 0px 10px;
+}
+
+.dropdown {
+    font-family: 'handlee';
+    font-size: 1.5em;
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    font-size: 22px;  
+    border: none;
+    outline: none;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #cac7e9;
+    border-radius: 3px;
+    margin-left: 2.5%;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.sidenav .icon {
+    display: none;
+}
+
+@media screen and (min-width: 1200px) {
+    .sidenav{
+        width: 15%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .sidenav{
+        width: 20%;
+        margin-bottom: 5%;
+        margin-top: 20%;
+    }
+    .sidenav a:not(:first-child), .dropdown .dropbtn {
+        display: none;
+    }
+    .sidenav a.icon {
+        float: left;
+        display: block;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .sidenav.responsive {
+        width: 100%;
+        position: relative;
+    }
+    .sidenav.responsive a.icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .sidenav.responsive a {
+        float: left;
+        display: block;
+        text-align: left;
+    }
+    .sidenav.responsive .dropdown {float: none;}
+    .sidenav.responsive .dropdown-content {position: relative;}
+    .sidenav.responsive .dropdown .dropbtn {
+        display: block;
+        width: 100%;
+        text-align: left;
+    }
+}

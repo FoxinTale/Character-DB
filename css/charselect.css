@@ -1,0 +1,67 @@
+body{
+    background-color: #b19cd9;
+}
+
+.charlist{
+    border: 1px solid black;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 2.5%;
+    background-color: #d3c7e9;
+    border-radius: 3px;
+}
+
+img{
+    float:left;
+}
+
+.charlist label {
+    margin-left: 5%;
+    width: 10em;
+    margin-top: 1em;
+    text-align: right;
+    font-family: 'malireg';
+}
+
+#namelabel, #charname{
+    margin-top: 2.5%;
+}
+
+.charlist input[type=text] {
+    margin-left: 1em;
+    padding: 2.5px;
+    width: 50%;;
+    background-color: #d3c7e9;
+    border: none;
+    font-family: 'malireg';
+}
+
+.charlist input[type=submit] {
+    margin-left: 25%;
+    width: 40%;
+    height: 30px;
+    margin-right: 25%;
+    margin-bottom: 2.5%;
+}
+
+hr{
+    margin-right: 10%;
+    margin-left: 2.5%;
+}
+
+.desctext{
+     background-color: #d3c7e9;
+}
+
+.desc{
+    margin-top: 2%;
+    margin-left: 25%;
+    margin-right: 10%;
+    width: 65%;
+    background-color: #d3c7e9;
+    overflow: auto;
+    border: none;
+    font-family: 'malireg';
+    resize: none;
+}

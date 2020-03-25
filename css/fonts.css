@@ -1,0 +1,45 @@
+@font-face{
+    font-family: 'telescope';
+    src: url("../fonts/telescope.woff") format("woff"),
+        url("../fonts/telescope.woff2") format("woff2");
+}
+@font-face{
+    font-family: 'coming';
+    src: url("../fonts/comingsoon.woff") format("woff"),
+        url("../fonts/comingsoon.woff2") format("woff2");
+}
+@font-face{
+    font-family: 'amatic';
+    src: url("../fonts/amatic.woff") format("woff"),
+        url("../fonts/amatic.woff2") format("woff2");
+}
+@font-face{
+    font-family: 'delius';
+    src: url("../fonts/delius.woff") format("woff"),
+        url("../fonts/delius.woff2") format("woff2");
+}
+@font-face{
+    font-family: 'handlee';
+    src: url("../fonts/handlee.woff") format("woff"),
+        url("../fonts/handlee.woff2") format("woff2");
+}
+@font-face{
+    font-family: 'nanum';
+    src: url("../fonts/nanum.woff") format("woff"),
+        url("../fonts/nanum.woff2") format("woff2");
+}
+@font-face{
+    font-family: 'schoolbell';
+    src: url("../fonts/schoolbell.woff") format("woff"),
+        url("../fonts/schoolbell.woff2") format("woff2");
+}
+@font-face{
+    font-family: 'shadows';
+    src: url("../fonts/shadows.woff") format("woff"),
+        url("../fonts/shadows.woff2") format("woff2");
+}
+@font-face{
+    font-family: 'malireg';
+    src: url("../fonts/malireg.woff") format("woff"),
+        url("../fonts/malireg.woff2") format("woff2");
+}

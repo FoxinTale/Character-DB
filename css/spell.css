@@ -1,0 +1,74 @@
+body{
+    background-color: #b19cd9;
+}
+
+h3{
+    margin: 2% 5%;
+    text-align: center;
+    font-weight: 300;
+    background: #e9e9e9;
+    border: 1px solid #2b2b2b;
+    border-radius: 3px;
+    padding: 2%;
+}
+
+.title{
+    text-align: center;
+    padding: 5px;
+}
+
+#spellname{
+    margin-top: 1%;
+}
+
+#spellnamelabel{
+    margin-top: 1.5%;
+}
+
+#newability{
+    background: #fff; 
+    border-radius: 3px;
+    border: 2px solid #aaa;
+}
+
+#spell{
+    margin: 10% 5% 5% 10%;
+    border:2px solid #777;
+    background: #ccc;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.align label {
+    float: left;
+    width: 12em;
+    margin-top: 5px;
+    margin-left: 4em;
+    text-align: right;
+}
+
+.align input {
+    margin-left: 1em;
+    margin-bottom: .5em;
+}
+
+.align button{
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 20%
+}
+
+.align textarea{
+    margin-left: 5%;
+    margin-top: 2%;
+    width: 240px;
+    height: 120px;
+}
+
+.tooltip{
+    color: black;
+}
+
+.error{
+    color: red;
+}
