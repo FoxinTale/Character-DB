@@ -4,7 +4,6 @@
 
 if (typeof(BrowserPonies) !== "object") {
 
-// Shims:
 (function () {
 	var shim = function (obj, shims) {
 		for (var name in shims) {
@@ -60,7 +59,6 @@ if (typeof(BrowserPonies) !== "object") {
 		}
 	});
 
-	// dummy console object to prevent crashes on forgotten debug messages:
 	if (typeof(console) === "undefined")
 		shim(window, {console: {}});
 	shim(window.console, {log: function () {}});
@@ -449,9 +447,7 @@ var BrowserPonies = (function () {
 			/</g, '&lt;').replace(/>/g, '&gt;').replace(
 			/"/g, '&quot;').replace(/'/g, '&apos;');
 	};
-	
-	// inspired by:
-	// http://farhadi.ir/posts/utf8-in-javascript-with-a-new-trick
+
 	var Base64 = {
 		encode: function (input) {
 			return btoa(unescape(encodeURIComponent(input)));
@@ -689,8 +685,8 @@ var BrowserPonies = (function () {
 		for (var i = 0, n = interaction.targets.length; i < n; ++ i) {
 			var name = interaction.targets[i].toLowerCase();
 			if (!has(ponies, name)) {
-				console.warn("Interaction "+this.name+" of pony "+interaction.pony+
-					" references non-existing pony "+name);
+				//console.warn("Interaction "+this.name+" of pony "+interaction.pony+
+				//	" references non-existing pony "+name);
 			}
 			else {
 				var pony = ponies[name];
@@ -783,7 +779,6 @@ var BrowserPonies = (function () {
 			this.leftimage = URL.join(baseurl, behavior.leftimage);
 		}
 
-		// XXX: bugfix for ini files: interprete (0, 0) as missing
 		if (!this.rightcenter || (this.rightcenter.x === 0 && this.rightcenter.y === 0)) {
 			this.rightcenter = {x: 0, y: 0, missing: true};
 		}
@@ -1326,8 +1321,6 @@ var BrowserPonies = (function () {
 						this.baseurl, behavior.name, pony.name));
 				}
 				else {
-					// semantics like Dektop Ponies where the
-					// first match is used for linked behaviors
 					this.behaviors_by_name[lowername] = behavior;
 				}
 				for (var j = 0; j < speakevents.length; ++ j) {
@@ -1432,8 +1425,8 @@ var BrowserPonies = (function () {
 			interaction = new Interaction(interaction);
 
 			if (interaction.targets.length === 0) {
-				console.warn("Dropping interaction "+interaction.name+" of pony "+this.name+
-					" because it has no targets.");
+				//console.warn("Dropping interaction "+interaction.name+" of pony "+this.name+
+				//	" because it has no targets.");
 				return false;
 			}
 			
@@ -1551,20 +1544,10 @@ var BrowserPonies = (function () {
 			return this.current_size;
 		},
 		rect: function () {
-			// lets abuse for speed (avoid object creation)
 			var pos = this.current_position;
 			pos.width  = this.current_size.width;
 			pos.height = this.current_size.height;
 			return pos;
-
-//			var pos  = this.position();
-//			var size = this.size();
-//			return {
-//				x: pos.x,
-//				y: pos.y,
-//				width:  size.width,
-//				height: size.height
-//			};
 		},
 		topLeftRect: function () {
 			var pos  = this.topLeftPosition();
@@ -1584,7 +1567,6 @@ var BrowserPonies = (function () {
 	var PonyInstance = function PonyInstance (pony) {
 		this.pony = pony;
 		this.img  = this.createImage();
-
 		this.clear();
 	};
 
@@ -1594,7 +1576,6 @@ var BrowserPonies = (function () {
 				evt.preventDefault();
 				if (evt.touches.length > 1 || (evt.type === "touchend" && evt.touches.length > 0))
 				return;
-
 				var newEvt = document.createEvent("MouseEvents");
 				var type = null;
 				var touch = null;
@@ -1635,7 +1616,6 @@ var BrowserPonies = (function () {
 				ontouchmove: touch,
 				ontouchend: touch,
 				ondblclick: function () {
-					// debug output
 					var pos = this.position();
 					var duration = (this.end_time - this.start_time) / 1000;
 					console.log(
@@ -1650,13 +1630,9 @@ var BrowserPonies = (function () {
 						this);
 				}.bind(this),
 				onmousedown: function (event) {
-					// IE 9 supports event.buttons and handles event.button like the w3c says.
-					// IE <9 does not support event.buttons but sets event.button to the value
-					// event.buttons should have (which is not what the w3c says).
 					if ('buttons' in event ? event.buttons & 1 : (IE ? event.button & 1 : event.button === 0)) {
 						dragged = this;
 						this.mouseover = true;
-						// timer === null means paused/not running
 						if (timer !== null) {
 							this.nextBehavior(true);
 						}
@@ -1676,10 +1652,6 @@ var BrowserPonies = (function () {
 				}.bind(this),
 				onmouseout: function (event) {
 					var target = event.target;
-					// XXX: the img has no descendants but if it had it might still be correct in case
-					//      the relatedTarget is an anchester of the img or any node that is not a child
-					//      of img or img itself.
-//					if (this.mouseover && (target === this.img || !descendantOf(target, this.img))) {
 					if (this.mouseover) {
 						this.mouseover = false;
 					}
@@ -1838,13 +1810,9 @@ var BrowserPonies = (function () {
 
 					if (this.following.facing_right) {
 						dest.x += this.current_behavior.x - this.following.paint_behavior.rightcenter.x;
-//						dest.x += this.current_behavior.x - this.following.paint_behavior.rightcenter.x + 40;
-//						dest.x += -this.following.paint_behavior.rightcenter.x + 50;
 					}
 					else {
 						dest.x += -this.current_behavior.x + this.following.paint_behavior.leftcenter.x;
-//						dest.x += -this.current_behavior.x + this.following.paint_behavior.leftcenter.x - 20;
-//						dest.x += this.following.paint_behavior.leftcenter.x - 30;
 					}
 					dest.y = this.following.current_position.y + this.current_behavior.y;
 					dist = distance(curr, dest);
@@ -1884,7 +1852,7 @@ var BrowserPonies = (function () {
 				}
 				else if (this.following) {
 					if (this.current_behavior.auto_select_images) {
-						// TODO: mechanism for selecting behavior for current movement
+
 					}
 					else if (Math.round(tdist) === 0) {
 						if (this.current_behavior.stopped) {
@@ -1899,14 +1867,6 @@ var BrowserPonies = (function () {
 					this.setFacingRight(this.following.facing_right);
 				}
 				this.setPosition(pos);
-/*
-				console.log(
-					"current: "+curr.x+" x "+curr.y+
-					", step: "+pos.x+" x "+pos.y+
-					", dest: "+dest.x+" x "+dest.y+
-					", dist: "+dist+
-					", dist for passed time: "+tdist);
-*/
 			}
 			else {
 				pos = curr;
@@ -1927,7 +1887,6 @@ var BrowserPonies = (function () {
 				}
 			}
 			
-			// check if some effects need to be repeated:
 			for (var i = 0, n = this.repeating.length; i < n; ++ i) {
 				var what = this.repeating[i];
 				if (what.at <= currentTime) {
@@ -1964,9 +1923,6 @@ var BrowserPonies = (function () {
 							break;
 						}
 					}
-
-					// The probability is meant for an execution evere 100ms,
-					// but I use a configurable interaction interval.
 					dice = Math.random() * (100 / interactionInterval);
 					if (dice <= interaction[0].probability) {
 						this.interact(currentTime,interaction[0],interaction[1]);
@@ -2326,21 +2282,15 @@ var BrowserPonies = (function () {
 						this.end_at_dest   = true;
 					}
 					else {
-						// clipToScreen already rounds
 						this.dest_position.x = Math.round(this.dest_position.x);
 						this.dest_position.y = Math.round(this.dest_position.y);
 					}
 				}
 			}
-
-			// this changes the image to the new behavior:
 			this.setFacingRight(
 				pos.x !== this.dest_position.x ?
 				pos.x <= this.dest_position.x :
 				this.facing_right);
-
-			// this initializes the new images position:
-			// (alternatively maybe this.update(...) could be called?)
 			this.setPosition(this.current_position);
 
 			var overlay = getOverlay();
@@ -2360,28 +2310,6 @@ var BrowserPonies = (function () {
 				}
 			}
 			this.effects = neweffects;
-/*
-			var msg;
-			if (this.following) {
-				msg = "following "+behavior.follow;
-			}
-			else {
-				if (this.dest_position.x !== pos.x || this.dest_position.y !== pos.y) {
-					msg = "move from "+pos.x+" x "+pos.y+" to "+
-						Math.round(this.dest_position.x)+" x "+
-						Math.round(this.dest_position.y);
-				}
-				else {
-					msg = "no movement";
-				}
-				
-				if (behavior.follow) {
-					msg += " (wanted to follow "+behavior.follow+")";
-				}
-			}
-			console.log(this.pony.name+" does "+behavior.name+": "+msg+" in "+duration+
-				" seconds");
-*/
 		},
 		teleport: function () {
 			var winsize = windowSize();
@@ -2454,7 +2382,6 @@ var BrowserPonies = (function () {
 		this.pony       = pony;
 		this.start_time = start_time;
 		var duration = effect.duration * 1000;
-		// XXX: Gecko gif animations speed is buggy!
 		if (Gecko) duration *= 0.6;
 		duration = Math.max(duration - fadeDuration, fadeDuration);
 		this.end_time = start_time + duration;
@@ -2620,19 +2547,6 @@ var BrowserPonies = (function () {
 
 			this.setTopLeftPosition(pos);
 		},
-		/*
-		setImage: function (url) {
-			if (this.current_imgurl !== url) {
-				this.img.src = dataUrl('text/html',
-					'<html><head><title>'+Math.random()+
-					'</title><style text="text/css">html,body{margin:0;padding:0;background:transparent;}</style><body></body><img src="'+
-					escapeXml(URL.abs(url))+'"/></html>');
-				this.img.style.width  = this.current_size.width+"px";
-				this.img.style.height = this.current_size.height+"px";
-				this.current_imgurl = url;
-			}
-		},
-		*/
 		setImage: Gecko ?
 		function (url) {
 			if (this.current_imgurl !== url) {
@@ -2855,11 +2769,7 @@ var BrowserPonies = (function () {
 									if (row.length > 21) {
 										behavior.dont_repeat_animation = parseBoolean(row[21]);
 										if (behavior.dont_repeat_animation) {
-											/*
-											console.warn(baseurl+': behavior '+behavior.name+
-												' sets dont_repeat_animation to true, which is not supported by Browser Ponies due to limitations in browsers. '+
-												'Please use a GIF that does not loop instead.');
-												*/
+							
 										}
 										if (row[22]) {
 											behavior.group = parseInt(row[22],10);
@@ -2967,8 +2877,8 @@ var BrowserPonies = (function () {
 				var effect = effects[i];
 				var behavior = effect.behavior.toLowerCase();
 				if (!has(behaviors_by_name,behavior)) {
-					console.warn(baseurl+": Effect "+effect.name+" of pony "+pony.name+
-						" references non-existing behavior "+effect.behavior);
+					//console.warn(baseurl+": Effect "+effect.name+" of pony "+pony.name+
+					//	" references non-existing behavior "+effect.behavior);
 				}
 				else {
 					behaviors_by_name[behavior].effects.push(effect);
@@ -3045,7 +2955,7 @@ var BrowserPonies = (function () {
 		addInteraction: function (interaction) {
 			var lowername = interaction.pony.toLowerCase();
 			if (!has(ponies,lowername)) {
-				console.error("No such pony:",interaction.pony);
+				//console.error("No such pony:",interaction.pony);
 				return false;
 			}
 			return ponies[lowername].addInteraction(interaction);
@@ -3157,7 +3067,6 @@ var BrowserPonies = (function () {
 						getOverlay().appendChild(this.img);
 						this.teleport();
 						this.nextBehavior();
-						// fix position because size was initially 0x0
 						this.clipToScreen();
 						this.img.style.visibility = '';
 					}.bind(inst));
@@ -3236,7 +3145,6 @@ var BrowserPonies = (function () {
 					overlay.appendChild(inst.img);
 					inst.teleport();
 					inst.nextBehavior();
-					// fix position because size was initially 0x0
 					inst.clipToScreen();
 					inst.img.style.visibility = '';
 				}
@@ -3523,7 +3431,6 @@ var BrowserPonies = (function () {
 				this.start();
 			}
 		},
-		// currently excluding ponies and interactions
 		dumpConfig: function () {
 			var config = {};
 			config.baseurl = this.getBaseUrl();
@@ -3565,7 +3472,6 @@ var BrowserPonies = (function () {
 			}
 		},
 
-		// expose a few utils:
 		Util: {
 			setOpacity:    setOpacity,
 			extend:        extend,

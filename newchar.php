@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+require_once('inc/addchar.php');
+?>
 <head>
     <meta charset="UTF-8">
     <title>New Character</title>
@@ -21,77 +24,70 @@
             <div id="character_info">
                 <h3>Character Information</h3>
                 <p>You can hover over each entry to learn more about what it is.</p>
+                <p>You must fill in the other categories before you are able to add the character.</p>
                 <hr>
-                <form id="charinfo" class ="align">
+                <form id="charinfo" method="post" class="align" action="newchar.php">
                     <div class="tooltip" title="This is the name of the character">
                         <label for="charname">Character Name: </label>
                         <input type="text" id="charname" name="char_name"><span class = "error" ></span>
                         <input type="hidden" id="char_name" value="">
                         <br>
                     </div>
-
                     <div class ="tooltip" title="Any given nicknames, or shortened forms of their name.">
                         <label for="charalias">Alias(es): </label>
                         <input type="text" id="charalias" name="char_alias"><span class = "error"></span>
                         <input type="hidden" id="char_alias" value="">
                         <br>
                     </div>
-
                     <div class ="tooltip" title="A short, one to four sentence description of your character.">
                         <label for="shortdesc">Short Description: </label>
                         <input type="text" id="shortdesc" name="short_desc"><span class = "error"></span>
                         <input type="hidden" id="short_desc" value="">
                         <br>
                     </div>
-
                     <div class="tooltip" title="The age of your character. Can be in years, or in terms of their lifespan.">
                         <label for="charage">Age: </label>
                         <input type="text" id="charage" name="char_age"><span class ="error"></span>
                         <input type="hidden" id="char_age" value="">
                         <br>
                     </div>
-
                     <div class="tooltip" title="Their gender. Can be any one, or multiple.">
                         <label for="chargender">Gender</label>
                         <input type="text" id="chargender" name="char_gender"><span class = "error"></span>
                         <input type="hidden" id="char_gender" value="">
                         <br>
                     </div>
-
                     <div class="tooltip" title="The sexuality, can be anything.">
                         <label for="charsexuality">Sexuality: </label>
                         <input type="text" id="charsexuality" name="char_sexuality"><span class = "error"></span>
                         <input type="hidden" id="char_sexuality" value="">
                         <br>
                     </div>
-
                     <div class="tooltip" title="Use the species section if they are not a human character. Otherwise, this is fine.">
                         <label for="charrace">Race / Species: </label>
                         <input type="text" id="charrace" name="char_race"><span class = "error"></span>
                         <input type="hidden" id="char_race" value="">
                         <br>
                     </div>
-
                     <div class="tooltip" title="The character's current status. Status effects, active/inactive, and more.">
                         <label for="charstatus">Current Status: </label>
                         <input type="text" id="charstatus" name="char_status"><span class = "error"></span>
                         <input type="hidden" id="char_status" value="">
                         <br>
                     </div>
-
-                    <div class="tooltip" title="Soul type is related to the game Undertale, and fan-made variants of it.">
+                    <div class="tooltip" title="Soul type is related to the game Undertale, and fan-made variants of it. This can also be their most prominent trait.">
                         <label for="charsoul">Soul Type: </label>
                         <input type="text" id="charsoul" name="char_soul"><span class = "error"></span>
                         <input type="hidden" id="char_soul" value="">
                         <br>
                     </div>
-
                     <div class="tooltip" title="Any other small detail not covered by any of these. Please check the other tabs first though.">
                         <label for="charother">Other: </label>
                         <input type="text" id="charother" name="char_other"><span class = "error"></span>
                         <input type="hidden" id="char_other" value="">
                         <br>
                     </div>
+                    <button type="submit" id="char_button" name="new_char">Add Character!</button>
                 </form>
             </div>
             <div id="character_appearance">
@@ -104,7 +100,8 @@
                         <li><a href="#clothing">Clothing</a></li>
                     </ul>
                     <div id="appearance">
-                        <form id = "charapp" class = "align">
+                        <form id = "charapp" method="post" class = "align" action="newchar.php">
+                            <input type="hidden" id="char_id" value="">
                             <div class="tooltip" title="Eye shape if not human, and eye colour regardless.">
                                 <label for="chareyes">Eye Description: </label>
                                 <input type="text" id="chareyes" name="char_eyes"><span class = "error"></span>
@@ -153,10 +150,17 @@
                                 <input type="hidden" id="char_add" value="">
                                 <br>
                             </div>
+                            <button type="submit" id="appearance_button" name="new_appearance">Add Appearance.</button>  
                         </form>
                     </div>
                     <div id="clothing">
-                        <form id="char_outfit" class="align">
+                        <form id="char_outfit" method="post" class="align" action="newchar.php">
+                            <div class="tooltip" title="The name of the outfit, for easy finding later on.">
+                                <label for="appname">Outfit Name: </label>
+                                <input type="text" id="appname" name="app_name"><span class = "error"></span>
+                                <input type="hidden" id="app_name" value="">
+                                <br>
+                            </div>
                             <div class="tooltip" title="Hats.">
                                 <label for="apphats">Hats: </label>
                                 <input type="text" id="apphats" name="app_hats"><span class = "error"></span>
@@ -187,7 +191,7 @@
                                 <input type="hidden" id="app_feet" value="">
                                 <br>
                             </div>
-                            
+                            <button type="submit" id="outfit_button" name="new_outfit">Add Outfit!</button> 
                         </form>
                     </div>
                 </div>
@@ -196,7 +200,7 @@
                 <h3>Character Personality</h3>
                 <p>You can hover over each entry to learn more about what it is.</p>
                 <hr>
-                <form id="char_pers" class="align">
+                <form id="char_pers" method="post" class="align" action="newchar.php">
                     <div class="tooltip" title="The lifestyle of this character. Are they lazy, active? Something different?">
                         <label for="charact">Activity: </label>
                         <input type="text" id="charact" name="char_act"><span class = "error"></span>
@@ -275,7 +279,7 @@
                         <input type="hidden" id="char_perstype" value="">
                         <br>
                     </div>
-                    
+                    <button type="submit" id="pers_button" name="new_pers">Add Personality.</button>
                 </form>
             </div>
             <div id="character-stats">
@@ -283,7 +287,7 @@
                 <p>You would use these, usually for tabletop based games. But you can use them for other purposes.</p>
                 <p>You can hover over each entry to learn more about what it is.</p>
                 <hr>
-                <form id="charstats" class ="align">
+                <form id="charstats" method="post" class ="align" action="newchar.php">
                     <div class="tooltip" title="Character health, or hit points.">
                         <label for="stathealth">Health / Hit Points: </label>
                         <input type="text" id="stathealth" name="stat_health"><span class = "error"></span>
@@ -338,7 +342,7 @@
                         <input type="hidden" id="stat_percep" value="">
                         <br>
                     </div>
-                    
+                    <button type="submit" id="stat_button" name="new_stats">Add stats.</button>
                 </form>
             </div>
             <div id="character-race">
@@ -346,7 +350,7 @@
                 <p>If your character is not human, use this section. Otherwise it is not needed.</p>
                 <p>You can hover over each entry to learn more about what it is.</p>
                 <hr>
-                <form id="charspecies" class ="align">
+                <form id="charspecies" method="post" class ="align" action="newchar.php">
                     <div class="tooltip" title="The name of the species / race.">
                         <label for="racename">Name: </label>
                         <input type="text" id="racename" name="race_name"><span class = "error"></span>
@@ -377,7 +381,7 @@
                         <input type="hidden" id="race_traits" value="">
                         <br>
                     </div>
-                    
+                    <button type="submit" id="race_button" name="new_race">Add Race / Species</button>
                 </form>
             </div>
         </div>

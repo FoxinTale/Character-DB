@@ -24,7 +24,6 @@
                 <input type="text" id="username" name="user_name"><span class = "error"></span>
                 <input type="hidden" id="user_name" value="">
                 <br>
-
                 <label for="pass">Password: </label>
                 <input type="password" id="pass" name="password"><span class = "error"></span>
                 <input type="hidden" id="password" value="">

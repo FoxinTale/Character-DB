@@ -1,11 +1,8 @@
 "use strict";
-
-// just so that the bookmarklet also works here:
 var BrowserPoniesBaseConfig = {};
 
 var oldConfig = {};
 
-$(document).ready(function(){
 var PonyScripts = {
 
 	'browser-ponies-script': absUrl('browserponies.js'),
@@ -27,7 +24,7 @@ function loadingJson(script) {
 		}
 	}
 }
-	});
+
 if (typeof(JSON) === "undefined") {
 	document.write('<script type="text/javascript" '+
 		'src="https://raw.github.com/douglascrockford/JSON-js/master/json2.js" '+

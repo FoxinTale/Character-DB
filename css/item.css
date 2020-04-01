@@ -40,7 +40,7 @@ h3{
     float: left;
     width: 12em;
     margin-top: 5px;
-    margin-left: 4em;
+    margin-left: 7rem;
     text-align: right;
 }
 
@@ -49,10 +49,11 @@ h3{
     margin-bottom: .5em;
 }
 
-.align button{
-    display: inline-block;
+#item_button{
     margin-top: 20px;
-    margin-left: 20%
+    margin-left: 35%;
+    width: 10rem;
+    height: 2rem;
 }
 
 .align textarea{

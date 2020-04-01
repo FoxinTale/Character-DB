@@ -1,7 +1,3 @@
-body{
-    background-color: #b19cd9;
-}
-
 h3{
     margin: 2% 5%;
     text-align: center;
@@ -52,17 +48,11 @@ h3{
     margin-bottom: .5em;
 }
 
-.align button{
-    display: inline-block;
+#weap_button{
     margin-top: 20px;
-    margin-left: 20%
-}
-
-.align textarea{
-    margin-left: 5%;
-    margin-top: 2%;
-    width: 240px;
-    height: 120px;
+    margin-left: 35%;
+    width: 10rem;
+    height: 2rem;
 }
 
 .tooltip{

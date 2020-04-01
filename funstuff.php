@@ -2,7 +2,6 @@
     <meta charset="UTF-8">
     <title>Character Database - Items</title>
     <link rel="stylesheet" href="css/normalize.css">
-
 </head>
 <body>
     <main>
@@ -10,6 +9,7 @@
             <ul>
                 <li><a href="#customize">Website Customization</a></li>
                 <li><a href="#ponies">Browser Ponies</a></li>
+                <li><a href="#other">Other Options</a></li>
             </ul>
             <div id="customize">
                 <p>Placeholder.</p>
@@ -75,10 +75,16 @@
                 <ul id="ponylist"></ul>
                 <p id="zero"><button onclick="setAllZero();">Set all Ponies to 0</button></p>
             </div>
+            <div id="other">
+                <p>Snow!</p>
+            </div>
         </div>
         <script>
             jQuery(document).ready(function ($) {
                 $("#optiontabs").tabs();
+
+            });
+            $(function () {
                 $(document).tooltip();
             });
         </script>
