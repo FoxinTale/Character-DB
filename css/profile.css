@@ -1,11 +1,24 @@
 body{
-    background-color: #967bb6;
+    background-image: url('../images/earthy.png');
+    background-size: auto;
+    background-color: skyblue;
+}
+
+section{
+    border: 2px dotted black;
+    border-radius: 5px;
+    margin: 2.5% 10% 2.5% 10%;
 }
 
 #new{
     margin: 10% 25% 5% 25%;
-    background-color: #b19cd9;
+    background-color: rgba(217, 177, 156, 0.9);
     border-radius: 5px;
+    border: 3px solid black;
+}
+
+#new_profile{
+    margin: 0% 10% 0% 10%;
 }
 
 #username, #firstlabel{
@@ -20,37 +33,71 @@ body{
 }
 
 .align input {
-    margin-left: 1em;
-    margin-bottom: .5em;
+    margin: 0em 0em 0.5em 1em;
 }
 
 .align button{
-    display: inline-block;
-    margin-top: 20px;
-    margin-left: 20%
+    display: inline-block;    
+    margin: 20px 0% 0% 20%;
 }
 
 #create{
-    margin-top: 2.5%;
-    margin-left: 32.5%;
-    margin-right: 32.5%;
+    margin-top: 1.5rem;
+    margin-left: 15%;
+    width: 17rem;
+    height: 2rem;
 }
 
 #check_button{
-    margin-top: 2.5%;
-    margin-bottom: 2.5%;
-    margin-left: 25%;
-    margin-right: 25%;
+    margin: 2.5%  25% 2.5% 15%;
+    width: 17rem;
+    height: 2rem;
 }
 
+#info{
+    font-weight: 600;
+    font-size: 125%;
+    text-align: center;
+    border: none;
+    background: none;
+    margin-left: 22%;
+    margin-right: 22%;
+    width: 17rem;
+}
 hr{
-    margin-left: 5%;
-    margin-right: 5%;
+    margin: 0% 5%;
 }
 
-p{
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 15px;
-    
+.notice{
+    padding: 15px 20px 0px 20px;
+}
+
+#message {
+  display:block;
+  color: #000;
+  position: relative;
+  padding: 20px;
+}
+
+#message p {
+
+  font-size: 16px;
+}
+
+.valid {
+  color: green;
+}
+
+.valid:before {
+  position: relative;
+  left: -35px;
+}
+
+.invalid {
+  color: red;
+}
+
+.invalid:before {
+  position: relative;
+  left: -35px;
 }

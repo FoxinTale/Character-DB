@@ -1,0 +1,19 @@
+.credits-content{
+    margin-left: 20%;
+    margin-right: 20%;
+    border: 3px solid black;
+    border-radius: 3px;
+}
+
+a{
+    text-decoration: none;
+}
+
+p{
+    border: 1px dotted black;
+    text-align: center;
+    padding: 10px;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+}
+

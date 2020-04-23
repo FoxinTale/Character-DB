@@ -1,35 +1,38 @@
+body{
+    background-image: url('../images/earthy.png');
+    background-size: auto;
+    background-color: skyblue;
+}
+
 h1{
+    background-color: rgba(217, 177, 156, 0.85);
+    margin-left: 30%;
+    margin-right: 30%;
+    border: 2px solid black;
     font-weight: 600;
     font-family: 'handlee';
     text-align: center;
-}
-
-body{
-   background-color: #967bb6;
-}
-
-section{
-    padding: 10px;
-    width: 50%;
-    margin-left: 27%;
-    border: 1px solid black;
-    border-radius: 3px;
-    background-color: #b19cd9;
+    padding-top: 5px;
 }
 
 #forms{
-    background-color: #b19cd9;
+    background-color: rgba(217, 177, 156, 0.75);
     border: 2px solid black;
-    padding: 2.5% 0% 5% 0%;
-    margin: 5% 27% 5% 27%;
+    padding: 2.5% 0% 2.5% 0%;
+    margin: 5% 30% 5% 30%;
     border-radius: 3px;
 }
 
-@media screen and (max-width: 600px) {
-    #forms{
-        margin: 5% 16% 5% 25%;
-    }
+#errorbox{
+    margin-left: 2.5rem;
+    margin-bottom: 1rem;
+    width: 34rem;
+    border: none;
+    background-color: transparent;
+    text-align: center;
+    font-size: 125%;
 }
+
 
 .align label {
     float: left;
@@ -37,25 +40,72 @@ section{
     margin-top: 5px;
     text-align: right;
     font-family: 'coming';
+    font-weight: 600;
 }
 
-.align input {
+#pass, #username {
     margin-left: 1em;
     margin-bottom: .5em;
+    width: 15rem;
 }
 
 #login_button{
-    margin-left: 42%;
-    margin-top: 2%;
+    margin-left: 29%;
+    margin-right: 30%;
+    margin-top: 5%;
+    width: 15rem;
+    height: 2rem;
 }
 
 #new_button{
-    margin-left: 38%;
-    margin-top: 2%;
+    width: 15rem;
+    height: 2rem;
+    margin-left: 29%;
+    margin-right: 30%;
+    margin-top: 4%;
 }
 
 .align button{
     display: inline-block;
     margin-top: 20px;
     margin-left: 20%
+}
+
+.note:first-of-type{
+    margin-top: 2rem;
+}
+
+.note{
+    padding: 0rem 1.5rem;
+} 
+
+
+@media screen and (max-width: 600px) {
+    h1{
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+
+    .align label{
+        text-align: center;
+        margin-left: 12%;
+    }
+
+    #forms{
+        margin: 5% 20% 5% 20%;
+    }
+
+    #login_button{
+        margin-left: 15%;
+        width: 10rem;
+    }
+
+    #new_button{
+        width: 10rem;
+        margin-left: 15%;
+    }
+
+    #pass, #username{
+        width: 11rem;
+    }
 }

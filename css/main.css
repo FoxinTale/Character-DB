@@ -28,6 +28,18 @@ body{
     background-size: cover;
 }
 
+#userdisplay{
+    margin-top: -3.75rem;
+    margin-right: 2.5rem;
+    font-size: 150%;
+    float: right;
+    font-family: 'handlee';
+    border: 2px solid black;
+    padding: 0.5rem;
+    border-radius: 3px;
+       background-color: #ACBFF3;
+}
+
 footer{
     text-align: center;
     border: 1px solid black;
@@ -36,7 +48,7 @@ footer{
     padding: 10px;
     width: 50%;
     border-radius: 3px;
-    margin-left: 31%;
+    margin-left: 29%;
     background: rgba(135,128, 206, 0.35);
     font-family: 'coming';
 }

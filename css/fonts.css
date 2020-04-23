@@ -9,11 +9,6 @@
         url("../fonts/comingsoon.woff2") format("woff2");
 }
 @font-face{
-    font-family: 'amatic';
-    src: url("../fonts/amatic.woff") format("woff"),
-        url("../fonts/amatic.woff2") format("woff2");
-}
-@font-face{
     font-family: 'delius';
     src: url("../fonts/delius.woff") format("woff"),
         url("../fonts/delius.woff2") format("woff2");
