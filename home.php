@@ -23,12 +23,11 @@
             <ul>
                 <li>"Home" will bring you right back to this page.</li>
                 <li>The notes page is exactly what it says. A page for storing short notes about characters or situations.</li>
-                <li>The resources page has links to various off site character generators.</li>
-                <li>Your profiles page allows you to customize your user profile.</li>
+                <li>The resources page has links to various off site character generators. As well as general RP tips and advice.</li>
                 <li>Fun Stuff is fun things you can do on the site, and customization.</li>
-                <li>The issues page is a list of the known issues with the page.</li>
                 <li>The To Do page is a list of items and things I am working on adding.<li>
                 <li>Finally, the logout page does just that. Logs you out of the page.</li>
+                <li>Fun fact: Aside from the ponies aspect, this whole site fits on a 1.44 Mb Floppy.</li>
             </ul>
         </section>
         <section>
@@ -36,6 +35,7 @@
             <hr class="sep">
             <ul>
                 <li>Little features to make the website more interesting.</li>
+                <li>...none of these currently work, but they will in the future.</li>
                 <li>- (In the future) Changing the image background and the website fonts.</li>
                 <li>- Ponies that run around in your browser.</li>
                 <li>- Snow, in browser. Because it's pretty.</li>

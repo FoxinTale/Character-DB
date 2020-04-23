@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-    <head>
-        <meta charset="UTF-8">
-        <title>To Do List</title>
-    </head>
-    <body>
-        <p>To do list</p>
-        <ul>
-            <li>Add options to the "Browser Customization". This will  allow users to customize the background image and colours.</li>
-            <li>Get the forms and data entry functional. This is much easier said than done.</li>
-            <li>Get login and account creation working. Do this before character data entry is complete.</li>
-            <li>Add the source for Browser Ponies to the "credits" page. That was not made by me, so give credit.</li>
-            <li>Add search features to Each category, once everything is completed.</li>
-            <li>In the Weapon, Item and spell addition areas, change the "Character Name" text box to a dropdown menu listing all the user's characters.</li>
-            <li>Once all issues are fixed and the features are added, remove this and the issues page.</li>
-        </ul>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>To Do List</title>
+</head>
+<body>
+    <p>To do list</p>
+    <ul>
+        <li>Add options to the "Browser Customization". This will allow users to customize the background image and colours.</li>
+        <li>Allow for editing of fields, in case a change happens, or a typo was made.</li>
+        <li>Add a remaining letters counter for each typeable field.</li>
+        <li>Get both snow and browser ponies properly working.</li>
+        <li>Add more ponies to the menu, and the ability to choose which ones are used.</li>
+    </ul>
+    <p>To do, in the future, after everything is all squared away</p>
+    <ul>
+        <li>Add a "search the site" area / bar. This can help with searching for a character, item weapon and more.</li>
+        <li>Have all a user's information be downloadable by them, as a Json file for offline usage.</li>
+        <li>Create a Java based viewer for that Json file. </li>
+        <li>Create an app version of this.</li>
+    </ul>
+</body>

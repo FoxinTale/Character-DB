@@ -1,40 +1,57 @@
 <!DOCTYPE html>
 <?php
+session_start();
+require('inc/functions.php');
+$username = $_SESSION["username"];
+$info = "use(s) this item.";
+
 if (isset($_POST["newitem"])) {
-    // print_r($_POST);
+    $item = datacheck($_POST);
+    additem($db, $item, $username);
 }
 ?>
 <head>
     <meta charset="UTF-8">
     <title>New Item</title>
-    <link rel="stylesheet" href="css/item.css">
+    <script type="text/javascript" src="scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/expanding.jquery.js"></script>
+    <script type="text/javascript" src="scripts/addthings.js"></script>
+    <link rel="stylesheet" href="css/form.css">
 </head>
 <body>
     <div id ="items">
         <h3 id="itemheader">New Item</h3>
-        <span id="item_success"> </span>
+        <?php
+        if (isset($_POST["itembutton"])) {
+            echo "<span id='success'>Item successfuly added!</span>";
+            echo '<br>';
+        }
+        ?>
+        <label for="fillit"  id="filllabel">Fill Blank Spots: </label>
+        <input type="checkbox" id="fillit" name="fillempties" onclick ="fillblanksitem()">
         <form id="newitem" method="post" class="align" action="newitem.php">
             <div class="tooltip" title="The name of the item, obviously.">
                 <label for="itemname" id="itemnamelabel">Item Name: </label>
-                <input type="text" id="itemname" name="item_name"><span class = "error" ></span>
+                <input type="text" required id="itemname" name="item_name"><span class = "error" ></span>
                 <input type="hidden" id="item_name" value="">
                 <br>
             </div>
+            <?php getcharnames($db, $username, $info, "Character Name"); ?>
             <div class="tooltip" title="A short description of the item.">
                 <label for="itemdesc">Item Description: </label>
-                <input type="text" id="itemdesc" name="item_desc"><span class = "error" ></span>
+                <textarea id="itemdesc" required name="item_desc" class='expanding'></textarea><span class = "error" ></span>
                 <input type="hidden" id="item_desc" value="">
                 <br>
             </div>
             <div class="tooltip" title="The appearance of the item.">
                 <label for="itemappear">Item Appearance: </label>
-                <input type="text" id="itemappear" name="item_appear"><span class = "error" ></span>
+                <textarea required id="itemappear" name="item_appear" class='expanding'></textarea><span class = "error" ></span>
                 <input type="hidden" id="item_appear" value="">
                 <br>
             </div>
             <div class="tooltip" title="The type or class of the item. Magical, tool, or otherwise.">
                 <label for="itemtype">Item Type: </label>
-                <input type="text" id="itemtype" name="item_type"><span class = "error" ></span>
+                <input type="text" required id="itemtype" name="item_type"><span class = "error" ></span>
                 <input type="hidden" id="item_type" value="">
                 <br>
             </div>
@@ -64,15 +81,15 @@ if (isset($_POST["newitem"])) {
             </div>
             <div class="tooltip" title="The value of the item. This area is not required, but can be used if so desired.">
                 <label for="itemvalue">Item Value: </label>
-                <input type="text" id="itemvale" name="item_value"><span class = "error" ></span>
+                <input type="text" id="itemvalue" name="item_value"><span class = "error" ></span>
                 <input type="hidden" id="item_value" value="">
                 <br>
             </div>
-            <!-- 
-            Growing textarea for a full description area.
-            Image upload area.
-            -->
-            <button type="submit" id="item_button" name="newitem">Add Item!</button>
+            <?php
+            if ($username != "Test User") {
+                echo "<button type='submit' id='item_button' name='itembutton'>Add Item!</button>";
+            }
+            ?>
         </form>
     </div>
 </body>
