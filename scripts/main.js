@@ -50,10 +50,6 @@ function datapages(url) {
     }
 }
 
-function hideminipage() {
-
-}
-
 function hidedetails() {
     jQuery(document).ready(function ($) {
         $("#container").load("home.php");
@@ -68,27 +64,23 @@ function hidedetails() {
     document.getElementById('paddock-front').style.visibility = "hidden";
 }
 
-
-
-const themeMap = {
-    dark: "light",
-    light: "solar",
-    solar: "dark"
-};
-
-const theme = localStorage.getItem('theme')
-        || (tmp = Object.keys(themeMap)[0],
-                localStorage.setItem('theme', tmp),
-                tmp);
-const bodyClass = document.body.classList;
-bodyClass.add(theme);
-
-function toggleTheme() {
-    const current = localStorage.getItem('theme');
-    const next = themeMap[current];
-
-    bodyClass.replace(current, next);
-    localStorage.setItem('theme', next);
+function makeExpandingArea(container) {
+ var area = container.querySelector('textarea');
+ var span = container.querySelector('span');
+ if (area.addEventListener) {
+   area.addEventListener('input', function() {
+     span.textContent = area.value;
+   }, false);
+   span.textContent = area.value;
+ } else if (area.attachEvent) {
+   // IE8 compatibility
+   area.attachEvent('onpropertychange', function() {
+     span.innerText = area.value;
+   });
+   span.innerText = area.value;
+ }
+container.className += "active";
+}var areas = document.querySelectorAll('.expandingArea');
+var l = areas.length;while (l--) {
+ makeExpandingArea(areas[l]);
 }
-
-document.getElementById('themeButton').onclick = toggleTheme;

@@ -3,17 +3,23 @@
 var observe   = BrowserPonies.Util.observe;
 var tag       = BrowserPonies.Util.tag;
 var $         = BrowserPonies.Util.$;
-var absUrl    = BrowserPonies.Util.URL.abs;
+var _absUrl   = BrowserPonies.Util.URL.abs;
 var has       = BrowserPonies.Util.has;
 var partial   = BrowserPonies.Util.partial;
 var dataUrl   = BrowserPonies.Util.dataUrl;
+
+function absUrl (url) {
+	// force https
+	return _absUrl(url).replace(/^http:/,'https:');
+}
 
 if (typeof($x) === "undefined" && document.evaluate) {
 	window.$x = function (xpath, context) {
 		var nodes = [];
 		try {
 			var doc = (context && context.ownerDocument) || document;
-			var results = doc.evaluate(xpath, context || doc, null, XPathResult.ANY_TYPE, null);
+			// var results = doc.evaluate(xpath, context || doc, null, XPathResult.ANY_TYPE, null);
+                        var results = doc.evaluate(xpath, context, null, XPathResult.ANY_TYPE, null);
 			var node;
 			while ((node = results.iterateNext()))
 				nodes.push(node);
@@ -92,7 +98,12 @@ function init () {
 	}
 }
 
-
+observe(window,'click',function (event) {
+	var target = (event.target || event.srcElement);
+	if (target.id !== 'addcat') {
+		$('catselect').css.display = 'none';
+	}
+});
 
 function items (list) {
 	var node = list.firstChild;
@@ -207,7 +218,7 @@ function titelize (s) {
 }
 
 function getNumberFieldValue (field) {
-	var value = field.getAttribute("data-value");
+	var value = field.attr("data-value");
 	if (value === null) {
 		var decimals = field.getAttribute("data-decimals");
 
@@ -270,7 +281,7 @@ function increaseNumberField () {
 }
 
 function decreaseNumberField () {
-	var step = this.getAttribute("data-step");
+	var step = this.attr("data-step");
 	if (step === null) {
 		step = 1;
 	}

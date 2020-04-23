@@ -11,18 +11,10 @@ function ponycheck() {
 
 function showconfig() {
     document.getElementById('options').style.visibility = "visible";
-    document.getElementById('ponyoptions').style.visibility = "visible";
-    document.getElementById('filterwrapper').style.visibility = "visible";
-    document.getElementById('ponylist').style.visibility = "visible";
-    document.getElementById('zero').style.visibility = "visible";
 }
 
 function hideconfig() {
     document.getElementById('options').style.visibility = "hidden";
-    document.getElementById('ponyoptions').style.visibility = "hidden";
-    document.getElementById('filterwrapper').style.visibility = "hidden";
-    document.getElementById('ponylist').style.visibility = "hidden";
-    document.getElementById('zero').style.visibility = "hidden";
 }
 
 
