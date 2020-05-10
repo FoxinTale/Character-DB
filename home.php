@@ -27,7 +27,7 @@
                 <li>Fun Stuff is fun things you can do on the site, and customization.</li>
                 <li>The To Do page is a list of items and things I am working on adding.<li>
                 <li>Finally, the logout page does just that. Logs you out of the page.</li>
-                <li>Fun fact: Aside from the ponies aspect, this whole site fits on a 1.44 Mb Floppy.</li>
+                <li>Oh, and this somewhat works on mobile devices. It's far from pretty, but it still works as a site.</li>
             </ul>
         </section>
         <section>

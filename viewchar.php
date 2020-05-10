@@ -21,223 +21,158 @@
         $charstat = getcharstats($db, $charname);
         $charother = getother($db, $charname);
         
-        $nya = "Not Yet Added";
+        $nya = "Not Yet Added, or Not Applicable to this character.";
         ?>
-        <!-- Warning, there is an exessive useage of divs up ahead. This is because textareas are a pain to work with -->
         <div id="accordion">
             <h3>Basic Information about <?php echo $charname; ?>.</h3>
-            <div class="display">
+            <section class="display">
                 <label for="charname" id ="charnamelabel">Full Name: </label>
-                <input type="text" readonly id="charname" name="char_name" value="<?php echo $charinfo['char_fullname']; ?>"> 
-                <br>
+                    <p id="charname" class="textdiv"><?php echo $charinfo['char_fullname']; ?></p>
                 <label for="charname2">Short name: </label>
-                <input type="text" readonly id="charname2" name="char_name2" value="<?php echo $charinfo['char_name']; ?>">
-                <br>
+                    <p id="charname2" class="textdiv"><?php echo $charinfo['char_name']; ?></p>
                 <label for="charalias">Alias(es): </label>
-                <input type="text" readonly id="charalias" name="char_alias" value="<?php echo $charinfo['char_alias']; ?>">
-                <br>
+                    <p id="charalias" class="textdiv"><?php echo $charinfo['char_alias']; ?></p>
                 <label for="shortdesc">Short Description: </label>
-                <div id="shortdesc" class="textdiv"> <?php echo $charinfo['char_desc']; ?></div>
-                <br>
+                    <p id="shortdesc" class="textdiv"> <?php echo $charinfo['char_desc']; ?></p>
                 <label for="charage">Age: </label>
-                <input type="text" readonly id="charage" name="char_age" value="<?php echo $charinfo['char_age']; ?>">
-                <br>
+                    <p id="charage" class="textdiv"><?php echo $charinfo['char_age']; ?></p>
                 <label for="chargender">Gender</label>
-                <input type="text" readonly id="chargender" name="char_gender" value="<?php echo $charinfo['char_gender']; ?>">
-                <br>
+                    <p id="chargender" class="textdiv"><?php echo $charinfo['char_gender']; ?></p>
                 <label for="charsexuality">Sexuality: </label>
-                <input type="text" readonly id="charsexuality" name="char_sexuality" value="<?php echo $charinfo['char_sexuality']; ?>">
-                <br>
+                    <p id="charsexuality" class="textdiv"><?php echo $charinfo['char_sexuality']; ?></p>
                 <label for="charrace">Race / Species: </label>
-                <input type="text" readonly id="charrace" name="char_race" value="<?php echo $charinfo['char_race']; ?>">
-                <br>
+                    <p id="charrace" class="textdiv"><?php echo $charinfo['char_race']; ?></p>
                 <label for="charstatus">Current Status: </label>
-                <div id="charstatus" class="textdiv"><?php echo $charinfo['char_status']; ?></div>
-                <br>
+                    <p id="charstatus" class="textdiv"><?php echo $charinfo['char_status']; ?></p>
                 <label for="charsoul">Soul Type: </label>
-                <input type="text" readonly id="charsoul" name="char_soul" value="<?php echo $charinfo['char_soul']; ?>">
-                <br>
+                    <p id="charsoul" class="textdiv"><?php echo $charinfo['char_soul']; ?></p>
                 <label for="charother">Other: </label>
-                <div id="charother" class="textdiv"><?php echo $charinfo['char_other']; ?></div>
-                <br>
-            </div>
+                    <p id="charother" class="textdiv"><?php echo $charinfo['char_other']; ?></p>
+            </section>
             <h3><?php echo $charname; ?>'s physical appearance.</h3>
-            <div class="display">
+            <section class="display">
                 <label for="chareyes">Eye Description: </label>
-                <div id="chareyes" class="textdiv"><?php  if(isset($charappear)&& !empty($charappear)){  echo $charappear['app_eyes'];} else{echo$nya;} ?></div>
-                <br>
+                    <p id= "chareyes" class="textdiv"><?php  if(isset($charappear)&& !empty($charappear)){  echo $charappear['app_eyes'];} else{echo$nya;} ?></p>
                 <label for="charhair">Hair Description: </label>
-                <div id="charhair" class="textdiv"><?php if(isset($charappear)&& !empty($charappear)){ echo $charappear['app_hair'];} else{echo$nya;} ?></div>
-                <br>
+                    <p id="charhair" class="textdiv"><?php if(isset($charappear)&& !empty($charappear)){ echo $charappear['app_hair'];} else{echo$nya;} ?></p>
                 <label for="charears">Ears: </label>
-                <div id="charears" class="textdiv"><?php  if(isset($charappear)&& !empty($charappear)){echo $charappear['app_ears'];} else{echo$nya;} ?></div>
-                <br>
+                    <p class="textdiv" class="textdiv"><?php  if(isset($charappear)&& !empty($charappear)){echo $charappear['app_ears'];} else{echo$nya;} ?></p>
                 <label for="charheight">Height: </label>
-                <div id="charheight" class="textdiv"><?php if(isset($charappear)&& !empty($charappear)){echo $charappear['app_height'];} else{echo$nya;} ?></div>
-                <br>
+                    <p id="charheight" class="textdiv"><?php if(isset($charappear)&& !empty($charappear)){echo $charappear['app_height'];} else{echo$nya;} ?></p>
                 <label for="charweight">Weight: </label>
-                <div id="charweight" class="textdiv"><?php if(isset($charappear)&& !empty($charappear)){echo $charappear['app_weight'];} else{echo$nya;} ?></div>
-                <br>
+                    <p id="charweight" class="textdiv"><?php if(isset($charappear)&& !empty($charappear)){echo $charappear['app_weight'];} else{echo$nya;} ?></p>
                 <label for="charskin">Skin: </label>
-                <div id="charskin" class="textdiv"><?php if(isset($charappear)&& !empty($charappear)){echo $charappear['app_skin'];} else{echo$nya;} ?></div>
-                <br>
-                <label for="charweight">Unique Features: </label>
-                <div id="charunique" class="textdiv"><?php if(isset($charappear)&& !empty($charappear)){ echo $charappear['app_unique'];} else{echo$nya;} ?></div>
-                <br>
+                    <p id="charskin" class="textdiv"><?php if(isset($charappear)&& !empty($charappear)){echo $charappear['app_skin'];} else{echo$nya;} ?></p>
+                <label for="charunique">Unique Features: </label>
+                    <p id="charunique" class="textdiv"><?php if(isset($charappear)&& !empty($charappear)){ echo $charappear['app_unique'];} else{echo$nya;} ?></p>
                 <label for="charadd">Additional: </label>
-                <div id="charadd" class="textdiv"><?php  if(isset($charappear)&& !empty($charappear)){echo $charappear['app_other'];} else{echo$nya;} ?></div>
-                <br>
-            </div>
+                    <p class="textdiv"><?php  if(isset($charappear)&& !empty($charappear)){echo $charappear['app_other'];} else{echo$nya;} ?></p>
+            </section>
             <h3><?php echo $charname; ?> 's outfit(s) (if applicable).</h3>
-            <div class="display">
-                <label for="outname">"Name": </label>
-                <div id="outname" class="textdiv"><?php if(isset($charoutfit)&& !empty($charoutfit) ){echo $charoutfit['outfit_name'];} else{echo$nya;} ?></div>
-                <br>
+            <section class="display">
+                <label for="outname">Name: </label>
+                    <p id="outname" class="textdiv"><?php if(isset($charoutfit)&& !empty($charoutfit) ){echo $charoutfit['outfit_name'];} else{echo$nya;} ?></p>
                 <label for="outglass">Eyewear / Hats: </label>
-                <div id="outglass" name="out_glass" class="textdiv"><?php if(isset($charoutfit) && !empty($charoutfit)){echo $charoutfit['outfit_glasses'];} else{echo $nya;} ?></div>
-                <br>
+                    <p id="outglass" class="textdiv"><?php if(isset($charoutfit) && !empty($charoutfit)){echo $charoutfit['outfit_glasses'];} else{echo $nya;} ?></p>
                 <label for="outtop">Top: </label>
-                <div id="outtop" class="textdiv"><?php if(isset($charoutfit) && !empty($charoutfit)){echo $charoutfit['outfit_top'];} else{echo $nya;} ?></div>
-                <br>
+                    <p id="outtop" class="textdiv"><?php if(isset($charoutfit) && !empty($charoutfit)){echo $charoutfit['outfit_top'];} else{echo $nya;} ?></p>
                 <label for="outbot">Bottom: </label>
-                <div id="outbot" class="textdiv"><?php if(isset($charoutfit) && !empty($charoutfit)){echo $charoutfit['outfit_bottom'];} else{echo $nya;} ?></div>
-                <br>
+                    <p id="outbot" class="textdiv"><?php if(isset($charoutfit) && !empty($charoutfit)){echo $charoutfit['outfit_bottom'];} else{echo $nya;} ?></p>
                 <label for="outfoot">Footwear: </label>
-                <div id="outfoot" class="textdiv"><?php if(isset($charoutfit) && !empty($charoutfit)){echo $charoutfit['outfit_footwear'];} else{echo $nya;} ?></div>
-                <br>
+                    <p id="outfoot" class="textdiv"><?php if(isset($charoutfit) && !empty($charoutfit)){echo $charoutfit['outfit_footwear'];} else{echo $nya;} ?></p>
                 <label for="outjewel">Jewelery: </label>
-                <div id="outjewel" class="textdiv"><?php if(isset($charoutfit) && !empty($charoutfit)){echo $charoutfit['outfit_jewlery'];} else{echo $nya;} ?></div>
-                <br>
-            </div>
+                    <p id="outjewel" class="textdiv"><?php if(isset($charoutfit) && !empty($charoutfit)){echo $charoutfit['outfit_jewlery'];} else{echo $nya;} ?></p>
+            </section>
             <h3><?php echo $charname; ?>'s detailed personality.</h3>
-            <div class ="display">
+            <section class ="display">
                 <label for="charact">Activity: </label>
-                <div id="charact" class="textdiv"><?php if(isset($charpers)&& !empty($charpers)){echo $charpers['pers_act'];} else{echo $nya;} ?></div>
-                <br>
+                    <p id="charact" class="textdiv"><?php if(isset($charpers)&& !empty($charpers)){echo $charpers['pers_act'];} else{echo $nya;} ?></p>
                 <label for="charagree">Agreeableness: </label>
-                <div id="charagree" class="textdiv"><?php if(isset($charpers)&& !empty($charpers)){echo $charpers['pers_agree'];} else{echo $nya;} ?></div>
-                <br>
+                    <p id="charagree" class="textdiv"><?php if(isset($charpers)&& !empty($charpers)){echo $charpers['pers_agree'];} else{echo $nya;} ?></p>
                 <label for="charassert">Assertiveness: </label>
-                <div id="charassert" class="textdiv"><?php if(isset($charpers)&& !empty($charpers)){echo $charpers['pers_assert'];} else{echo $nya;} ?></div> 
-                <br>
+                    <p id="charassert" class="textdiv"><?php if(isset($charpers)&& !empty($charpers)){echo $charpers['pers_assert'];} else{echo $nya;} ?></p> 
                 <label for="charconf">Confidence: </label>
-                <div id="charconf" class="textdiv"><?php if(isset($charpers)&& !empty($charpers)){echo $charpers['pers_conf'];} else{echo $nya;} ?></div>
-                <br>
+                    <p id="charconf" class="textdiv"><?php if(isset($charpers)&& !empty($charpers)){echo $charpers['pers_conf'];} else{echo $nya;} ?></p>
                 <label for="chardisc">Discipline: </label>
-                <div id="chardisc" class="textdiv"><?php if(isset($charpers)&& !empty($charpers)){echo $charpers['pers_disc']; } else{echo $nya;}?></div>
-                <br>
+                    <p id="chardisc" class="textdiv"><?php if(isset($charpers)&& !empty($charpers)){echo $charpers['pers_disc']; } else{echo $nya;}?></p>
                 <label for="charemocap">Emotional Capacity: </label>
-                <div id="charemocap" class="textdiv"><?php if(isset($charpers)&& !empty($charpers)){echo $charpers['pers_emocap']; } else{echo $nya;}?></div>
-                <br>
+                    <p id="charemocap" class="textdiv"><?php if(isset($charpers)&& !empty($charpers)){echo $charpers['pers_emocap']; } else{echo $nya;}?></p>
                 <label for="charfriend">Friendliness: </label>
-                <div id="charfriend" class="textdiv"><?php if(isset($charpers)&& !empty($charpers)){echo $charpers['pers_friend']; } else{echo $nya;}?></div>
-                <br>
+                    <p id="charfriend" class="textdiv"><?php if(isset($charpers)&& !empty($charpers)){echo $charpers['pers_friend']; } else{echo $nya;}?></p>
                 <label for="charhonest">Honesty: </label>
-                <div id="charhonest" class="textdiv"><?php if(isset($charpers)&& !empty($charpers)){echo $charpers['pers_honest']; } else{echo $nya;}?></div>
-                <br>
+                    <p id="charhonest" class="textdiv"><?php if(isset($charpers)&& !empty($charpers)){echo $charpers['pers_honest']; } else{echo $nya;}?></p>
                 <label for="charintel">Intelligence: </label>
-                <div id="charintel" class ="textdiv"><?php if(isset($charpers)&& !empty($charpers)){echo $charpers['pers_intel']; } else{echo $nya;}?></div>
-                <br>
+                    <p id="charintel" class ="textdiv"><?php if(isset($charpers)&& !empty($charpers)){echo $charpers['pers_intel']; } else{echo $nya;}?></p>
                 <label for="charmanners">Manners: </label>
-                <div id ="charmanners" class="textdiv"><?php if(isset($charpers)&& !empty($charpers)){echo $charpers['pers_manner']; } else{echo $nya;}?></div>
-                <br>
+                    <p id ="charmanners" class="textdiv"><?php if(isset($charpers)&& !empty($charpers)){echo $charpers['pers_manner']; } else{echo $nya;}?></p>
                 <label for="charpos">Positivity: </label>
-                <div id="charpos" class="textdiv"><?php if(isset($charpers)&& !empty($charpers)){echo $charpers['pers_pos']; } else{echo $nya;}?></div>
-                <br>
+                    <p id="charpos" class="textdiv"><?php if(isset($charpers)&& !empty($charpers)){echo $charpers['pers_pos']; } else{echo $nya;}?></p>
                 <label for="charrebel">Rebelliousness: </label>
-                <div id="charrebel" class="textdiv"><?php if(isset($charpers)&& !empty($charpers)){echo $charpers['pers_rebel']; } else{echo $nya;}?></div>
-                <br>
+                    <p id="charrebel" class="textdiv"><?php if(isset($charpers)&& !empty($charpers)){echo $charpers['pers_rebel']; } else{echo $nya;}?></p>
                 <label for="charperstype">Personality Type: </label>
-                <div id="charperstype" class="textdiv"><?php if(isset($charpers)&& !empty($charpers)){echo $charpers['pers_type']; } else{echo $nya;}?></div>
-                <br>
+                    <p id="charperstype" class="textdiv"><?php if(isset($charpers)&& !empty($charpers)){echo $charpers['pers_type']; } else{echo $nya;}?></p>
                 <label for="charpersdesc">Description (Optional): </label>
-                <div id="charpersdesc" class='textdiv'><?php if(isset($charpers) && !empty($charpers)){echo $charpers['pers_desc'];} else{echo $nya;} ?></div>
-                <br>
-            </div>
+                    <p id="charpersdesc" class='textdiv'><?php if(isset($charpers) && !empty($charpers)){echo $charpers['pers_desc'];} else{echo $nya;} ?></p>
+            </section>
             <h3><?php echo $charname; ?>'s stats, if applicable.</h3>
-            <div class ="display">
+            <section class ="display">
                 <label for="stathealth">Health / Hit Points: </label>
-                <input type="text" readonly id="stathealth" name="stat_health" value="<?php if(isset($charstat)&& !empty($charstat)){echo $charstat['stat_health'];} else{echo $nya;} ?>">
-                <br>
+                    <p id="stathealth" class="textdiv"><?php if(isset($charstat)&& !empty($charstat)){echo $charstat['stat_health'];} else{echo $nya;} ?></p>
                 <label for="statstam">Stamina: </label>
-                <input type="text" readonly id="statstam" name="stat_stam" value="<?php if(isset($charstat)&& !empty($charstat)){echo $charstat['stat_stam'];} else{echo $nya;} ?>">
-                <br>
+                    <p id="statstam" class="textdiv"><?php if(isset($charstat)&& !empty($charstat)){echo $charstat['stat_stam'];} else{echo $nya;} ?></p>
                 <label for="statmana">Mana / Magicka: </label>
-                <input type="text" readonly id="statmana" name="stat_mana" value="<?php if(isset($charstat)&& !empty($charstat)){echo $charstat['stat_mana'];} else{echo $nya;} ?>">
-                <br>
+                    <p id="statmana" class="textdiv"><?php if(isset($charstat)&& !empty($charstat)){echo $charstat['stat_mana'];} else{echo $nya;} ?></p>
                 <label for="statlevel">Level: </label>
-                <input type="text" readonly id="statlevel" name="stat_level" value="<?php if(isset($charstat)&& !empty($charstat)){echo $charstat['stat_level'];} else{echo $nya;} ?>">
-                <br>
+                    <p id="statlevel" class="textdiv"><?php if(isset($charstat)&& !empty($charstat)){echo $charstat['stat_level'];} else{echo $nya;} ?></p>
                 <label for="statexp">Experience Level: </label>
-                <input type="text" readonly id="statexp" name="stat_exp" value="<?php if(isset($charstat)&& !empty($charstat)){echo $charstat['stat_exp'];} else{echo $nya;} ?>">
-                <br>
+                    <p id="statexp" class="textdiv"><?php if(isset($charstat)&& !empty($charstat)){echo $charstat['stat_exp'];} else{echo $nya;} ?></p>
                 <label for="statagile">Agility: </label>
-                <input type="text" readonly id="statagile" name="stat_agile" value="<?php if(isset($charstat)&& !empty($charstat)){echo $charstat['stat_agile'];} else{echo $nya;} ?>">
-                <br>
+                    <p id="statagile" class="textdiv"><?php if(isset($charstat)&& !empty($charstat)){echo $charstat['stat_agile'];} else{echo $nya;} ?></p>
                 <label for="statstrong">Strength: </label>
-                <input type="text" readonly id="statstrong" name="stat_strong" value="<?php if(isset($charstat)&& !empty($charstat)){echo $charstat['stat_strength'];} else{echo $nya;} ?>">
-                <br>
+                    <p id="statstrong" class="textdiv"><?php if(isset($charstat)&& !empty($charstat)){echo $charstat['stat_strength'];} else{echo $nya;} ?></p>
                 <label for="statchar">Charisma: </label>
-                <input type="text" readonly id="statchar" name="stat_char" value="<?php if(isset($charstat)&& !empty($charstat)){echo $charstat['stat_charisma'];} else{echo $nya;} ?>">
-                <br>
+                    <p id="statchar" class="textdiv"><?php if(isset($charstat)&& !empty($charstat)){echo $charstat['stat_charisma'];} else{echo $nya;} ?></p>
                 <label for="statpercep">Perception: </label>
-                <input type="text" readonly id="statpercep" name="stat_percep" value="<?php if(isset($charstat) && !empty($charstat)){echo $charstat['stat_percep'];} else{echo $nya;} ?>">
-                <br>
-            </div>
+                    <p id="statpercep" class="textdiv"><?php if(isset($charstat) && !empty($charstat)){echo $charstat['stat_percep'];} else{echo $nya;} ?></p>
+            </section>
             <h3><?php echo $charname; ?>'s race, if non-human.</h3>
-            <div class ="display">
+            <section class ="display">
                 <label for="charrace">Race Name: </label>
-                <input type="text" readonly id="charrace" name="char_race" value="<?php if(isset($charrace) && !empty($charrace)){echo $charrace['race_name']; } else{echo $nya;}?>">
-                <br>
+                    <p id="charrace" class="textdiv"><?php if(isset($charrace) && !empty($charrace)){echo $charrace['race_name']; } else{echo $nya;}?></p>
                 <label for="racehome">Home: </label>
-                <div id="racehome" class="textdiv"><?php if(isset($charrace)&& !empty($charrace)){echo $charrace['race_home']; } else{echo $nya;}?></div>
-                <br>
+                    <p id="racehome" class="textdiv"><?php if(isset($charrace)&& !empty($charrace)){echo $charrace['race_home']; } else{echo $nya;}?></p>
                 <label for="raceage">Average Age: </label>
-                <input type="text" readonly id="raceage" name="race_age" value="<?php if(isset($charrace)&& !empty($charrace)){echo $charrace['race_age']; } else{echo $nya;}?>">
-                <br>
+                    <p id="raceage" class="textdiv"><?php if(isset($charrace)&& !empty($charrace)){echo $charrace['race_age']; } else{echo $nya;}?></p>
                 <label for="raceheight">Average Height: </label>
-                <input type="text" readonly id="raceheight" name="race_height" value="<?php if(isset($charrace)&& !empty($charrace)){echo $charrace['race_height']; } else{echo $nya;}?>">
-                <br>
+                    <p id="raceheight" class="textdiv"><?php if(isset($charrace)&& !empty($charrace)){echo $charrace['race_height']; } else{echo $nya;}?></p>
                 <label for="raceaspects">Racial Aspects: </label>
-                <div id="raceaspects" class="textdiv"><?php if(isset($charrace)&& !empty($charrace)){echo $charrace['race_aspect']; } else{echo $nya;}?></div>
-                <br>
+                    <p id="raceaspects" class="textdiv"><?php if(isset($charrace)&& !empty($charrace)){echo $charrace['race_aspect']; } else{echo $nya;}?></p>
                 <label for="charracedesc">Description: </label>
-                <div id="charracedesc" class="textdiv"><?php if(isset($charrace)&& !empty($charrace)){echo $charrace['race_desc']; } else{echo $nya;}?></div>
-                <br>
-            </div>
+                    <p id="charracedesc" class="textdiv"><?php if(isset($charrace)&& !empty($charrace)){echo $charrace['race_desc']; } else{echo $nya;}?></p>
+            </section>
             <h3><?php echo $charname; ?>'s other information that didn't quite fit anywhere else.</h3>
-            <div class ="display">
+            <section class ="display">
                 <label for="othertheme">Theme Song: </label>
-                <div id="othertheme" class="textdiv"><?php if(isset($charother)&& !empty($charother)){echo $charother['other_theme'];} else{echo $nya;} ?></div>
-                <br>
+                    <p id="othertheme" class="textdiv"><?php if(isset($charother)&& !empty($charother)){echo $charother['other_theme'];} else{echo $nya;} ?></p>
                 <label for="otherquotes">Quotes: </label>
-                <div id="otherquotes" class="textdiv"><?php if(isset($charother)&& !empty($charother)){echo $charother['other_quotes'];} else{echo $nya;} ?></div>
-                <br>
+                    <p id="otherquotes" class="textdiv"><?php if(isset($charother)&& !empty($charother)){echo $charother['other_quotes'];} else{echo $nya;} ?></p>
                 <label for="otherquirks">Quirks: </label>
-                <div id="otherquirks" class="textdiv"><?php if(isset($charother)&& !empty($charother)){echo $charother['other_quirks'];} else{echo $nya;} ?></div>
-                <br>
+                    <p id="otherquirks" class="textdiv"><?php if(isset($charother)&& !empty($charother)){echo $charother['other_quirks'];} else{echo $nya;} ?></p>
                 <label for="otherquirksdesc">Quirk Description: </label>
-                <div id="otherquirksdesc" class="textdiv"><?php if(isset($charother)&& !empty($charother)){echo $charother['other_quirkinfo'];} else{echo $nya;} ?></div>
-                <br>
+                    <p id="otherquirksdesc" class="textdiv"><?php if(isset($charother)&& !empty($charother)){echo $charother['other_quirkinfo'];} else{echo $nya;} ?></p>
                 <label for="otherweak">Weaknesses: </label>
-                <div id="otherweak" class="textdiv"><?php if(isset($charother)&& !empty($charother)){echo $charother['other_weak'];} else{echo $nya;} ?></div>
-                <br>
+                    <p id="otherweak" class="textdiv"><?php if(isset($charother)&& !empty($charother)){echo $charother['other_weak'];} else{echo $nya;} ?></p>
                 <label for="otherbackstory">Backstory: </label>
-                <div id="otherbackstory" class="textdiv"><?php if(isset($charother)&& !empty($charother)){echo $charother['other_backstory'];} else{echo $nya;} ?></div>
-                <br>
+                    <p id="otherbackstory" class="textdiv"><?php if(isset($charother)&& !empty($charother)){echo $charother['other_backstory'];} else{echo $nya;} ?></p>
                 <label for="otherbday">Birthday: </label>
-                <input type="text" readonly id="otherbday" name="other_bday" value="<?php if(isset($charother) && !empty($charother)) {echo $charother['other_bday'];} else{echo $nya;} ?>">
-                <br>
+                    <p id="otherbday" class="textdiv"><?php if(isset($charother) && !empty($charother)) {echo $charother['other_bday'];} else{echo $nya;} ?></p>     
                 <label for="otherzodiac">Zodiac: </label>
-                <input type="text" readonly id="otherzodiac" name="other_zodiac" value="<?php if(isset($charother)&& !empty($charother)){echo $charother['other_zodiac'];} else{echo $nya;} ?>">
-                <br>
+                    <p id="otherzodiac" class="textdiv"><?php if(isset($charother)&& !empty($charother)){echo $charother['other_zodiac'];} else{echo $nya;} ?></p>
                 <label for="otherhobbies">Hobbies: </label>
-                <div id="otherhobbies" class="textdiv"><?php if(isset($charother) && !empty($charother)){echo $charother['other_hobbies'];} else{echo $nya;} ?></div>
-                <br>
+                    <p id="otherhobbies" class="textdiv"><?php if(isset($charother) && !empty($charother)){echo $charother['other_hobbies'];} else{echo $nya;} ?></p>
                 <label for="otherother">Other: </label>
-                <div id="otherother" class="textdiv"><?php if(isset($charother)&& !empty($charother)){echo nc($charother['other_other']);} else{echo $nya;} ?></div>
-                <br>
-            </div>
+                    <p id="otherother" class="textdiv"><?php if(isset($charother)&& !empty($charother)){echo nc($charother['other_other']);} else{echo $nya;} ?></p>
+            </section>
         </div>
         <script>
             $(function () {

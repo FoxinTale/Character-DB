@@ -7,32 +7,24 @@
     <title>Character List</title>
 </head>
 <body>
-    <div class="itemcontent">
+    <section class="itemcontent">
         <label for="itemname" id="itemnamelabel">Item Name: </label>
-        <input type="text" readonly id="itemname" name="item_name" value="<?php echo $_POST['item_name']; ?>">
-        <br>
+            <p id="itemname" class="textdiv"><?php echo $_POST['item_name']; ?>></p>
         <label for="itemdesctext">Item Description: </label>
-        <div id="itemdesctext" class="textdiv"><?php echo $_POST['item_desc_orig']; ?></div>
-        <br>
+            <p id="itemdesctext" class="textdiv"><?php echo $_POST['item_desc_orig']; ?></p>
         <label for="itemappear">Item Appearance: </label>
-        <div id="itemappear" class="textdiv"><?php echo $_POST['item_appear']; ?></div>
-        <br>
+            <p id="itemappear" class="textdiv"><?php echo $_POST['item_appear']; ?></p>
         <label for="itemtype">Item Type: </label>
-        <input type="text" readonly id="itemtype" name="item_type" value="<?php echo $_POST['item_type']; ?>">
-        <br>
+            <p id="itemtype" class="textdiv"><?php echo $_POST['item_type']; ?></p>
         <label for="itemsize">Item Size: </label>
-        <input type="text" readonly id="itemsize" name="item_size" value="<?php echo $_POST['item_size']; ?>">
-        <br>
+            <p id="itemsize" class="textdiv"><?php echo $_POST['item_size']; ?></p>
         <label for="itemhand">Item Hand: </label>
-        <input type="text" readonly id="itemhand" name="item_hand" value=""<?php echo $_POST['item_loc']; ?>">
-        <br>
+            <p id="itemhand" class="textdiv"><?php echo $_POST['item_loc']; ?></p>
         <label for="itemeffect">Item Effects: </label>
-        <div id="itemeffect" class="textdiv"><?php echo $_POST['item_effect']; ?></div>
-        <br>
+            <p id="itemeffect" class="textdiv"><?php echo $_POST['item_effect']; ?></p>
         <label for="itemcond">Item Conditions: </label>
-        <div id="itemcond" class="textdiv"><?php echo $_POST['item_cond']; ?></div>
-        <br>
+            <p id="itemcond" class="textdiv"><?php echo $_POST['item_cond']; ?></p>
         <label for="itemvalue">Item Value: </label>
-        <input type="text" readonly id="itemvalue" name="item_value" value="<?php echo $_POST['item_value']; ?>">
-    </div>
+            <p id="itemvalue" class="textdiv"><?php echo $_POST['item_value']; ?></p>
+    </section>
 </body>

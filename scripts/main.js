@@ -1,6 +1,7 @@
 containerHidden = false;
 frameHidden = true;
-window.onload = hidedetails();
+// window.onload = hidedetails();
+window.onload = load_it();
 
 function menu() {
     var x = document.getElementById("navmenu");
@@ -21,7 +22,7 @@ function linkclick(url) {
         document.getElementById('container').style.height = "70%";
         document.getElementById('container').style.width = "75%";
         document.getElementById('container').style.border = "none";
-        document.getElementById('container').style.margin = "2.5% 0% 0% 15%";
+        document.getElementById('container').style.margin = "2.5% 0% 0% 10%";
         jQuery(document).ready(function ($) {
             $("#container").load(url);
         });
@@ -42,7 +43,7 @@ function datapages(url) {
         document.getElementById('minipage').style.visibility = "visible";
         document.getElementById('minipage').style.width = "75%";
         document.getElementById('minipage').style.height = "700px";
-        document.getElementById('minipage').style.margin = "0% 0% 0% 15%";
+        document.getElementById('minipage').style.margin = "0% 0% 0% 10%";
         document.getElementById('minipage').style.border = "none";
         document.getElementById('minipage').src = url;
     } else if (!frameHidden) {
@@ -50,37 +51,49 @@ function datapages(url) {
     }
 }
 
-function hidedetails() {
-    jQuery(document).ready(function ($) {
-        $("#container").load("home.php");
-    });
+
+function load_it() {
     document.getElementById('minipage').style.visibility = "hidden";
     document.getElementById('minipage').style.height = "0px";
     document.getElementById('minipage').style.width = "0px";
-    document.getElementById('controls').style.visibility = "hidden";
-    document.getElementById('paddock-back').style.visibility = "hidden";
-    document.getElementById('paddock-left').style.visibility = "hidden";
-    document.getElementById('paddock-right').style.visibility = "hidden";
-    document.getElementById('paddock-front').style.visibility = "hidden";
+    jQuery(document).ready(function ($) {
+        $("#container").load("home.php");
+    });
 }
-
-function makeExpandingArea(container) {
- var area = container.querySelector('textarea');
- var span = container.querySelector('span');
- if (area.addEventListener) {
-   area.addEventListener('input', function() {
-     span.textContent = area.value;
-   }, false);
-   span.textContent = area.value;
- } else if (area.attachEvent) {
-   // IE8 compatibility
-   area.attachEvent('onpropertychange', function() {
-     span.innerText = area.value;
-   });
-   span.innerText = area.value;
+/*
+ function hidedetails() {
+ jQuery(document).ready(function ($) {
+ $("#container").load("home.php");
+ });
+ document.getElementById('minipage').style.visibility = "hidden";
+ document.getElementById('minipage').style.height = "0px";
+ document.getElementById('minipage').style.width = "0px";
+ document.getElementById('controls').style.visibility = "hidden";
+ document.getElementById('paddock-back').style.visibility = "hidden";
+ document.getElementById('paddock-left').style.visibility = "hidden";
+ document.getElementById('paddock-right').style.visibility = "hidden";
+ document.getElementById('paddock-front').style.visibility = "hidden";
  }
-container.className += "active";
-}var areas = document.querySelectorAll('.expandingArea');
-var l = areas.length;while (l--) {
- makeExpandingArea(areas[l]);
+ */
+function makeExpandingArea(container) {
+    var area = container.querySelector('textarea');
+    var span = container.querySelector('span');
+    if (area.addEventListener) {
+        area.addEventListener('input', function () {
+            span.textContent = area.value;
+        }, false);
+        span.textContent = area.value;
+    } else if (area.attachEvent) {
+        // IE8 compatibility
+        area.attachEvent('onpropertychange', function () {
+            span.innerText = area.value;
+        });
+        span.innerText = area.value;
+    }
+    container.className += "active";
+}
+var areas = document.querySelectorAll('.expandingArea');
+var l = areas.length;
+while (l--) {
+    makeExpandingArea(areas[l]);
 }

@@ -1,5 +1,6 @@
 body{
-    background-color: #b19cd9;
+    background-image: url(../images/sunset.png);
+    background-size: cover;
 }
 
 section{
@@ -37,11 +38,11 @@ ul li a{
 
 
 @media screen and (max-width: 600px) {
-    
+
     ul li{
         padding-right: 10px;
     }
-    
+
     .desc{
         padding-right: 10px;
         padding-left: 10px;

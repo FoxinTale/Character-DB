@@ -7,45 +7,32 @@
     <title>Character List</title>
 </head>
 <body>
-    <div class="spellcontent">
+    <section class="spellcontent">
         <label for="spellname" id="spellnamelabel">Name: </label>
-        <input type="text" readonly id="spellname" name="spell_name" value="<?php echo $_POST['spell_name']; ?>">
-        <br>
+            <p id="spellname" class="textdiv"><?php echo $_POST['spell_name']; ?></p>
         <label for="charname" id="charnamelabel">Used By: </label>
-        <input type="text" readonly id="charname" name="char_name" value="<?php echo $_POST['char_name']; ?>">
-        <br>
+            <p id="charname" class="textdiv"><?php echo $_POST['char_name']; ?><p>
         <label for="spelldesctext">Description: </label>
-        <div id="spelldesctext"class="textdiv"><?php echo $_POST['spell_desc_orig']; ?></div>
-        <br>
+            <p id="spelldesctext" class="textdiv"><?php echo $_POST['spell_desc_orig']; ?></p>
         <label for="spelldesctext2">Extra Description: </label>
-        <div id="spelldesctext2" class="textdiv"><?php echo $_POST['spell_desc2']; ?></div>
-        <br>
+            <p id="spelldesctext2" class="textdiv"><?php echo $_POST['spell_desc2']; ?></p>
         <label for="spelltype">Type: </label>
-        <input type="text" readonly id="spelltype" name="spell_type" value="<?php echo $_POST['spell_type']; ?>">
-        <br>
+            <p id="spelltype" class="textdiv"><?php echo $_POST['spell_type']; ?></p>
         <label for="spellschool">School of Magic: </label>
-        <input type="text" readonly id="spellschool" name="spell_school" value="<?php echo $_POST['spell_school']; ?>">
-        <br>
+            <p id="spellschool" class="textdiv"><?php echo $_POST['spell_school']; ?></p>
         <label for="spellrange">Range: </label>
-        <input type="text" readonly id="spellrange" name="spell_range" value="<?php echo $_POST['spell_range']; ?>">
-        <br>
+            <p id="spellrange" class="textdiv"><?php echo $_POST['spell_range']; ?></p>
         <label for="spellduration">Duration: </label>
-        <input type="text" readonly id="spellduration" name="spell_duration" value="<?php echo $_POST['spell_duration']; ?>">
-        <br>
+            <p class="textdiv"><?php echo $_POST['spell_duration']; ?></p>
         <label for="spellcast">Casting Time: </label>
-        <input type="text" readonly id="spellcast" name="spell_cast" value="<?php echo $_POST['spell_cast']; ?>">
-        <br>
+            <p id="spellcast" class="textdiv"><?php echo $_POST['spell_cast']; ?></p>
         <label for="spelldmg">Damage: </label>
-        <input type="text" readonly id="spelldmg" name="spell_dmg" value="<?php echo $_POST['spell_dmg']; ?>">
-        <br>
+            <p id="spelldmg" class="textdiv"><?php echo $_POST['spell_dmg']; ?></p>
         <label for="spelllvl">Level: </label>
-        <input type="text" readonly id="spelllvl" name="spell_lvl" value="<?php echo $_POST['spell_level']; ?>">
-        <br>
+            <p id="spelllvl" class="textdiv"><?php echo $_POST['spell_level']; ?></p>
         <label for="spellrit">Ritual: </label>
-        <input type="text" readonly id="spellrit" name="spell_rit" value="<?php echo $_POST['spell_ritual']; ?>">
-        <br>
+            <p id="spellrit" class="textdiv"><?php echo $_POST['spell_ritual']; ?></p>
         <label for="spellmats">Materials: </label>
-        <input type="text" readonly id="spellmats" name="spell_mats" value="<?php echo $_POST['spell_materials']; ?>">
-        <br>
-    </div>
+            <p id="spellmats" class="textdiv"><?php echo $_POST['spell_materials']; ?></p>
+    </section>
 </body>

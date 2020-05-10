@@ -7,32 +7,24 @@
     <title>Character List</title>
 </head>
 <body>
-    <div class="weapcontent">
+    <section class="weapcontent">
         <label for="weapname" id="weapnamelabel">Weapon Name: </label>
-        <input type="text" readonly id="weapname" name="weap_name" value="<?php echo $_POST['weap_name']; ?>">
-        <br>
+            <p id="weapname" class="textdiv"><?php echo $_POST['weap_name']; ?></p>
         <label for="weapdesc">Weapon Description: </label>
-        <div id="weapdesctext" class="textdiv"><?php echo $_POST['weap_desc_orig']; ?></div>
-        <br>
+            <p id="weapdesctext" class="textdiv"><?php echo $_POST['weap_desc_orig']; ?></p>
         <label for="weapappear">Weapon Appearance: </label>
-        <div id="weapappear" class="textdiv"><?php echo $_POST['weap_appear']; ?></div>
-        <br>
+            <p id="weapappear" class="textdiv"><?php echo $_POST['weap_appear']; ?></p>
         <label for="weaptype">Weapon Type: </label>
-        <input type="text" readonly id="weaptype" name="weap_type" value="<?php echo $_POST['weap_type']; ?>">
-        <br>
+            <p id="weaptype" class="textdiv"><?php echo $_POST['weap_type']; ?></p>
         <label for="weapsize">Weapon Size: </label>
-        <input type="text" readonly id="weapsize" name="weap_size" value="<?php echo $_POST['weap_size']; ?>">
-        <br>
+            <p id="weapsize" class="textdiv"><?php echo $_POST['weap_size']; ?>"</p>
         <label for="weaphand">Weapon Hand: </label>
-        <input type="text" readonly id="weaphand" name="weap_hand" value="<?php echo $_POST['weap_hand']; ?>">
-        <br>
+            <p id="weaphand" class="textdiv"><?php echo $_POST['weap_hand']; ?></p>
         <label for="weapeffect">Weapon Effects: </label>
-        <input type="text" readonly id="weapeffect" name="weap_effect" value="<?php echo $_POST['weap_effect']; ?>">
-        <br>
+            <p id="weapeffect" class="textdiv"><?php echo $_POST['weap_effect']; ?></p>
         <label for="weapcond">Weapon Conditions: </label>
-        <input type="text" readonly id="weapcond" name="weap_cond" value="<?php echo $_POST['weap_cond']; ?>">
-        <br>
+            <p id="weapcond" class="textdiv"><?php echo $_POST['weap_cond']; ?></p>
         <label for="weapvalue">Weapon Value: </label>
-        <input type="text" readonly id="weapvalue" name="weap_value" value="<?php echo $_POST['weap_value']; ?>">
-    </div>
+            <p id="weapvalue" class="textdiv"><?php echo $_POST['weap_value']; ?></p>
+    </section>
 </body>
