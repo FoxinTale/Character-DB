@@ -13,36 +13,31 @@ if (isset($_POST["weapbutton"])) {
 <head>
     <meta charset="UTF-8">
     <title>New Weapon</title>
-    <script type="text/javascript" src="scripts/jquery.min.js"></script>
-    <script type="text/javascript" src="scripts/expanding.jquery.js"></script>
-    <script type="text/javascript" src="scripts/addthings.js"></script>
+    <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/w3-min.css">
-    <link rel="stylesheet" href="css/form.css">
 </head>
 <body>
-    <div class="single-form-bg">
-        <h3>New Weapon</h3>
+    <div class="w3-pale-purple-box">
+        <h3 class="w3-display-header">New Weapon</h3>
         <?php
         if (isset($_POST["weapbutton"])) {
             echo "<span id='success'>Weapon successfuly added!</span>";
             echo '<br>';
         }
         ?>
-        <label for="fillit" id="filllabel">Fill Blank Spots: </label>
-        <input type="checkbox" id="fillit" name="fillempties" onclick ="fillblanksweap()">
-        <form id="newweap" method="post" class="single-form w3-container" action="newweapon.php">
+        <form id="newweap" method="post" class="w3-light-purple-box w3-container" action="newweapon.php">
             <p class="tooltip" title="The name of the weapon, obviously.">
                 <label for="weapname" id="weapnamelabel">Weapon Name: </label>
-                <input type="text" required id="weapname" name="weap_name" class='w3-input w3-border-blk'>
+                <input type="text" required id="weapname" name="weap_name" class='w3-input'>
             </p>
             <?php getcharnames($db, $username, $info, "Character Name"); ?>
             <p class="tooltip" title="This is a short description of the weapon.">
                 <label for="weapdesc">Weapon Description: </label>
-                <textarea id="weapadesc" required name="weap_desc" class='expanding w3-border-blk'></textarea>
+                <textarea id="weapadesc" required name="weap_desc" class='w3-textarea'></textarea>
             </p>
             <p class="tooltip" title="The appearance of the weapon.">
                 <label for="weapappear">Weapon Appearance: </label>
-                <textarea id="weapappear" required name="weap_appear" class='expanding w3-border-blk'></textarea>
+                <textarea id="weapappear" required name="weap_appear" class='w3-textarea'></textarea>
             </p>
             <p class="tooltip" title="The type or class of the weapon. Melee, ranged, sword...">
                 <label for="weaptype">Weapon Type: </label>

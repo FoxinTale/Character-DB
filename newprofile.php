@@ -46,7 +46,7 @@ if(isset($_POST["check_username"])){
                                title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" value="">
                         <br>
                         <label for='pass2'>Retype password</label>
-                        <input type='password' id='pass2' name="pass_verify" value=''><span> </span>
+                        <input type='password' id='pass2' name="pass_verify" value=''>
                         <br>
                         <input type="submit" id ="create" name="newprofile" value="Create Account">      
                                       <input type="submit" name="check_username" value="Check Username Availability" 

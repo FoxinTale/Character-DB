@@ -5,19 +5,6 @@ var capital = document.getElementById("capital");
 var number = document.getElementById("number");
 var length = document.getElementById("length");
 
-var pass2 = document.getElementById("pass2");
-
-pass2.onkeyup = function () {
-    var passdupe = pass2.value;
-    var password = pass.value;
-    if (passdupe !== password) {
-        document.getElementById('pass2').nextElementSibling.firstChild.nodeValue = "Passwords not equal.";
-    }
-    if (passdupe === passin) {
-        document.getElementById('pass2').nextElementSibling.firstChild.nodeValue = "Passwords areequal.";
-    }
-}
-
 passin.onkeyup = function () {
     var lowerCaseLetters = /[a-z]/g;
     if (passin.value.match(lowerCaseLetters)) {

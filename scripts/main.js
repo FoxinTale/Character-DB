@@ -11,6 +11,7 @@ function menu() {
         x.className = "sidenav";
     }
 }
+
 function linkclick(url) {
     if (containerHidden) {
         frameHidden = true;
@@ -33,7 +34,7 @@ function linkclick(url) {
     }
 }
 
-function datapages(url) {
+function framerender(url) {
     if (frameHidden) {
         frameHidden = false;
         containerHidden = true;
@@ -75,6 +76,8 @@ function load_it() {
  document.getElementById('paddock-front').style.visibility = "hidden";
  }
  */
+
+/*
 function makeExpandingArea(container) {
     var area = container.querySelector('textarea');
     var span = container.querySelector('span');
@@ -97,3 +100,4 @@ var l = areas.length;
 while (l--) {
     makeExpandingArea(areas[l]);
 }
+*/

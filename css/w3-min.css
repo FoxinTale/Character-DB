@@ -1,6 +1,6 @@
 /* 
 Minimized version of the full W3.css, "compressed" to exclude items not utilized in the site. 
-There have also been modifications, removals and additions to the original code.
+There have also been heavy modifications, removals and additions to the original code to make it more fit the usage.
 */
 
 
@@ -34,14 +34,6 @@ There have also been modifications, removals and additions to the original code.
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
-}
-
-.w3-disabled,
-.w3-btn:disabled,
-.w3-button:disabled {
-    cursor: not-allowed;
-    opacity: 0.3
 }
 
 .w3-sidebar {
@@ -51,34 +43,6 @@ There have also been modifications, removals and additions to the original code.
     position: fixed!important;
     z-index: 1;
     overflow: auto
-}
-
-.w3-border-0 {
-    border: 0!important
-}
-
-.w3-border {
-    border: 1px solid #ccc!important
-}
-
-.w3-border-blk {
-    border: 1px solid #000!important
-}
-
-.w3-border-top {
-    border-top: 1px solid #ccc!important
-}
-
-.w3-border-bottom {
-    border-bottom: 1px solid #ccc!important
-}
-
-.w3-border-left {
-    border-left: 1px solid #ccc!important
-}
-
-.w3-border-right {
-    border-right: 1px solid #ccc!important
 }
 
 .w3-bar-block .w3-dropdown-hover,
@@ -131,32 +95,25 @@ There have also been modifications, removals and additions to the original code.
     height: 1.35rem;
     border-bottom: 1px solid black;
     width: 50%;
+    font-family: 'coming';
 }
 
 .w3-select {
     width: 50%;
-    border: none;
-    border-bottom: 1px solid #ccc;
+    border: 0.5px solid black;
     margin-bottom: 0.5rem;
+    font-family: 'coming';
 }
 
 .w3-container label{
     float: left;
     width: 10rem;
     margin-left: 1rem;
+    font-family: 'handlee';
 }
 
-.w3-tooltip,
-.w3-display-container {
-    position: relative;
-}
-
-.w3-tooltip .w3-text {
-    display: none;
-}
-
-.w3-tooltip:hover .w3-text {
-    display: inline-block;
+.w3-select option{
+    font-family: 'coming';
 }
 
 @media (max-width:600px) {
@@ -168,34 +125,13 @@ There have also been modifications, removals and additions to the original code.
         margin-left: 1rem;   
         width: 85%;
     }
-
-    .w3-modal-content {
-        margin: 0 10px;
-        width: auto!important
-    }
-    .w3-modal {
-        padding-top: 30px
-    }
-    .w3-dropdown-hover.w3-mobile .w3-dropdown-content,
-    .w3-dropdown-click.w3-mobile .w3-dropdown-content {
-        position: relative
-    }
     .w3-hide-small {
         display: none!important
     }
-    .w3-mobile {
-        display: block;
-        width: 100%!important
-    }
-    .w3-bar-item.w3-mobile, .w3-tab-item, 
-    .w3-dropdown-hover.w3-mobile,
-    .w3-dropdown-click.w3-mobile {
+
+    .w3-tab-item{
         text-align: center
     }
-    .w3-dropdown-hover.w3-mobile,
-    .w3-dropdown-hover.w3-mobile .w3-btn,
-    .w3-dropdown-hover.w3-mobile .w3-button,
-    .w3-dropdown-click.w3-mobile,
     .w3-dropdown-click.w3-mobile .w3-btn,
     .w3-dropdown-click.w3-mobile .w3-button {
         width: 100%
@@ -222,9 +158,6 @@ There have also been modifications, removals and additions to the original code.
         margin-left: 0!important;
         margin-right: 0!important
     }
-    .w3-auto {
-        max-width: 100%
-    }
 }
 
 .w3-overlay {
@@ -248,14 +181,6 @@ There have also been modifications, removals and additions to the original code.
 .w3-container:before,
 .w3-panel:after,
 .w3-panel:before,
-.w3-row:after,
-.w3-row:before,
-.w3-row-padding:after,
-.w3-row-padding:before,
-.w3-cell-row:before,
-.w3-cell-row:after,
-.w3-clear:after,
-.w3-clear:before,
 .w3-bar:before,
 .w3-bar:after {
     content: "";
@@ -277,8 +202,7 @@ There have also been modifications, removals and additions to the original code.
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)
 }
 
-.w3-card-4,
-.w3-hover-shadow:hover {
+.w3-card-4{
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19)
 }
 
@@ -300,56 +224,13 @@ There have also been modifications, removals and additions to the original code.
     font-size: 24px!important
 }
 
-w3-container,
-.w3-panel {
+.w3-container, .w3-panel {
     padding: 0.01em 16px
 }
 
 .w3-panel {
     margin-top: 16px;
     margin-bottom: 16px
-}
-
-.w3-padding-small {
-    padding: 4px 8px!important
-}
-
-.w3-padding {
-    padding: 8px 16px!important
-}
-
-.w3-padding-large {
-    padding: 12px 24px!important
-}
-
-.w3-padding-16 {
-    padding-top: 16px!important;
-    padding-bottom: 16px!important
-}
-
-.w3-padding-24 {
-    padding-top: 24px!important;
-    padding-bottom: 24px!important
-}
-
-.w3-padding-32 {
-    padding-top: 32px!important;
-    padding-bottom: 32px!important
-}
-
-.w3-padding-48 {
-    padding-top: 48px!important;
-    padding-bottom: 48px!important
-}
-
-.w3-padding-64 {
-    padding-top: 64px!important;
-    padding-bottom: 64px!important
-}
-
-.w3-red,
-.w3-hover-red:hover {
-    background-color: #f44336!important
 }
 
 .w3-pale-purple-box{
@@ -368,14 +249,10 @@ w3-container,
     border: 1.5px solid black;
 }
 
-w3-textarea{
+.w3-textarea{
     width: 50%;
-}
-
-.w3-black,
-.w3-hover-black:hover {
-    color: #fff!important;
-    background-color: #000!important
+    resize: none;
+    font-family: 'coming';
 }
 
 .w3-tab .w3-tab-item{
@@ -388,6 +265,11 @@ w3-textarea{
     white-space: normal;
     margin: 5px 0px 5px 5px;
     border-radius: 5px;
+}
+
+.w3-block {
+    display: block;
+    width: 100%
 }
 
 .w3-tab:before,
@@ -410,15 +292,90 @@ w3-textarea{
 }
 
 .w3-light-grey,
-.w3-hover-light-grey:hover,
-.w3-light-gray,
-.w3-hover-light-gray:hover {
+.w3-light-gray{
     color: #000!important;
     background-color: #f1f1f1!important
 }
 
-.w3-purple,
-.w3-hover-purple:hover {
-	color: #fff!important;
-	background-color: #9c27b0!important
+.w3-purple{
+    background-color: #9c27b0!important
+}
+
+.w3-light-purple2{
+    background-color: #dc96e8!important;
+}
+
+.w3-tab{
+    border-radius: 5px;
+    margin-bottom: 5px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.w3-accordion{
+    display: block;
+    width: 100%;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid black;
+    margin-bottom: 2px;
+}
+
+.w3-info-title{
+    font-weight: 600;
+    font-family: 'telescope';
+}
+
+.w3-light-purple-databox{
+    padding: 2.5%;
+    background-color: #c5b5e3;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+    border: 1.5px solid black;
+    margin-bottom: 5px;
+}
+
+.w3-text-display{
+    width: 75%;
+    margin-bottom: -7px;
+}
+
+.w3-text-display input{
+    background: transparent;
+    border: none;
+}
+
+.w3-display-header{
+    background: lightgray;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid black;
+    text-align: center;
+    font-family: 'schoolbell';
+    font-weight: 300;
+}
+
+.w3-hr{
+    margin: 0% 2.5%;
+}
+
+.w3-ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0
+}
+
+.w3-ul li{
+    padding: 5px;
+    font-family: 'coming';
+}
+
+.w3-desc{
+    text-align: center;
+    font-family: 'handlee';
+    font-size: 1.5em;
+}
+
+.w3-black{
+    background-color: #000!important
 }

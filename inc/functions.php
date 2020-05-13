@@ -428,9 +428,9 @@ function charnamedrop($namearr, $info, $text) {
         $tmp = explode(" ", $longnames[$x]);
         array_push($names, $tmp[0]);
     }
-    echo "<div class='tooltip' title='Which character(s) $info'>";
-    echo "<label for='charnames' id='charnamelabel'>$text: </label>";
-    echo "<select id='charnames' name='charnamelist'>";
+    echo "<p class='tooltip' title='Which character(s) $info'>";
+    echo "<label for='charnames' id='charnamelabel' >$text: </label>";
+    echo "<select id='charnames' class='w3-select' name='charnamelist'>";
     echo "<option value='N/A'>N/A</option>";
     $val3 = count($names);
     for ($x = 0; $x < $val3; $x++) {
@@ -438,7 +438,7 @@ function charnamedrop($namearr, $info, $text) {
     }
     echo '</select>';
     echo '<br>';
-    echo '</div>';
+    echo '</p>';
 }
 
 function getother($db, $charname) {
@@ -621,21 +621,18 @@ function printweapinfo($weapinfo) {
     $weapcond = $weapinfo['weap_cond'];
     $weapvalue = $weapinfo['weap_value'];
 
-    echo "<form class='weaplist' method='post' action='viewweap.php'>";
-    echo "<label for='weapname' id='weapnamelabel'>Weapon Name: </label>";
-    echo "<input type='text' id='weapname' name = 'weap_name' value='$weapname'>";
-    echo '<br>';
-    echo "<label for='charnameweap' id='charnamelabelweap'>Used By: </label>";
-    echo "<input type='text' id='charnameweap' name = 'char_name' value='$charname'>";
-    echo '<br>';
-    echo "<textarea id='weapdesc' name = 'weap_desc' class='expanding' >Description: &emsp; $weapdesc</textarea>";
-    echo '<br>';
-    echo "<label for='weaptype' id='weaptypelabel'>Weapon Type: </label>";
-    echo "<input type='text' id='weaptype' name = 'weap_type' value='$weaptype'>";
-    echo '<br>';
-    echo "<label for='weapvalue' id='weapvaluelabel'>Weapon Type: </label>";
-    echo "<input type='text' id='weapvalue' name = 'weap_value' value='$weapvalue'>";
-    echo '<br>';
+    echo "<form class='w3-pale-purple-box' method='post' action='viewweap.php'>";
+    echo "<p><label for='weapname' id='weapnamelabel'>Weapon Name: </label>";
+    echo "<input type='text' id='weapname' name = 'weap_name' value='$weapname'></p>";
+    echo "<p><label for='charnameweap' id='charnamelabelweap'>Used By: </label>";
+    echo "<input type='text' id='charnameweap' name = 'char_name' value='$charname'></p>";
+    echo "<p><label for='weapdesc' id='charnamelabelweap'>Description: </label>";
+    echo "<span id='weapdesc>$weapdesc</span></p>";
+    echo "<p><label for='weaptype' id='weaptypelabel'>Weapon Type: </label>";
+    echo "<input type='text' id='weaptype' name = 'weap_type' value='$weaptype'></p>";
+    echo "<p><label for='weapvalue' id='weapvaluelabel'>Weapon Type: </label>";
+    echo "<input type='text' id='weapvalue' name = 'weap_value' value='$weapvalue'></p>";
+
     echo "<input type='hidden' name='weap_desc_orig' value='$weapdesc'>";
     echo "<input type='hidden' name='weap_appear' value='$weapappear'>";
     echo "<input type='hidden' name='weap_size' value='$weapsize'>";
@@ -698,24 +695,19 @@ function printspellinfo($spellinfo) {
     $spellritual = $spellinfo['spell_ritual'];
     $spellmats = $spellinfo['spell_materials'];
 
-    echo "<form class='spelllist' method='post' action='viewspell.php'>";
-    echo "<label for='spellname' id='spellnamelabel'>Name: </label>";
-    echo "<input readonly type='text' id='spellname' name = 'spell_name' value='$spellname'>";
-    echo '<br>';
-    echo "<label for='charnamespell' id='charnamelabelspell'>Used By: </label>";
-    echo "<input readonly type='text' id='charnamespell' name = 'char_name' value='$charname'>";
-    echo '<br>';
-    echo "<textarea readonly  id='spelldesc' name = 'spell_desc' class='expanding' >Description: &emsp; $spelldesc</textarea>";
-    echo '<br>';
-    echo "<label for='spelltype' id='spelltypelabel'>Type: </label>";
-    echo "<input readonly type='text' id='spelltype' name = 'spell_type' value='$spelltype'>";
-    echo '<br>';
-    echo "<label for='spellschool' id='spellschoollabel'>School: </label>";
-    echo "<input readonly type='text' id='spellschool' name = 'spell_school' value='$spellschool'>";
-    echo '<br>';
-    echo "<label for='spelldmg' id='spelldmglabel'>Damage: </label>";
-    echo "<input readonly type='text' id='spelldmg' name = 'spell_dmg' value='$spelldmg'>";
-    echo '<br>';
+    echo "<form class='w3-light-purple-databox' method='post' action='viewspell.php'>";
+    echo "<p  class='w3-text-display' ><label for='spellname' id='spellnamelabel'>Name: </label>";
+    echo "<input readonly type='text' id='spellname' name = 'spell_name' class='w3-text-display'value='$spellname'></p>";
+    echo "<p  class='w3-text-display' ><label for='charnamespell' id='charnamelabelspell'>Used By: </label>";
+    echo "<input readonly type='text' id='charnamespell' name = 'char_name' value='$charname'></p>";
+    echo "<p class='w3-text-display' ><label for='spelldesc'>Description: </label>";
+    echo "<span id='spelldesc'  class='w3-text-display' >$spelldesc</span></p>";
+    echo "<p class='w3-text-display' ><label for='spelltype' id='spelltypelabel'>Type: </label>";
+    echo "<input readonly type='text' id='spelltype' name = 'spell_type' value='$spelltype'></p>";
+    echo "<p class='w3-text-display' ><label for='spellschool' id='spellschoollabel'>School: </label>";
+    echo "<input readonly type='text' id='spellschool' name = 'spell_school' value='$spellschool'></p>";
+    echo "<p class='w3-text-display' ><label for='spelldmg' id='spelldmglabel'>Damage: </label>";
+    echo "<input readonly type='text' id='spelldmg' name = 'spell_dmg' value='$spelldmg'></p>";
     echo "<input type='hidden' name='spell_desc_orig' value='$spelldesc'>";
     echo "<input type='hidden' name='spell_desc2' value='$spelldesc2'>";
     echo "<input type='hidden' name='spell_range' value='$spellrange'>";
