@@ -10,7 +10,7 @@ $admin = $_SESSION["isadmin"];
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/display.css">
+    <link rel="stylesheet" href="css/w3-min.css">
     <title>Character List</title>
 </head>
 <body>

@@ -17,30 +17,6 @@ section{
     border: 3px solid black;
 }
 
-#new_profile{
-    margin: 0% 10% 0% 10%;
-}
-
-#username, #firstlabel{
-    margin-top: 5%;
-}
-
-.align label {
-    float: left;
-    width: 10em;
-    margin-top: 5px;
-    text-align: right;
-}
-
-.align input {
-    margin: 0em 0em 0.5em 1em;
-}
-
-.align button{
-    display: inline-block;    
-    margin: 20px 0% 0% 20%;
-}
-
 #create{
     margin-top: 1.5rem;
     margin-left: 15%;
@@ -64,6 +40,7 @@ section{
     margin-right: 22%;
     width: 17rem;
 }
+
 hr{
     margin: 0% 5%;
 }
@@ -80,7 +57,6 @@ hr{
 }
 
 #message p {
-
   font-size: 16px;
 }
 

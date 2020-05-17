@@ -9,9 +9,7 @@ $username = $_SESSION["username"];
     <title>Character Weapons</title>
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/display.css">
-    <script type="text/javascript" src="scripts/jquery.min.js"></script>
-    <script type="text/javascript" src="scripts/expanding.jquery.js"></script>
+    <link rel="stylesheet" href="css/w3-min.css">
 </head>
 <body>
     <?php

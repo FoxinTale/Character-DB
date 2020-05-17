@@ -2,6 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Character Database - Home</title>
+    <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/w3-min.css">
 </head>

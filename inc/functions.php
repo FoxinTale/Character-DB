@@ -17,9 +17,7 @@ function getuserinfo($db, $username, $password) {
     $statement = $db->prepare($query);
     $statement->execute();
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-    $statement->closeCursor();
-    // print_r($results);
-    verify_login($results, $username, $password);
+    $statement->closeCursor();    verify_login($results, $username, $password);
 }
 
 function verify_login($userdata, $username, $password) {
@@ -621,17 +619,17 @@ function printweapinfo($weapinfo) {
     $weapcond = $weapinfo['weap_cond'];
     $weapvalue = $weapinfo['weap_value'];
 
-    echo "<form class='w3-pale-purple-box' method='post' action='viewweap.php'>";
+    echo "<form class='w3-light-purple-databox' method='post' action='viewweap.php'>";
     echo "<p><label for='weapname' id='weapnamelabel'>Weapon Name: </label>";
-    echo "<input type='text' id='weapname' name = 'weap_name' value='$weapname'></p>";
+    echo "<input type='text' readonly id='weapname' name = 'weap_name' value='$weapname'></p>";
     echo "<p><label for='charnameweap' id='charnamelabelweap'>Used By: </label>";
-    echo "<input type='text' id='charnameweap' name = 'char_name' value='$charname'></p>";
+    echo "<input type='text' readonly id='charnameweap' name = 'char_name' value='$charname'></p>";
     echo "<p><label for='weapdesc' id='charnamelabelweap'>Description: </label>";
-    echo "<span id='weapdesc>$weapdesc</span></p>";
+    echo "<span id='weapdesc'>$weapdesc</span></p>";
     echo "<p><label for='weaptype' id='weaptypelabel'>Weapon Type: </label>";
-    echo "<input type='text' id='weaptype' name = 'weap_type' value='$weaptype'></p>";
+    echo "<input type='text' readonly id='weaptype' name = 'weap_type' value='$weaptype'></p>";
     echo "<p><label for='weapvalue' id='weapvaluelabel'>Weapon Type: </label>";
-    echo "<input type='text' id='weapvalue' name = 'weap_value' value='$weapvalue'></p>";
+    echo "<input type='text' readonly id='weapvalue' name = 'weap_value' value='$weapvalue'></p>";
 
     echo "<input type='hidden' name='weap_desc_orig' value='$weapdesc'>";
     echo "<input type='hidden' name='weap_appear' value='$weapappear'>";
@@ -639,6 +637,7 @@ function printweapinfo($weapinfo) {
     echo "<input type='hidden' name='weap_hand' value='$weaphand'>";
     echo "<input type='hidden' name='weap_effect' value='$weapeffect'>";
     echo "<input type='hidden' name='weap_cond' value='$weapcond'>";
+    echo '<br>';
     echo "<input type = 'submit' id = 'moreweapinfo' name='moreinfo' value = 'More info.'>";
     echo '</form>';
 }
@@ -655,27 +654,25 @@ function printiteminfo($iteminfo) {
     $itemcond = $iteminfo['item_cond'];
     $itemvalue = $iteminfo['item_value'];
 
-    echo "<form class='itemlist' method='post' action='viewitem.php'>";
-    echo "<label for='itemname' id='itemnamelabel'>Item Name: </label>";
-    echo "<input type='text' id='itemname' name = 'item_name' value='$itemname'>";
-    echo '<br>';
-    echo "<label for='charnameitem' id='charnamelabelitem'>Used By: </label>";
-    echo "<input type='text' id='charnameitem' name = 'char_name' value='$charname'>";
-    echo '<br>';
-    echo "<textarea id='itemdesc' name = 'item_desc' class='expanding' >Description: &emsp; $itemdesc</textarea>";
-    echo '<br>';
-    echo "<label for='itemtype' id='itemtypelabel'>Item Type: </label>";
-    echo "<input type='text' id='itemtype' name = 'item_type' value='$itemtype'>";
-    echo '<br>';
-    echo "<label for='itemvalue' id='itemvaluelabel'>Item Value: </label>";
-    echo "<input type='text' id='itemvalue' name = 'item_value' value='$itemvalue'>";
-    echo '<br>';
+    echo "<form class='w3-light-purple-databox' method='post' action='viewitem.php'>";
+    echo "<p><label for='itemname' id='itemnamelabel'>Item Name: </label>";
+    echo "<input type='text' readonly id='itemname' name = 'item_name' value='$itemname'></p>";
+    echo "<p><label for='charnameitem' id='charnamelabelitem'>Used By: </label>";
+    echo "<input type='text' readonly id='charnameitem' name = 'char_name' value='$charname'></p>";
+    echo "<p><label for='itemdesc' id='charnamelabelitem'>Description: </label>";
+    echo "<span id='itemdesc>$itemdesc</span></p>";
+    echo "<p><label for='itemtype' id='itemtypelabel'>Item Type: </label>";
+    echo "<input type='text' readonly id='itemtype' name = 'item_type' value='$itemtype'></p>";
+    echo "<p><label for='itemvalue' id='itemvaluelabel'>Item Value: </label>";
+    echo "<input type='text' readonly id='itemvalue' name = 'item_value' value='$itemvalue'></p>";
+
     echo "<input type='hidden' name='item_desc_orig' value='$itemdesc'>";
     echo "<input type='hidden' name='item_appear' value='$itemappear'>";
     echo "<input type='hidden' name='item_size' value='$itemsize'>";
     echo "<input type='hidden' name='item_loc' value='$itemloc'>";
     echo "<input type='hidden' name='item_effect' value='$itemeffects'>";
     echo "<input type='hidden' name='item_cond' value='$itemcond'>";
+    echo '<br>';
     echo "<input type = 'submit' id = 'moreiteminfo' name='moreinfo' value = 'More info.'>";
     echo '</form>';
 }
@@ -700,9 +697,9 @@ function printspellinfo($spellinfo) {
     echo "<input readonly type='text' id='spellname' name = 'spell_name' class='w3-text-display'value='$spellname'></p>";
     echo "<p  class='w3-text-display' ><label for='charnamespell' id='charnamelabelspell'>Used By: </label>";
     echo "<input readonly type='text' id='charnamespell' name = 'char_name' value='$charname'></p>";
-    echo "<p class='w3-text-display' ><label for='spelldesc'>Description: </label>";
-    echo "<span id='spelldesc'  class='w3-text-display' >$spelldesc</span></p>";
-    echo "<p class='w3-text-display' ><label for='spelltype' id='spelltypelabel'>Type: </label>";
+    echo "<p class='w3-text-display'><label for='spelldesc'>Description: </label>";
+    echo "<span id='spelldesc' class='w3-text-display'>$spelldesc</span></p>";
+    echo "<p class='w3-text-display'><label for='spelltype' id='spelltypelabel'>Type: </label>";
     echo "<input readonly type='text' id='spelltype' name = 'spell_type' value='$spelltype'></p>";
     echo "<p class='w3-text-display' ><label for='spellschool' id='spellschoollabel'>School: </label>";
     echo "<input readonly type='text' id='spellschool' name = 'spell_school' value='$spellschool'></p>";
@@ -716,6 +713,7 @@ function printspellinfo($spellinfo) {
     echo "<input type='hidden' name='spell_level' value='$spelllevel'>";
     echo "<input type='hidden' name='spell_ritual' value='$spellritual'>";
     echo "<input type='hidden' name='spell_materials' value='$spellmats'>";
+    echo '<br>';
     echo "<input type = 'submit' id = 'morespellinfo' name='moreinfo' value = 'More info.'>";
     echo '</form>';
 }
@@ -731,32 +729,28 @@ function printcharinfo($charinfo, $admin) {
     $soul = $charinfo['char_soul'];
     $chardesc = $charinfo['char_desc'];
 
-    echo "<form class='charlist' method='post' action='viewchar.php'>";
-    echo "<img src =$image class='charimg' alt='Character Image'>"; //char_image
+    echo "<form class='w3-light-purple-databox' method='post' action='viewchar.php'>";
+    echo "<img src =$image class='w3-img' alt='Character Image'>";
     echo "<input type='hidden' name='charname' value = '$name'>";
+    echo "<section class='w3-info-section'>";
     if ($admin) {
-        echo "<label for='username' id='userlabel'>Owner: </label>";
-        echo "<input readonly type ='text' id='username' value='$username'>";
-        echo '<br>';
+        echo "<p><label for='username' class='w3-info-display'>Owner: </label>";
+        echo "<span  id='username'>$username</span></p>";
     }
-    echo "<label for = 'charname' id = 'namelabel'>Name: </label>";
-    echo "<input readonly type = 'text' id = 'charname' value = '$charname'>";
-    echo '<br>';
-    echo "<label for = 'charalias' id = 'aliaslabel'>Nickname / Alias: </label>";
-    echo "<input readonly type = 'text' id = 'charalias' value = '$nickname'>";
-    echo '<br>';
-    echo "<label for = 'charage' id = 'agelabel'>Age: </label>";
-    echo "<input readonly type = 'text' id = 'charage' value = '$age'>";
-    echo '<br>';
-    echo "<label for = 'charsoul' id = 'soullabel'>'Soul' Type: </label>";
-    echo "<input readonly type = 'text' id = 'charsoul' value = '$soul'>";
-    echo '<br>';
-    echo "<label for = 'charrace' id = 'charracelabel'>Race / Species: </label>";
-    echo "<input readonly type = 'text' id = 'charrace' value = '$charrace'>";
-    echo '<br>';
-    echo "<hr class='divider'>";
-    echo "<label for = 'chardesc' id = 'desclabel'>Short Description: </label>";
-    echo "<textarea readonly id = 'chardesc' >$chardesc</textarea>";
+    echo "<p><label for = 'charname' class='w3-info-display'>Name: </label>";
+    echo "<span id = 'charname'>$charname</span></p>";
+    echo "<p><label for = 'charalias' class='w3-info-display'>Nickname / Alias: </label>";
+    echo "<span id = 'charalias'>$nickname</span></p>";
+    echo "<p><label for = 'charage' class='w3-info-display'>Age: </label>";
+    echo "<span id = 'charage'>$age</span></p>";
+    echo "<p><label for = 'charsoul' class='w3-info-display'>'Soul' Type: </label>";
+    echo "<span id = 'charsoul'>$soul</span></p>";
+    echo "<p><label for = 'charrace' class='w3-info-display'>Race / Species: </label>";
+    echo "<span id = 'charrace'>$charrace</span></p>";
+    echo '</section>';
+    echo "<hr class='w3-hr'>";
+    echo "<p><label for = 'chardesc' class='w3-info-display'>Short Description: </label>";
+    echo "<span id = 'chardesc' class='w3-data-span'>$chardesc</span></p>";
     echo '<br>';
     echo "<input type = 'submit' id = 'morecharinfo' name='moreinfo' value = 'More info about this character.'>";
     echo '</form>';

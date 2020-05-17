@@ -50,11 +50,11 @@ if (isset($_POST["other_stuff"])) {
     <title>New Character</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/w3-min.css">
-                <script type="text/javascript" src="scripts/ui.js"></script>
+    <script type="text/javascript" src="scripts/ui.js"></script>
 </head>
 `<body>
     <main>
-        <div class='w3-container w3-pale-purple-box'>
+        <div class='w3-pale-purple-box'>
             <div class="w3-tab w3-black">
                 <button class="w3-tab-item w3-button tablink" onclick="opentab(event, 'general_info')">General Info</button>
                 <button class="w3-tab-item w3-button tablink" onclick="opentab(event, 'character_info')">Info</button>
@@ -84,7 +84,7 @@ if (isset($_POST["other_stuff"])) {
                     echo '<br>';
                 }
                 ?>
-                <form id="charinfo" method="post" action="newchar.php">
+                <form id="charinfo" method="post" class='w3-container' action="newchar.php">
                     <p class="tooltip" title="This is the full name of the character">
                         <label for="charname">Full Name: </label>
                         <input type="text" class="w3-input" required id="charname" name="char_name">
@@ -136,7 +136,7 @@ if (isset($_POST["other_stuff"])) {
                     ?>
                 </form>
             </div>
-            <div id="character_appearance" class="w3-light-purple-box infotab" style="display:none">
+            <div id="character_appearance" class="w3-light-purple-box w3-container infotab" style="display:none">
                 <h3 class="w3-display-header">Character Appearance</h3>
                 <p>You can hover over each entry to learn more about what it is.</p>
                 <hr>
@@ -188,7 +188,7 @@ if (isset($_POST["other_stuff"])) {
                     ?>
                 </form>
             </div>
-            <div id="character_outfit" class="w3-light-purple-box infotab" style="display:none">
+            <div id="character_outfit" class="w3-light-purple-box w3-container infotab" style="display:none">
                 <?php
                 if (isset($_POST["new_outfit"])) {
                     echo "<span id='success'>Outfit successfuly added!</span>";
@@ -228,7 +228,7 @@ if (isset($_POST["other_stuff"])) {
                     ?>
                 </form>
             </div>
-            <div id="character_personality" class="w3-light-purple-box infotab" style="display:none">
+            <div id="character_personality" class="w3-light-purple-box w3-container infotab" style="display:none">
                 <h3 class="w3-display-header">Character Personality</h3>
                 <p>You can hover over each entry to learn more about what it is.</p>
                 <hr>
@@ -303,7 +303,7 @@ if (isset($_POST["other_stuff"])) {
                     ?>
                 </form>
             </div>
-            <div id="character_stats" class="w3-light-purple-box infotab" style="display:none">
+            <div id="character_stats" class="w3-light-purple-box w3-container infotab" style="display:none">
                 <h3 class="w3-display-header">Character Stats</h3>
                 <p>You would use these, usually for tabletop based games. But you can use them for other purposes.</p>
                 <p>You can hover over each entry to learn more about what it is.</p>
@@ -359,7 +359,7 @@ if (isset($_POST["other_stuff"])) {
                     ?>
                 </form>
             </div>
-            <div id="character_race" class="w3-light-purple-box infotab" style="display:none">
+            <div id="character_race" class="w3-light-purple-box w3-container infotab" style="display:none">
                 <h3 class="w3-display-header">Character Species / Race.</h3>
                 <p>If your character is not human, use this section. Otherwise it is not needed.</p>
                 <p>You can hover over each entry to learn more about what it is.</p>
@@ -403,7 +403,7 @@ if (isset($_POST["other_stuff"])) {
                     ?>
                 </form>
             </div>
-            <div id="character_other"  class="w3-light-purple-box infotab" style="display:none">
+            <div id="character_other"  class="w3-light-purple-box w3-container infotab" style="display:none">
                 <h3 class="w3-display-header">Other Info</h3>
                 <p>This is for other information that might not fit in well in the other sections. This one is optional.</p>
                 <p>You can hover over each entry to learn more about what it is.</p>

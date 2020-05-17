@@ -1,62 +1,38 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <?php
 session_start();
-include 'inc/functions.php';
-$_SESSION['username'] = 'Aubrey';
-//  $username = $_POST['user_name'];
-$username = $_SESSION['username'];
-$user_info = userinf($db, $username);
-$admin = $user_info[0]['is_admin'];
-$_SESSION["isadmin"] = $admin;
+include('inc/functions.php');
+
+if (isset($_POST["letmein"])) {
+    $username = htmlspecialchars($_POST['user_name']);
+    $password = htmlspecialchars($_POST['password']);
+    getuserinfo($db, $username, $password);
+}
 ?>
 <html>
-    <title>Character Database</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/w3-min.css">
-    <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/font-awesome-min.css">
-    <link rel="stylesheet" href="css/nav.css">
-    <script type="text/javascript" src="scripts/ui.js"></script>
-    <script type="text/javascript" src="scripts/jquery.min.js"></script> 
-    <body class="w3-main">
-        <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="sidenav">
-            <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="closenav()">Close <i class="fa fa-remove"></i></a>
-            <a class="w3-bar-item w3-button" href="javascript:framerender('home.php')">Home</a>
-            <div>
-                <a class="w3-bar-item w3-button" onclick="dropdown('creation')" href="javascript:void(0)">Create New...<i class="fa fa-caret-down"></i></a>
-                <div id="creation" class="w3-hide">
-                    <a class="w3-bar-item w3-button" href="javascript:framerender('newability.php')">Ability / Power</a>
-                    <a class="w3-bar-item w3-button" href="javascript:framerender('newchar.php')">Character</a>
-                    <a class="w3-bar-item w3-button" href="javascript:framerender('newitem.php')">Item</a>
-                    <a class="w3-bar-item w3-button" href="javascript:framerender('newweapon.php')">Weapon</a>
-                </div>
-            </div>
-            <hr>
-            <a class="w3-bar-item w3-button" href="javascript:framerender('abilities.php')">Abilities / Powers</a>
-            <a class="w3-bar-item w3-button" href="javascript:framerender('chars.php')">Characters</a>
-            <a class="w3-bar-item w3-button" href="javascript:framerender('items.php')">Items</a>
-            <a class="w3-bar-item w3-button" href="javascript:framerender('weaps.php')">Weapons</a>
-            <hr>
-            <a class="w3-bar-item w3-button" href="javascript:framerender('resources.php')">Resources</a>
-            <a class="w3-bar-item w3-button" href="javascript:framerender('notes.php')">Notes</a>
-            <a class="w3-bar-item w3-button" href="javascript:framerender('todo.php')">To Do</a>
-            <a class="w3-bar-item w3-button" href="javascript:framerender('forum.php')">Forum</a>
-            <a class="w3-bar-item w3-button" href="javascript:framerender('credits.php')">Credits</a>
-            <hr>
-            <a class="w3-bar-item w3-button" href="logout.php">Logout</a>        
-        </nav>
-        <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="closenav()" style="cursor:pointer" id="overlay"></div>
-        <div class="w3-main" style="margin-left:250px;">
-            <i class="fa fa-bars w3-button  w3-hide-large w3-xlarge" onclick="opennav()"></i>
-            <h1>Character Database</h1>
-            <span id="userdisplay"><?php echo $username; ?></span>
-            <iframe id="minipage" name="frame" src="about:blank"></iframe>
-            <div id="container"></div>
-            <script type="text/javascript" src="scripts/main.js"></script>
-            <footer>Aubrey Jane - Spring 2020</footer>
-        </div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Character Database</title>
+        <link rel="stylesheet" href="css/fonts.css">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="css/w3-min.css">
+    </head>
+    <body>
+        <h1>The Character Database</h1>
+        <div id="forms">
+            <form id="login" class = 'w3-container' method="post" action='index.php'>
+                <input type="text" readonly id="errorbox">
+                <br>
+                <p><label for="username">Username: </label>
+                <input type="text" id="username" name="user_name" class='w3-input'></p>
+                <p><label for="pass">Password: </label>
+                <input type="password" id="pass" name="password" class='w3-input'></p>
+                <br>
+                <input type="submit" id="login_button" name='letmein' value="Log-in">    
+            </form>
+                <button type='button' id="new_button" onclick="document.location = 'newprofile.php'">New Profile</button>
+         </div>
     </body>
-    <noscript>Please turn scripts on to allow the page to render properly, and the navigation menu to work properly.</noscript> 
-</html> 
+</html>

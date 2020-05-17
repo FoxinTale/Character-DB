@@ -1,6 +1,5 @@
-containerHidden = false;
-frameHidden = true;
-// window.onload = hidedetails();
+var containerHidden = false;
+var frameHidden = true;
 window.onload = load_it();
 
 function menu() {
@@ -52,7 +51,6 @@ function framerender(url) {
     }
 }
 
-
 function load_it() {
     document.getElementById('minipage').style.visibility = "hidden";
     document.getElementById('minipage').style.height = "0px";
@@ -61,43 +59,3 @@ function load_it() {
         $("#container").load("home.php");
     });
 }
-/*
- function hidedetails() {
- jQuery(document).ready(function ($) {
- $("#container").load("home.php");
- });
- document.getElementById('minipage').style.visibility = "hidden";
- document.getElementById('minipage').style.height = "0px";
- document.getElementById('minipage').style.width = "0px";
- document.getElementById('controls').style.visibility = "hidden";
- document.getElementById('paddock-back').style.visibility = "hidden";
- document.getElementById('paddock-left').style.visibility = "hidden";
- document.getElementById('paddock-right').style.visibility = "hidden";
- document.getElementById('paddock-front').style.visibility = "hidden";
- }
- */
-
-/*
-function makeExpandingArea(container) {
-    var area = container.querySelector('textarea');
-    var span = container.querySelector('span');
-    if (area.addEventListener) {
-        area.addEventListener('input', function () {
-            span.textContent = area.value;
-        }, false);
-        span.textContent = area.value;
-    } else if (area.attachEvent) {
-        // IE8 compatibility
-        area.attachEvent('onpropertychange', function () {
-            span.innerText = area.value;
-        });
-        span.innerText = area.value;
-    }
-    container.className += "active";
-}
-var areas = document.querySelectorAll('.expandingArea');
-var l = areas.length;
-while (l--) {
-    makeExpandingArea(areas[l]);
-}
-*/

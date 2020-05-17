@@ -379,3 +379,17 @@ There have also been heavy modifications, removals and additions to the original
 .w3-black{
     background-color: #000!important
 }
+
+
+.w3-info-display{
+    font-weight: 600;
+    font-family: 'coming';
+}
+
+.w3-info-section span, .w3-data-span{
+    font-family: 'delius';
+}
+
+.w3-img{
+    float: left;
+}

@@ -13,6 +13,7 @@ if (isset($_POST["newitem"])) {
 <head>
     <meta charset="UTF-8">
     <title>New Item</title>
+    <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/w3-min.css">
 </head>
