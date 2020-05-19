@@ -15,13 +15,13 @@ Just as it says, it's a total rewrite of the entire site.
 - Rewrote the pages to use w3.css instead of their own css files.
 - Overhauled and rewrote the navigation menu to be mobile friendly.
 - Rewrote the display tabs and accordions to not use jQuery, and as much CSS as possible.
-- Purged a lot of <div> tags, replacing them with more proper elements wherever possible.
-- Changed the entire information display methodology, replacing readonly inputs with <p> or <span> tags wherever possible.
+- Purged a lot of div tags, replacing them with more proper elements wherever possible.
+- Changed the entire information display methodology, replacing readonly inputs with p or span tags wherever possible.
 - Temporarily removed the funstuff page while it undergoes extensive maintenance and its own overhaul.
 - Removed the mechanism that allowed one to fill empty blank spots with "N/A", as it didn't really work in the first place.
 - Utilized more of the custom fonts that were put in initially. 
  
  ## To do List:
  - Add back in the "funstuff" page, once it is working. 
- - Make a forum so users cna chat with each other. 
- - For the rest, reer to 'todo.php'.
+ - Make a forum so users can chat with each other. 
+ - For the rest, refer to 'todo.php'.
