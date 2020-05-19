@@ -8,9 +8,9 @@ So, it's half/half now.
 Th rest of this however, was me. 
 
 
-###The mobile rewrite.
+### The mobile rewrite.
 Just as it says, it's a total rewrite of the entire site.
-####What changed? 
+#### What changed? 
 - Included usage of W3.css for a more mobile friendly website.
 - Rewrote the pages to use w3.css instead of their own css files.
 - Overhauled and rewrote the navigation menu to be mobile friendly.
@@ -21,7 +21,7 @@ Just as it says, it's a total rewrite of the entire site.
 - Removed the mechanism that allowed one to fill empty blank spots with "N/A", as it didn't really work in the first place.
 - Utilized more of the custom fonts that were put in initially. 
  
- ##To do List:
+ ## To do List:
  - Add back in the "funstuff" page, once it is working. 
  - Make a forum so users cna chat with each other. 
  - For the rest, reer to 'todo.php'.
