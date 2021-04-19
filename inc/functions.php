@@ -1,6 +1,23 @@
 <?php
 
 require_once 'open_db.php';
+/*
+Safety Pig!
+                         _
+ _._ _..._ .-',     _.._(`))
+'-. `     '  /-._.-'    ',/
+   )         \            '.
+  / _    _    |             \
+ |  a    a    /              |
+ \   .-.                     ;  
+  '-('' ).-'       ,'       ;
+     '-;           |      .'
+        \           \    /
+        | 7  .__  _.-\   \
+        | |  |  ``/  /`  /
+       /,_|  |   /,_/   /
+          /,_/      '`-'
+*/
 
 function userinf($db, $username) {
     $query = "SELECT * from user_info where user_name = :username;";
