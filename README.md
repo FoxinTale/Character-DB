@@ -2,11 +2,6 @@
 
 A character database I made to store character information for folks to use.
 
-As a note, Browser Ponies and Javascript based snow was not coded by me. Refer to credits.php to see who did.
-W3.css, initially was also not written by me, but I've added items more secific to the site over time.
-So, it's half/half now.
-Th rest of this however, was me. 
-
 
 ### The mobile rewrite.
 Just as it says, it's a total rewrite of the entire site.
@@ -20,8 +15,20 @@ Just as it says, it's a total rewrite of the entire site.
 - Temporarily removed the funstuff page while it undergoes extensive maintenance and its own overhaul.
 - Removed the mechanism that allowed one to fill empty blank spots with "N/A", as it didn't really work in the first place.
 - Utilized more of the custom fonts that were put in initially. 
- 
+
+
+
  ## To do List:
- - Add back in the "funstuff" page, once it is working. 
- - Make a forum so users can chat with each other. 
- - For the rest, refer to 'todo.php'.
+ - Banish the usage of PHP.
+ - Switch to a much more competent language with less security issues. With what? I'm unsure. But PHP sucks.
+ - Add /fix user permissions.
+ - When the site is re-implemented in production, add or utilize HTTPS.
+ - Add a lockout policy to auto logout after a preset amount of time.
+ - Create a custom admin user interface instead of using external 'PHPMyAdmin".
+ - Fix the improper logout and properly destroy the session.
+ - Implement a functionality for users to be able to edit and delete their own information.
+ - Replace the test user with screenshots of the site to showcase it instead.
+ 
+
+## Credits
+- w3-min.css is a trimmed down customized version of [w3.css](https://www.w3schools.com/w3css/w3css_downloads.asp).
