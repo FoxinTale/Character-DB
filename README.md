@@ -21,13 +21,14 @@ Just as it says, it's a total rewrite of the entire site.
  ## To do List:
  - Banish the usage of PHP.
  - Switch to a much more competent language with less security issues. With what? I'm unsure. But PHP sucks.
- - Add /fix user permissions.
+ - Add / fix user permissions.
  - When the site is re-implemented in production, add or utilize HTTPS.
  - Add a lockout policy to auto logout after a preset amount of time.
  - Create a custom admin user interface instead of using external 'PHPMyAdmin".
  - Fix the improper logout and properly destroy the session.
  - Implement a functionality for users to be able to edit and delete their own information.
  - Replace the test user with screenshots of the site to showcase it instead.
+ - Add a button to go back to login from the account creation page. 
  
 
 ## Credits
