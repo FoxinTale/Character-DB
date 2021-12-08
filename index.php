@@ -1,38 +1,56 @@
-<!DOCTYPE html> 
-<?php
-session_start();
-include('inc/functions.php');
-
-if (isset($_POST["letmein"])) {
-    $username = htmlspecialchars($_POST['user_name']);
-    $password = htmlspecialchars($_POST['password']);
-    getuserinfo($db, $username, $password);
-}
-?>
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Character Database</title>
-        <link rel="stylesheet" href="css/fonts.css">
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/index.css">
-        <link rel="stylesheet" href="css/w3-min.css">
-    </head>
-    <body>
-        <h1>The Character Database</h1>
-        <div id="forms">
-            <form id="login" class = 'w3-container' method="post" action='index.php'>
-                <input type="text" readonly id="errorbox">
-                <br>
-                <p><label for="username">Username: </label>
-                <input type="text" id="username" name="user_name" class='w3-input'></p>
-                <p><label for="pass">Password: </label>
-                <input type="password" id="pass" name="password" class='w3-input'></p>
-                <br>
-                <input type="submit" id="login_button" name='letmein' value="Log-in">    
-            </form>
-                <button type='button' id="new_button" onclick="document.location = 'newprofile.php'">New Profile</button>
-         </div>
+    <title>The Character Journal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://unpkg.com/@csstools/normalize.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/mainpage.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/w3-min.css">
+    <script type="text/javascript" src="scripts/ui.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <body class="mainpage">
+        <nav class="sidebar bar-block collapse animate-left card" style="z-index:3;width:250px;" id="sidenav">
+            <a class="bar-item nav-button hide-large large" href="javascript:void(0)" onclick="closenav()">Close <i class="fa fa-remove"></i></a>
+            <a class="bar-item nav-button" href="javascript:framerender('home.php')">Home</a>
+            <div>
+                <a class="bar-item nav-button" onclick="dropdown('creation')" href="javascript:void(0)">Create New...<i class="fa fa-caret-down"></i></a>
+                <div id="creation" class="hide">
+                    <a class="bar-item nav-button" href="javascript:framerender('newability.php')">Ability / Power / Spell</a>
+                    <a class="bar-item nav-button" href="javascript:framerender('newchar.php')">Character</a>
+                    <a class="bar-item nav-button" href="javascript:framerender('newitem.php')">Item</a>
+                    <a class="bar-item nav-button" href="javascript:framerender('newweapon.php')">Weapon</a>
+                </div>
+            </div>
+            <a id="dnd_page" class="bar-item nav-button" href="javascript:framerender('dnd.php')" style="display:none">DnD Land</a>
+            <hr class="nav-hr">
+            <p class="bar-item">View...</p>
+            <a class="bar-item nav-button" href="javascript:framerender('abilities.php')">Abilities / Powers / Spells</a>
+            <a class="bar-item nav-button" href="javascript:framerender('chars.php')">Characters</a>
+            <a class="bar-item nav-button" href="javascript:framerender('items.php')">Items</a>
+            <a class="bar-item nav-button" href="javascript:framerender('weapons.php')">Weapons</a>
+            <hr class="nav-hr">
+            <a class="bar-item nav-button" href="javascript:framerender('resources.php')">Resources</a>
+            <a class="bar-item nav-button" href="javascript:framerender('credits.php')">Credits</a>
+            <hr class="nav-hr">
+            <a class="bar-item nav-button" href="javascript:framerender('newprofile.php')">Create Journal</a> <!-- In PHP, display only if the username is null or empty.-->
+            <a class="bar-item nav-button" href="javascript:framerender('login.php')">Login</a> <!-- Both of these hide if the username is equal to anything that isn't empty or null" -->
+   <!--         <a class="bar-item nav-button" href="javascript.framerender('logout.html')">Log Out</a> -->
+        </nav>
+        <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="closenav()" style="cursor:pointer" id="overlay"></div>
+        <div class="mainpage" style="margin-left:250px;">
+            <i id="minimenu" class="fa fa-bars w3-button w3-hide-large xlarge" onclick="opennav()"></i>
+            <h1>The Character Journal</h1>
+            <span id="userdisplay">Aubrey</span> <!-- this will only show up if the user is logged in, when I get PHP working-->
+            <!--
+                The following element is how all pages are displayed. I am basically abusing a div as an iframe here with jQuery.
+                Why? I did not feel like repeating myself (this nav page) on every page so I settled on this way.
+                While I do not remember exactly *why* I did it this way, I think I had issues with the iframe not doing things I wanted it to.
+            -->
+            <div id="container"></div>
+            <script type="text/javascript" src="scripts/main.js"></script>
+            <footer>Aubrey - 2021</footer>
+        </div>
     </body>
-</html>
+    <noscript>Please turn scripts on to allow the page to render properly, and the navigation menu to work properly.</noscript> 
+</html> 

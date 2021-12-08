@@ -1,0 +1,132 @@
+:root {
+    font-size: 16px;
+    font-family: 'Open Sans';
+    --text-primary: #b6b6b6;
+    --text-secondary: #ececec;
+    --bg-primary: #23232e;
+    --bg-secondary: #141418;
+    --transition-speed: 600ms;
+}
+
+
+/* Font Awesome for the arrow stuff.*/
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('../fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'), url('../fonts/fontawesome-webfont.woff?v=4.7.0');
+    font-weight: normal;
+    font-style: normal
+}
+
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+}
+
+.fa-remove:before { content: "\f00d"; }
+
+.fa-caret-down:before { content: "\f0d7"; }
+
+.fa-bars:before { content: "\f0c9"; }
+
+
+/* Main page content */
+h1{
+    font-weight: 600;
+    font-family: 'handlee';
+    text-align: center;
+}
+
+#container{
+    margin-top: 2.5%;
+    border: none;
+    height: 70%;
+    margin-left: 15%;
+    width: 75%;
+    border-radius: 10px;
+}
+
+
+body{
+    background-image: url(../images/sunset.png);
+    background-size: cover;
+}
+
+#userdisplay{
+    margin-top: -3.75rem;
+    margin-right: 2.5rem;
+    font-size: 150%;
+    float: right;
+    font-family: 'handlee';
+    border: 2px solid black;
+    padding: 0.5rem;
+    border-radius: 3px;
+    background-color: #ACBFF3;
+}
+
+footer{
+    text-align: center;
+    border: 1px solid black;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    padding: 10px;
+    width: 50%;
+    border-radius: 3px;
+    margin-left: 29%;
+    background: rgba(135,128, 206, 0.35);
+    font-family: 'coming';
+}
+
+/* The side nav*/
+body::-webkit-scrollbar { width: 0.25rem; }
+
+body::-webkit-scrollbar-track { background: #1e1e24; }
+
+body::-webkit-scrollbar-thumb { background: #6649b8; }
+
+.nav-hr{
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+#sidenav{
+    background-color: var(--bg-primary);
+    transition: width 600ms ease;
+    border: 1px solid white;
+    border-radius: 10px;
+    margin-left: 1rem;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#sidenav a{
+    color: var(--text-primary);
+    text-decoration: none;
+    filter: grayscale(100%) opacity(0.7);
+    transition: var(--transition-speed);
+    font-family: 'handlee';
+}
+
+#sidenav a:hover{
+    filter: grayscale(0%) opacity(1);
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+}
+
+
+@media screen and (max-width: 600px) {
+    .sidenav{
+        background-color: transparent;
+        border: none;
+        display: inline;
+        width: 100%;
+        margin-top: 10%;
+        margin-left: 1em;
+    }
+    
+    #minimenu{
+        margin-left: 1em;
+        margin-top: 1em;
+    }
+    
+    #userdisplay{ display:none; }
+}

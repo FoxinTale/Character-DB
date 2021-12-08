@@ -14,35 +14,35 @@ window.onscroll = function () {
 };
 function scrolldo() {
     if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-        document.getElementById("top").classList.add("w3-card-4", "w3-animate-opacity");
-        document.getElementById("intro").classList.add("w3-show-inline-block");
+        document.getElementById("top").classList.add("card-4", "animate-opacity");
+        document.getElementById("intro").classList.add("show-inline-block");
     } else {
-        document.getElementById("intro").classList.remove("w3-show-inline-block");
-        document.getElementById("top").classList.remove("w3-card-4", "w3-animate-opacity");
+        document.getElementById("intro").classList.remove("show-inline-block");
+        document.getElementById("top").classList.remove("card-4", "animate-opacity");
     }
 }
 
 function dropdown(id) {
     var x = document.getElementById(id);
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-        x.previousElementSibling.className += " w3-theme";
+    if (x.className.indexOf("show") === -1) {
+        x.className += " show";
+        x.previousElementSibling.className += " theme";
     } else {
-        x.className = x.className.replace("w3-show", "");
+        x.className = x.className.replace("show", "");
         x.previousElementSibling.className =
-                x.previousElementSibling.className.replace(" w3-theme", "");
+                x.previousElementSibling.className.replace(" theme", "");
     }
 }
 
 function doaccordion(id) {
     var x = document.getElementById(id);
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-        x.previousElementSibling.className += " w3-light-purple2";
+    if (x.className.indexOf("show") === -1) {
+        x.className += " show";
+        x.previousElementSibling.className += " light-purple2";
     } else {
-        x.className = x.className.replace("w3-show", "");
+        x.className = x.className.replace("show", "");
         x.previousElementSibling.className =
-                x.previousElementSibling.className.replace("w3-light-purple2", "");
+                x.previousElementSibling.className.replace("light-purple2", "");
     }
 }
 
@@ -54,8 +54,8 @@ function opentab(evt, pagename) {
     }
     tablinks = document.getElementsByClassName("tablink");
     for (i = 0; i < x.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" w3-light-purple2", "");
+        tablinks[i].className = tablinks[i].className.replace(" light-purple2", "");
     }
     document.getElementById(pagename).style.display = "block";
-    evt.currentTarget.className += " w3-light-purple2";
+    evt.currentTarget.className += " light-purple2";
 }
