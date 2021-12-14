@@ -1,6 +1,6 @@
 <?php
-
 require_once 'open_db.php';
+
 /*
 Safety Pig!
                          _
@@ -30,38 +30,37 @@ function userinf($db, $username) {
 }
 
 function getuserinfo($db, $username, $password) {
-    $query = "SELECT * from user_info;";
+    $query = "SELECT * from users;";
     $statement = $db->prepare($query);
     $statement->execute();
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-    $statement->closeCursor();    verify_login($results, $username, $password);
+    $statement->closeCursor();
+    verify_login($results, $username, $password);
 }
 
 function verify_login($userdata, $username, $password) {
     $users = array();
     $userpasses = array();
+    $userIDs = array();
     $usercount = count($userdata);
     for ($x = 0; $x < $usercount; $x++) {
-        array_push($users, $userdata[$x]['user_name']);
-        array_push($userpasses, $userdata[$x]['password']);
+        array_push($userIDs, $userdata[$x]['User_ID']);
+        array_push($users, $userdata[$x]['User_Name']);
+        array_push($userpasses, $userdata[$x]['User_Password']);
     }
-
     $user_exists = in_array($username, $users);
-    echo $user_exists;
-    if ($user_exists == 0) {
+    if (!$user_exists) {
         echo "<script>window.onload = function() { document.getElementById('errorbox').value = 'That user does not exist.'}</script>";
-    }
-
-    if ($user_exists == 1) {
+    } else {
         $userplace = array_search($username, $users);
         $userpass = $userpasses[$userplace];
-
+        $userID = $userIDs[$userplace];
+        
         if (password_verify($password, $userpass)) {
             $_SESSION['username'] = $username;
-            header("Location: main.php");
-        } else if (!password_verify($password, $userpass)) {
-            echo "<script>window.onload = function() { document.getElementById('errorbox').value = 'Invalid Password'}</script>";
-        }
+            $_SESSION['user_ID'] = $userID;
+            header("Location: index.php");
+        } else { echo "<script>window.onload = function() { document.getElementById('errorbox').value = 'Invalid Password'}</script>"; }
     }
 }
 
@@ -81,7 +80,7 @@ function adduser($db, $username, $password) {
     $encrypt_password = password_hash($password, PASSWORD_DEFAULT);
     adduserdata($db, $user, $encrypt_password);
     $_SESSION['username'] = $user;
-    header('Location: main.php');
+    header('Location: index.php');
 }
 
 function existing_username($db, $username) {
@@ -212,36 +211,6 @@ function addpers($db, $pers) {
 function persupdate($db, $charname) {
     $id = getid($db, $charname);
     $query = "UPDATE char_pers SET char_pers.char_id = :id where char_pers.char_name = :name;";
-    $statement = $db->prepare($query);
-    $statement->bindValue(':id', $id);
-    $statement->bindValue(':name', $charname);
-    $statement->execute();
-    $statement->closeCursor();
-}
-
-function addstats($db, $stats) {
-    $query = "INSERT INTO char_stat(char_name, stat_health, stat_stam, stat_mana, stat_level, stat_exp, stat_agile, stat_strength, stat_charisma, stat_percep)
-            VALUES(:name, :health, :stamina, :mana, :level, :exp, :agility, :strength, :charisma, :perception);";
-    $statement = $db->prepare($query);
-    $statement->bindValue(':name', $stats[0]);
-    $statement->bindValue(':health', $stats[1]);
-    $statement->bindValue(':stamina', $stats[2]);
-    $statement->bindValue(':mana', $stats[3]);
-    $statement->bindValue(':level', $stats[4]);
-    $statement->bindValue(':exp', $stats[5]);
-    $statement->bindValue(':agility', $stats[6]);
-    $statement->bindValue(':strength', $stats[7]);
-    $statement->bindValue(':charisma', $stats[8]);
-    $statement->bindValue(':perception', $stats[9]);
-    $success = $statement->execute();
-    $statement->closeCursor();
-    statupdate($db, $stats[0]);
-    return $success;
-}
-
-function statupdate($db, $charname) {
-    $id = getid($db, $charname);
-    $query = "UPDATE char_stat SET char_stat.char_id = :id where char_stat.char_name = :name;";
     $statement = $db->prepare($query);
     $statement->bindValue(':id', $id);
     $statement->bindValue(':name', $charname);
@@ -596,25 +565,6 @@ function getcharstats($db, $charname) {
     }
 }
 
-function adddoc($db, $username, $doclink) {
-    $query = "INSERT INTO gdoc(user_name, doc_link) VALUES(:username, :doclink);";
-    $statement = $db->prepare($query);
-    $statement->bindValue(':username', $username);
-    $statement->bindValue(':doclink', $doclink);
-    $success = $statement->execute();
-    $statement->closeCursor();
-    return $success;
-}
-
-function getdoc($db, $username) {
-    $query = "SELECT doc_link from gdoc where user_name = :username;";
-    $statement = $db->prepare($query);
-    $statement->bindValue(':username', $username);
-    $statement->execute();
-    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-    $statement->closeCursor();
-    return $results;
-}
 
 function printallchars($allchars, $admin) {
     $charcount = count($allchars);
@@ -771,23 +721,6 @@ function printcharinfo($charinfo, $admin) {
     echo '<br>';
     echo "<input type = 'submit' id = 'morecharinfo' name='moreinfo' value = 'More info about this character.'>";
     echo '</form>';
-}
-
-function printnodoc($username) {
-    echo "<section id='nodoc'>";
-    echo '<p>As storing notes within a database would be...rather complicated, we will instead use a Google Doc, and link it to this page.</p>';
-    echo "<p>You'll need to go to your <a href='https://drive.google.com/drive/u/0/my-drive' target='_blank'>Google Drive</a> and create a new document.</p>";
-    echo "<p>I would suggest naming this document something like 'RP Notes' or something like that. You can rename by clicking on the name above the file & edit toolbar.</p>";
-    echo "<p>Once it is named whatever you want, You will need to share it. Make sure you enable edit permissions with the link. This isn't all that hard to do.</p>";
-    echo "<p>Next,  copy the link into the box below, and 'submit' it to watch magic happen.</p>";
-    echo "<form id='notesdoc' method='post' action='notes.php'>";
-    echo "<label for='gdoc'>Link to Google Doc: </label>";
-    echo "<input type = 'text' required id = 'gdoc' name = 'g_doc'>";
-    if ($username != "Test User") {
-        echo "<input type = 'submit'  name='docbutton' value = 'Add the document'>";
-    }
-    echo '</form>';
-    echo '</section>';
 }
 
 //This will let users delete their own items, if they choose to.

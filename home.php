@@ -2,18 +2,23 @@
     <head>
         <meta charset="UTF-8">
         <title>Character Database - Home</title>
-        <!--
-        <link rel="stylesheet" href="css/home.css">
+        <link rel="stylesheet" href="css/fonts.css">
         <link rel="stylesheet" href="css/w3-min.css">
-        -->
+        <link rel="stylesheet" href="css/home.css">
+
     </head>
     <body>
-        <main>
+               <main>
+            <section class="light-purple2 box2 paragraph coming">
+                <p> Hello, and welcome to "The character database". This site is designed to be a 'one stop' methodology for storing character information <br>
+                    This is in a "journal" as we'll call it here, where each character, item, spell, and weapon represents a "page". See the "About Site" for more.
+                </p>
+            </section>
             <section class="light-purple2 box2">
-                <p class = "description">Overview and rundown: </p>
+                <p class = "description">General layout and how to use:</p>
                 <hr class="sep">
                 <ul>
-                    <li>Create a new character, item, weapon or power from the dropdown "Create New...".</li>
+                    <li>Create a new character, item, weapon or power from the dropdown "New Page...".</li>
                     <li>View your existing characters on the characters page.</li>
                     <li>View your items over on the items page.</li>
                     <li>View your powers, spells and abilities you have over on the abilities page.</li>
@@ -28,15 +33,10 @@
                     <li>The resources page has links to various off site character generators.</li>
                 </ul>
             </section>
-            
-            <script>
-            jQuery(document).ready(function($){
-                $("#ul li a").on( "click", function(e) {
-                    e.preventDefault();
-                    var url = $(this).attr("href"); // this should be some-page.html in this example.
-                    $("#container").load( url ); // where we're adding the new html.
-                });
-            });
-            </script>
+            <section class="light-purple2 box2 paragraph coming">
+                <p class="description">DISCLAIMER</p>
+                <hr class="sep">
+                Browser cookies are used to store text as you type on the various pages. They are deleted as soon as you click the button to submit your creation to be stored. 
+            </section>
         </main>
     </body>

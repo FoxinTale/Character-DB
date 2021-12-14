@@ -10,8 +10,9 @@ function closenav() {
 }
 
 window.onscroll = function () {
-    scrolldo()
+    //scrolldo()
 };
+
 function scrolldo() {
     if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
         document.getElementById("top").classList.add("card-4", "animate-opacity");

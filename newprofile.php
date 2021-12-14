@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
-session_start();
-include 'inc/functions.php';
+//session_start();
+// include 'inc/functions.php';
 
 if (isset($_POST["newprofile"])) {
     if (adduser($db, $_POST["user_name"], $_POST["password"])) {
@@ -27,31 +27,38 @@ if (isset($_POST["check_username"])) {
         <meta charset="UTF-8">
         <title>New Profile</title>
         <link rel="stylesheet" href="css/fonts.css">
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/profile.css">
         <link rel="stylesheet" href="css/w3-min.css">
     </head>
     <body>
         <main>
-            <div id="new">
-                <p class="notice">Yes, another account... One may not be a fan of creating accounts, but this makes linking characters, items and weapons much easier. </p>
-                <p class="notice">You can get a preview of this site by logging in with username 'Test User' and password 'Passw0rd', without the quotes.</p>
-                <hr> 
-                <section>
-                    <form id="new_profile" class="w3-container" action="" method="post">
-                        <p><label id="firstlabel" for="username" class="login_label">Username</label>
-                            <input type='text' required id="username" name = "user_name"  class='w3-input' value=""></p>
-                        <p><label for="pass">Password</label>               
-                            <input type="password" id="pass" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])).{8,})" 
-                                   class='w3-input' title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" value=""></p>
-                        <p><label for='pass2'>Retype password</label>
-                            <input type='password' id='pass2' name="pass_verify" class='w3-input' value=''></p>
-                        <input type="submit" id ="create" name="newprofile" value="Create Account">      
-                        <input type="submit" name="check_username" value="Check Username Availability" 
-                               id="check_button">
-                    </form>        
-                    <input type="text" readonly id="info"> 
-                </section>
+            <div class="box light-purple2">
+                <p class="display-text coming">
+                    Yes, another account... One may not be a fan of creating accounts, but this makes linking characters, 
+                    items and weapons much easier. 
+                </p>
+                <p class="display-text coming">
+                    Please enter a valid email, as this is how you can reset your password if you forget it one day. Your email will never be given out to anyone, 
+                    as I (the developer of this) have no reason to give it out anyways.
+                </p>
+                <form id="new_profile" class="container2" action="" method="post">
+                    <label id="firstlabel" for="username" class="login_label">Username</label>
+                    <input type='text' class="textinput" id="username" value="">
+                    <br>
+                    <label for="pass">Password</label>               
+                    <input type="text" class="textinput" id="pass" value="">
+                    <br>
+                    <label for='pass2'>Retype password</label>
+                    <input type='text' class="textinput" id='pass2' value=''>
+                    <br>
+                    <label for='email'>Email</label>
+                    <input type='text' class="textinput" id='email' value=''>
+                    <br>
+                     <label for='email2'>Confirm Email</label>
+                    <input type='text' class="textinput" id='email2' value=''>
+                    <br>
+                    <label for="create">&nbsp;</label>
+                    <input class="clicky-button" type="submit" id ="create" value="Create Account">      
+                </form>
                 <section id="message">
                     <h3>Password should contain the following:</h3>
                     <p id="letter" class="invalid">A <b>lowercase</b> letter</p>

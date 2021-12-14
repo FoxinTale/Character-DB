@@ -1,4 +1,21 @@
 <!DOCTYPE html>
+<?php
+session_start();
+    $user_name = "";
+
+    if(isset($_SESSION['username'])){
+      $user_name = $_SESSION['username'];
+    }
+
+     $validUser = false;
+    if($user_name == "" || NULL){
+        $validUser = false;
+    } else {
+       $validUser = true;
+    }
+
+?>
+
 <html>
     <title>The Character Journal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +28,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <body class="mainpage">
         <nav class="sidebar bar-block collapse animate-left card" style="z-index:3;width:250px;" id="sidenav">
-            <a class="bar-item nav-button hide-large large" href="javascript:void(0)" onclick="closenav()">Close <i class="fa fa-remove"></i></a>
+            <a class="bar-item nav-button hide large" href="javascript:void(0)" onclick="closenav()">Close <i class="fa fa-remove"></i></a>
             <a class="bar-item nav-button" href="javascript:framerender('home.php')">Home</a>
             <div>
                 <a class="bar-item nav-button" onclick="dropdown('creation')" href="javascript:void(0)">Create New...<i class="fa fa-caret-down"></i></a>
@@ -32,22 +49,30 @@
             <hr class="nav-hr">
             <a class="bar-item nav-button" href="javascript:framerender('resources.php')">Resources</a>
             <a class="bar-item nav-button" href="javascript:framerender('credits.php')">Credits</a>
+            <a class="bar-item nav-button" href="javascript:framerender('aboutsite.php')">About Site</a>
             <hr class="nav-hr">
-            <a class="bar-item nav-button" href="javascript:framerender('newprofile.php')">Create Journal</a> <!-- In PHP, display only if the username is null or empty.-->
-            <a class="bar-item nav-button" href="javascript:framerender('login.php')">Login</a> <!-- Both of these hide if the username is equal to anything that isn't empty or null" -->
-   <!--         <a class="bar-item nav-button" href="javascript.framerender('logout.html')">Log Out</a> -->
+            <?php
+               if($validUser){
+                   echo "<a class='bar-item nav-button' href=\"javascript:framerender('logout.php')\">Close Journal</a>";
+               } else {
+                   echo "<a class='bar-item nav-button' href=\"javascript:framerender('newprofile.php')\">Create Journal</a>";
+                   echo "<a class='bar-item nav-button' href=\"javascript:framerender('login.php')\">Open Journal</a>";
+               }
+            ?>
         </nav>
-        <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="closenav()" style="cursor:pointer" id="overlay"></div>
+        <div class="overlay hide-large w3-animate-opacity" onclick="closenav()" style="cursor:pointer" id="overlay"></div>
         <div class="mainpage" style="margin-left:250px;">
-            <i id="minimenu" class="fa fa-bars w3-button w3-hide-large xlarge" onclick="opennav()"></i>
+            <i id="minimenu" class="fa fa-bars w3-button hide-large xlarge" onclick="opennav()"></i>
             <h1>The Character Journal</h1>
-            <span id="userdisplay">Aubrey</span> <!-- this will only show up if the user is logged in, when I get PHP working-->
+            <?php
+                if($validUser){ echo "<span id='userdisplay'>$user_name</span>"; }
+            ?>
             <!--
                 The following element is how all pages are displayed. I am basically abusing a div as an iframe here with jQuery.
                 Why? I did not feel like repeating myself (this nav page) on every page so I settled on this way.
                 While I do not remember exactly *why* I did it this way, I think I had issues with the iframe not doing things I wanted it to.
             -->
-            <div id="container"></div>
+            <div class="minipage" id="container"></div>
             <script type="text/javascript" src="scripts/main.js"></script>
             <footer>Aubrey - 2021</footer>
         </div>

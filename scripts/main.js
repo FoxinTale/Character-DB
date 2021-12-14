@@ -1,4 +1,3 @@
-
 window.onload = load_it();
 
 function menu() {
@@ -14,11 +13,10 @@ function linkclick(url) {
     jQuery(document).ready(function ($) {
         $("#container").load(url);
     });
-
 }
 
 function framerender(url) {
-    jQuery(document).ready(function ($) {
+ jQuery(document).ready(function ($) {
         $("#container").load(url);
     });
 }

@@ -3,16 +3,16 @@ Minimized version of the full W3.css, "compressed" to exclude items not utilized
 There have also been heavy modifications, removals and additions to the original code to make it more fit the usage.
 */
 
-
-
 /* Creating the classes to set fonts */
 
 .coming{ font-family: 'coming'; }
 
-.handlee { font-family: 'coming'; }
+.handlee { font-family: 'handlee'; }
 
 
 /* General style rules for everywhere */
+a{ text-decoration: none; }
+
 ul li a{ text-decoration: none; }
 
 
@@ -36,6 +36,12 @@ ul li a{ text-decoration: none; }
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
+.box4{
+    padding: 1rem;
+    margin-top: 2rem;
+    border: 1.5px solid black;
+    border-radius: 5px;
+}
 
 /* Colours! */
 .pale-purple{ background-color: #f1edf8; }
@@ -62,13 +68,23 @@ ul li a{ text-decoration: none; }
     margin-right: 2.5%;
 }
 
+.paragraph{
+    padding:0.75rem;
+}
+
 .mainpage{ transition: margin-left .4s; }
 
+.minipage{
+    margin-top: 2.5%;
+    border: none;
+    height: 70%;
+    margin-left: 7.5%;
+    width: 85%;
+    border-radius: 10px;
+}
 
 
 /* Lists*/
-
-
 .link-list{ margin-left: 2.5%; }
 
 .link-list li{
@@ -98,7 +114,17 @@ ul li a{ text-decoration: none; }
     -ms-user-select: none;
 }
 
-.w3-btn:hover { box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+.w3-btn:hover, .clicky-button:hover { box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+
+.clicky-button{
+    padding: 0.5rem;
+    margin-bottom:0.5rem;
+    width: 50%;
+}
+
+.clicky-button-two{
+    margin-bottom: 2rem;
+}
 
 .sidebar {
     height: 100%;
@@ -137,7 +163,7 @@ ul li a{ text-decoration: none; }
 
 .w3-bar .nav-button .w3-tab{ white-space: normal; }
 
-.centre, .bar-item, .w3-tab-item{ text-align: center; }
+.centre, .bar-item, .tab-item{ text-align: center; }
 
 .textinput{
     display: block;
@@ -168,9 +194,7 @@ ul li a{ text-decoration: none; }
 
 @media (min-width:993px) {
     .w3-modal-content { width: 900px; }
-    
     .hide-large { display: none!important; }
-    
     .sidebar.collapse { display: block!important; }
 }
 
@@ -184,7 +208,7 @@ ul li a{ text-decoration: none; }
     }
 }
 
-.w3-overlay {
+.overlay {
     position: fixed;
     display: none;
     width: 100%;
@@ -248,7 +272,7 @@ ul li a{ text-decoration: none; }
     margin-bottom: 1rem;
 }
 
-.w3-tab .w3-tab-item{
+.w3-tab .tab-item{
     padding: 8px 16px;
     float: left;
     width: auto;
@@ -258,6 +282,16 @@ ul li a{ text-decoration: none; }
     white-space: normal;
     margin: 5px 0px 5px 5px;
     border-radius: 5px;
+    border: 1px solid black;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+
+.tablink{
+    border: 1px solid black;
+    border-radius: 4px;
 }
 
 .w3-block {
@@ -272,12 +306,11 @@ ul li a{ text-decoration: none; }
     clear: both
 }
 
-.w3-tab-item {
+.tab-item {
     width: 100%;
     display: block;
     padding: 8px 16px;
     text-align: left;
-    border: none;
     white-space: normal;
     float: none;
     outline: 0;
@@ -311,12 +344,12 @@ ul li a{ text-decoration: none; }
     margin-bottom: 5px;
 }
 
-.w3-text-display{
+.text-display{
     width: 75%;
     margin-bottom: -7px;
 }
 
-.w3-text-display input{
+.text-display input{
     background: transparent;
     border: none;
 }
@@ -393,7 +426,7 @@ ul li a{ text-decoration: none; }
     }
     .hide-small { display: none!important; }
 
-    .w3-tab-item{ text-align: center; }
+    .tab-item{ text-align: center; }
     
     .w3-dropdown-click.w3-mobile .w3-btn, .w3-dropdown-click.w3-mobile .nav-button { width: 100%; }
     
@@ -403,10 +436,20 @@ ul li a{ text-decoration: none; }
     }
 }
 
-
+/*  Specific items on specific pages  */
 #main{
     background-image: url(../images/sunset.png);
     background-size: cover;
 }
 
+
+#errorbox{
+    margin-left: 2.5rem;
+    margin-bottom: 1rem;
+    width: 34rem;
+    border: none;
+    background-color: transparent;
+    text-align: center;
+    font-size: 125%;
+}
 
