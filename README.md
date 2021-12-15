@@ -2,6 +2,23 @@
 
 A character database I made to store character information for folks to use.
 
+### Other rewrite
+A total overhaul of the back end and front end, stripping out unused content, less bugs, and a better interface.
+
+####What changed this time?
+- Rewrote every page top use a single CSS file...becuase I felt like it.
+- Removed the immediate need to log in, and the site can be browsed without the need to log in now, which in turn fixed the authentication bypass issues.
+- Added more fields for data entry.
+- Removed the fun stuff for good. It caused too many bugs to be worth it.  May re-add in the future, but no promises.
+- Removed browser ponies for the same reason as fun stuff...
+- Added more content to the resources page.
+- Added an about page that describes the journey behind the site.
+- Changed the theme (names) of the site to be more themed like a journal.
+- Added a new section about "The Omega Timeline".
+- The large text boxes actually expand as you type now. 
+
+
+
 
 ### The mobile rewrite.
 Just as it says, it's a total rewrite of the entire site.
@@ -19,15 +36,12 @@ Just as it says, it's a total rewrite of the entire site.
 
 
  ## To do List:
- - Banish the usage of PHP.
- - Switch to a much more competent language with less security issues. With what? I'm unsure. But PHP sucks.
- - Add / fix user permissions.
+ - [x] Add / fix user permissions.
  - When the site is re-implemented in production, add or utilize HTTPS.
  - Add a lockout policy to auto logout after a preset amount of time.
  - Create a custom admin user interface instead of using external 'PHPMyAdmin".
  - Fix the improper logout and properly destroy the session.
  - Implement a functionality for users to be able to edit and delete their own information.
- - Replace the test user with screenshots of the site to showcase it instead.
  - Add a button to go back to login from the account creation page. 
  
 

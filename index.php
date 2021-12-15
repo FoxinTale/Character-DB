@@ -13,6 +13,7 @@ session_start();
     } else {
        $validUser = true;
     }
+    $_SESSION["validUser"] = $validUser;
 
 ?>
 

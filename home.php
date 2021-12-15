@@ -23,6 +23,7 @@
                     <li>View your items over on the items page.</li>
                     <li>View your powers, spells and abilities you have over on the abilities page.</li>
                     <li>And finally, see all your weapons over on the weapons page.</li>
+                    <li style="text-decoration: underline;">You will need to create an account (Here, it's called "Create Journal") to be able to add content.</li>
                 </ul>
             </section>
             <section class="light-purple2 box2">

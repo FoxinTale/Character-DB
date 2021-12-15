@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php session_start();?>
 
     <head>
         <meta charset="UTF-8">
@@ -78,7 +79,12 @@
                 <!-- 
                 Image upload area.
                 -->
-                <input type="submit" class="data-entry" id="item_button" value="Add Item!">   
+                <?php
+                    if($_SESSION['validUser']){
+                        echo "<label for='item_button'>&nbsp;</label>";
+                        echo "<input type='submit' class='clicky-button clicky-button-two' id='item_button' value='Add Item'>";
+                    }
+                ?> 
             </form>
         <script type="text/javascript">
             $('.textbox').on('input', function () {
