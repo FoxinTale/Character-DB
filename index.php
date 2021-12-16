@@ -36,7 +36,7 @@ session_start();
                 <div id="creation" class="hide">
                     <a class="bar-item nav-button" href="javascript:framerender('newability.php')">Ability / Power / Spell</a>
                     <a class="bar-item nav-button" href="javascript:framerender('newchar.php')">Character</a>
-                    <a class="bar-item nav-button" href="javascript:framerender('newitem.php')">Item</a>
+                    <a class="bar-item nav-button" href="javascript:framerender('newitem.php')" style="display:none;">Item</a>
                     <a class="bar-item nav-button" href="javascript:framerender('newweapon.php')">Weapon</a>
                 </div>
             </div>
@@ -45,7 +45,7 @@ session_start();
             <p class="bar-item">View...</p>
             <a class="bar-item nav-button" href="javascript:framerender('abilities.php')">Abilities / Powers / Spells</a>
             <a class="bar-item nav-button" href="javascript:framerender('chars.php')">Characters</a>
-            <a class="bar-item nav-button" href="javascript:framerender('items.php')">Items</a>
+            <a class="bar-item nav-button" href="javascript:framerender('items.php')" style="display:none;">Items</a>
             <a class="bar-item nav-button" href="javascript:framerender('weapons.php')">Weapons</a>
             <hr class="nav-hr">
             <a class="bar-item nav-button" href="javascript:framerender('resources.php')">Resources</a>
@@ -53,6 +53,11 @@ session_start();
             <a class="bar-item nav-button" href="javascript:framerender('aboutsite.php')">About Site</a>
             <hr class="nav-hr">
             <?php
+                if(isset($_SESSION['isAdmin'])){
+                    if($_SESSION['isAdmin']){
+                        echo "<a class='bar-item nav-button' href=\"javascript:framerender('admin.php')\">Admin Panel</a>";
+                    }
+                }
                if($validUser){
                    echo "<a class='bar-item nav-button' href=\"javascript:framerender('logout.php')\">Close Journal</a>";
                } else {

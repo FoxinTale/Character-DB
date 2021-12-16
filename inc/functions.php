@@ -1,6 +1,7 @@
 <?php
 require_once 'open_db.php';
-
+define('CHARSET', 'ISO-8859-1');
+define('REPLACE_FLAGS', ENT_COMPAT | ENT_XHTML);
 /*
 Safety Pig!
                          _
@@ -42,11 +43,13 @@ function verify_login($userdata, $username, $password) {
     $users = array();
     $userpasses = array();
     $userIDs = array();
+    $admins = array();
     $usercount = count($userdata);
     for ($x = 0; $x < $usercount; $x++) {
         array_push($userIDs, $userdata[$x]['User_ID']);
         array_push($users, $userdata[$x]['User_Name']);
         array_push($userpasses, $userdata[$x]['User_Password']);
+        array_push($admins, $userdata[$x]['User_IsAdmin']);
     }
     $user_exists = in_array($username, $users);
     if (!$user_exists) {
@@ -55,10 +58,12 @@ function verify_login($userdata, $username, $password) {
         $userplace = array_search($username, $users);
         $userpass = $userpasses[$userplace];
         $userID = $userIDs[$userplace];
+        $userIsAdmin = $admins[$userplace];
         
         if (password_verify($password, $userpass)) {
             $_SESSION['username'] = $username;
-            $_SESSION['user_ID'] = $userID;
+            $_SESSION['userID'] = $userID;
+            $_SESSION['isAdmin'] = $userIsAdmin;
             header("Location: index.php");
         } else { echo "<script>window.onload = function() { document.getElementById('errorbox').value = 'Invalid Password'}</script>"; }
     }
@@ -293,15 +298,6 @@ function addother($db, $other) {
     return $success;
 }
 
-function otherupdate($db, $charname) {
-    $id = getid($db, $charname);
-    $query = "UPDATE char_other SET char_other.char_id = :id where char_other.char_name = :name;";
-    $statement = $db->prepare($query);
-    $statement->bindValue(':id', $id);
-    $statement->bindValue(':name', $charname);
-    $statement->execute();
-    $statement->closeCursor();
-}
 
 function additem($db, $item, $username) {
     $query = "INSERT INTO item(user_name, item_name, char_name, item_desc, item_appear, item_type, item_size, item_loc, item_effects, item_cond, item_value)
@@ -368,26 +364,14 @@ function addspell($db, $spell, $username) {
     return $success;
 }
 
-function getallchars($db, $username, $admin) {
-    if ($admin == 0) {
-        $query = "select char_info.char_id, char_info.char_name, char_race, char_fullname, char_desc, char_soul, char_age,char_alias, 
-        char_appear.app_image from char_info inner join char_appear on char_appear.char_name = char_info.char_name where user_name = :username;";
+function getallchars($db, $userID) {
+        $query = "select * from characters where Char_User_ID = :userID;";
         $statement = $db->prepare($query);
-        $statement->bindValue(':username', $username);
+        $statement->bindValue(':userID', $userID);
         $statement->execute();
         $results = $statement->fetchAll(PDO::FETCH_ASSOC);
         $statement->closeCursor();
-        printallchars($results, $admin);
-    } else if ($admin == 1) {
-        $query = "select char_info.char_id, user_name, char_info.char_name, char_race, char_fullname, char_desc, char_soul, char_age,char_alias, 
-                char_appear.app_image from char_info inner join char_appear on char_appear.char_name = char_info.char_name;";
-        $statement = $db->prepare($query);
-
-        $statement->execute();
-        $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-        $statement->closeCursor();
-        printallchars($results, $admin);
-    }
+        printallchars($results);
 }
 
 function getcharnames($db, $username, $info, $text) {
@@ -566,11 +550,11 @@ function getcharstats($db, $charname) {
 }
 
 
-function printallchars($allchars, $admin) {
+function printallchars($allchars) {
     $charcount = count($allchars);
     for ($x = 0; $x < $charcount; $x++) {
         $charinfo = $allchars[$x];
-        printcharinfo($charinfo, $admin);
+        printcharinfo($charinfo);
     }
 }
 
@@ -685,42 +669,45 @@ function printspellinfo($spellinfo) {
     echo '</form>';
 }
 
-function printcharinfo($charinfo, $admin) {
-    $image = $charinfo['app_image'];
-    $name = $charinfo['char_name'];
-    $username = $charinfo['user_name'];
-    $charrace = $charinfo['char_race'];
-    $charname = $charinfo['char_fullname'];
-    $nickname = $charinfo['char_alias'];
-    $age = $charinfo['char_age'];
-    $soul = $charinfo['char_soul'];
-    $chardesc = $charinfo['char_desc'];
+function printcharinfo($charinfo) {
+    $charID = $charinfo['Char_ID'];
+    $charName = htmlspecialchars_decode($charinfo['Char_Name']);
+    $charShortNames = htmlspecialchars_decode($charinfo['Char_ShortName']);
+    $charShortDesc = htmlspecialchars_decode($charinfo['Char_ShortDesc']);
+    $charAge = $charinfo['Char_Age'];
+    $charGender = htmlspecialchars_decode($charinfo['Char_Gender']);
+    $charRaceName = htmlspecialchars_decode($charinfo['Char_RaceName']);
 
-    echo "<form class='w3-light-purple-databox' method='post' action='viewchar.php'>";
-    echo "<img src =$image class='w3-img' alt='Character Image'>";
-    echo "<input type='hidden' name='charname' value = '$name'>";
-    echo "<section class='w3-info-section'>";
-    if ($admin) {
-        echo "<p><label for='username' class='w3-info-display'>Owner: </label>";
-        echo "<span  id='username'>$username</span></p>";
-    }
-    echo "<p><label for = 'charname' class='w3-info-display'>Name: </label>";
-    echo "<span id = 'charname'>$charname</span></p>";
-    echo "<p><label for = 'charalias' class='w3-info-display'>Nickname / Alias: </label>";
-    echo "<span id = 'charalias'>$nickname</span></p>";
-    echo "<p><label for = 'charage' class='w3-info-display'>Age: </label>";
-    echo "<span id = 'charage'>$age</span></p>";
-    echo "<p><label for = 'charsoul' class='w3-info-display'>'Soul' Type: </label>";
-    echo "<span id = 'charsoul'>$soul</span></p>";
-    echo "<p><label for = 'charrace' class='w3-info-display'>Race / Species: </label>";
-    echo "<span id = 'charrace'>$charrace</span></p>";
-    echo '</section>';
-    echo "<hr class='w3-hr'>";
-    echo "<p><label for = 'chardesc' class='w3-info-display'>Short Description: </label>";
-    echo "<span id = 'chardesc' class='w3-data-span'>$chardesc</span></p>";
-    echo '<br>';
-    echo "<input type = 'submit' id = 'morecharinfo' name='moreinfo' value = 'More info about this character.'>";
+    echo "<form class='light-purple box container coming' method='get' target='_blank' action='viewchar.php'>";
+        echo "<input type='text' hidden readonly name='char_ID' value='$charID'>";
+        echo '<p>';
+            echo "<label for='char_name'>Name:</label>";
+            echo "<input type='text' readonly class='textdisplay' id='char_name' value='$charName'>";
+        echo '</p>';
+        echo '<p>';
+            echo "<label for='charalias'>Nicknames &amp; Aliases:</label>";
+            echo "<input type='text' readonly class='textdisplay' id='charalias' value='$charShortNames'>";
+        echo '</p>';
+        echo '<p>';
+            echo "<label for='shortdesc'>Short Description: </label>";
+            echo "<textarea readonly id='shortdesc' class='textbox textdisplay'>$charShortDesc</textarea>";
+        echo '</p>';
+        echo '<p>';
+            echo "<label for='char_age'>Age: </label>";
+            echo "<input type='text' readonly class='textdisplay' id='char_age' value='$charAge'>";
+        echo '</p>';
+        echo '<p>';
+            echo "<label for='char_gender'>Gender: </label>";
+            echo "<input type='text' readonly class='textdisplay' id='char_gender' value='$charGender'>";
+        echo '</p>';
+        echo '<p>';
+            echo "<label for='char_racename>Race: </label>";
+            echo "<input type='text' readonly class='displaytext' id='char_racename' value='$charRaceName'>";
+        echo '</p>';
+            echo "<label for='morecharinfo'>&nbsp;</label>";
+            echo "<input type='submit' class='clicky-button clicky-button-two' id='morecharinfo' value='More Info'>";
     echo '</form>';
+
 }
 
 //This will let users delete their own items, if they choose to.
@@ -756,5 +743,6 @@ function updateweap() {
 function updatespell() {
     
 }
+
 
 ?>

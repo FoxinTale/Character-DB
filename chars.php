@@ -2,8 +2,9 @@
 <?php
 session_start();
 require('inc/functions.php');
-$username = $_SESSION["username"];
-$admin = $_SESSION["isadmin"];
+//$username = $_SESSION["username"];
+$userID = $_SESSION['userID'];
+//$admin = $_SESSION["isadmin"];
 ?>
 <head>
     <meta charset="UTF-8">
@@ -15,6 +16,6 @@ $admin = $_SESSION["isadmin"];
 </head>
 <body>
     <?php
-    getallchars($db, $username, $admin);
+        getallchars($db, $userID);
     ?>
 </body>

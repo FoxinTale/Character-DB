@@ -1,16 +1,18 @@
 <!DOCTYPE html>
+<?php session_start(); ?>
 <head>
     <meta charset="UTF-8">
     <title>New Weapon</title>
     <!--
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/w3-min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     -->
 </head>
 <body>
     <div class='box light-purple container2 shadow-816'>
         <h3 class="display-header">New Power, Ability, or spell.</h3>
-        <form id="newability" method='post' class="w3-light-purple-box w3-container" action='newability.php'>
+        <form id="newability" method='post' class="light-purple box container" action='newability.php'>
             <p class="tooltip" title="The name of the spell / ability, obviously.">
                 <label for="spellname" id="spellnamelabel">Power Name: </label>
                 <input type="text" required id="spellname" name="spell_name" class='textinput w3-border-blk'>
@@ -63,8 +65,12 @@
                 <label for="spelltags">Tags: </label>
                 <input type="text" id="spelltags" name="spell_tags" class='textinput'>
             </p>
-
-                <input type="submit" class="data-entry" id="ability_button" value="Add Spell/Ability/Power!">   
+            <?php
+                if($_SESSION['validUser']){
+                    echo "<label for='ability_button'>&nbsp;</label>";
+                    echo "<input type='submit' class='clicky-button clicky-button-two' id='ability_button' value='Add Spell/Ability/Power!'>";   
+                }
+            ?>
         </form>
         <script type="text/javascript">
             $('.textbox').on('input', function () {

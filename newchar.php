@@ -387,7 +387,7 @@ $validUser = $_SESSION['validUser'];
             }
         }
         
-                function omegaCheck(){
+        function omegaCheck(){
             var omega = document.getElementById("is_omega");
             var omegaTab = document.getElementById("omegalink");
             

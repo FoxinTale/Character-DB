@@ -83,7 +83,6 @@ ul li a{ text-decoration: none; }
     border-radius: 10px;
 }
 
-
 /* Lists*/
 .link-list{ margin-left: 2.5%; }
 
@@ -93,8 +92,6 @@ ul li a{ text-decoration: none; }
 }
 
 .link-list li a { font-family: 'malireg';}
-
-
 
 .w3-btn,
 .nav-button {
@@ -268,7 +265,7 @@ ul li a{ text-decoration: none; }
 .textbox{
     width: 50%;
     resize: inherit;
-    font-family: 'coming';
+    font-family: sans-serif;
     margin-bottom: 1rem;
 }
 
@@ -286,8 +283,6 @@ ul li a{ text-decoration: none; }
     margin-top: 10px;
     margin-bottom: 10px;
 }
-
-
 
 .tablink{
     border: 1px solid black;
@@ -344,14 +339,10 @@ ul li a{ text-decoration: none; }
     margin-bottom: 5px;
 }
 
-.text-display{
-    width: 75%;
-    margin-bottom: -7px;
-}
-
-.text-display input{
-    background: transparent;
+.textdisplay{
+    background-color: transparent;
     border: none;
+    width: 75%;
 }
 
 .display-header{
@@ -441,7 +432,6 @@ ul li a{ text-decoration: none; }
     background-image: url(../images/sunset.png);
     background-size: cover;
 }
-
 
 #errorbox{
     margin-left: 2.5rem;
