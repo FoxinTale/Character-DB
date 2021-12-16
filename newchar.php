@@ -1,7 +1,26 @@
 <!DOCTYPE html>
 <?php
 session_start();
+require 'inc/functions.php';
+require 'inc/prints.php';
 $validUser = $_SESSION['validUser'];
+
+    if(isset($_POST["new_char"])){
+        $charInfo = datacheck($_POST);
+       if(!addchar($db, $charInfo, $_SESSION['userID'])){
+           echo "Something went wrong trying to add this character.";
+       } else {
+           echo "Character was successfully added!";
+       }
+    }
+    
+    if(isset($_POST["apply_settings"])){
+        if(!addsettings($db, $_POST)){
+            echo "Something went wrong trying to apply the settings";
+        } else {
+            echo "Settings successfully applied!";
+        }
+    }
 ?>
 
 <head>
@@ -26,7 +45,9 @@ $validUser = $_SESSION['validUser'];
             <p>This is where you enter data for all your characters</p>
             <p>Some things you cannot leave empty, while others you can. It'll complain if it cannot be left empty.</p>
             <p>Any item can be one word, or a sentence if desired. </p>
-            <p>If you need help filling some boxes, head over to the resources page.</p>            
+            <p>If you need help filling some boxes, head over to the resources page.</p>
+            <br>
+            <p>I decided on a character needing to be selected to add information to, this way one can add multiple characters, or add information later.</p>
             <p>Last note, some of the formatting / display may be messy. That will be fixed eventually.</p>
             <hr>
             <p><b>You must add the character information first, and then add the others from there.</b></p> 
@@ -63,7 +84,8 @@ $validUser = $_SESSION['validUser'];
             <?php
               if($validUser){
                 echo "<label for='charbutton'>&nbsp;</label>";
-                echo"<input type='submit' class='clicky-button clicky-button-two' name='submit_char' value='Add Character' id='charbutton'>";
+                //echo"<input type='submit' class='clicky-button clicky-button-two' name='submit_char' value='Add Character' id='charbutton'>";
+                echo "<button type='submit' id='charbutton' class='clicky-button clicky-button-two' name='new_char'>Add Character</button>";
              }
             ?>
             </form>
@@ -73,6 +95,7 @@ $validUser = $_SESSION['validUser'];
                <p>You can hover over each entry to learn more about what it is.</p>
                <hr>
                <form id = "charapp" method="post" action="javascript:pagerender('pages/newchar_home.html', 'home')">
+                   <?php getcharnames($db, $_SESSION['userID'], "to add an appearance to.", "Select a character"); ?>
                    <p class="tooltip" title="General Appearance">
                        <label for="charapp">Appearance Description: </label>
                        <textarea id="charapp" name="char_app" class='textbox'></textarea>
@@ -124,6 +147,7 @@ $validUser = $_SESSION['validUser'];
           <p>You can hover over each entry to learn more about what it is.</p>
           <hr>
           <form id="char_pers" method="post" action="javascript:pagerender('pages/newchar_pers.html', 'personality')">
+              <?php getcharnames($db, $_SESSION['userID'], "to add a personality to.", "Select a character"); ?>
               <p class="tooltip" title="Their personality description.">
                   <label for="persdesc">Personality Description:</label>
                   <textarea id="charpersdesc" class="textbox" name="pers_desc"></textarea>
@@ -202,6 +226,7 @@ $validUser = $_SESSION['validUser'];
             </p>
             <hr>
             <form id="charspecies" method="post" action="javascript:pagerender('pages/newchar_race.html', 'race')">
+                <?php getcharnames($db, $_SESSION['userID'], "to create a race for.", "Select a character"); ?>
                 <p class="tooltip" title="The name of the species / race.">
                     <label for="racename">Name: </label>
                     <input type="text" id="racename" name="race_name" class='textinput'>
@@ -242,6 +267,7 @@ $validUser = $_SESSION['validUser'];
           </p>
           <hr>
           <form id="charomega" method="post" action="javascript:pagerender('pages/newchar_omega.html', 'omega')">
+              <?php getcharnames($db, $_SESSION['userID'], "to add information to.", "Select a muse"); ?>
               <p class="tooltip" title="A description of the AU this character or 'muse' is from. Please specify if it is from Undertale or Deltarune.">
                   <label for="omegaaudesc">Alternate Universe (AU): </label>
                   <textarea id="omegaaudesc" name="omegaau_desc" class='textbox'></textarea>
@@ -276,6 +302,7 @@ $validUser = $_SESSION['validUser'];
         <p>You can hover over each entry to learn more about what it is.</p>
         <hr>
         <form id="charother" method="post" action="newchar.php#character_other">
+            <?php getcharnames($db, $_SESSION['userID'], "to add info to.", "Select a character"); ?>
             <p class="tooltip" title="Self-Explanatory. Can be just the name, the name and a link...whatever you wish.">
                 <label for="othertheme">Theme Song: </label>
                 <input type="text" id="othertheme" name="other_theme" class='textinput'>
@@ -324,14 +351,11 @@ $validUser = $_SESSION['validUser'];
           <h3 class="display-header">Character Options</h3>
           <p>Various options for your character.</p>
           <hr>
-          <form id="charoptions" method="post" action="javascript:pagerender('pages/newchar_settings.html', 'settings')">
+          <form id="charoptions" method="post">
+              <?php getcharnames($db, $_SESSION['userID'], "to apply these to.", "Select a character"); ?>
               <p class="tooltip" title="Whether or not this character is a favourite">
                   <label for="is_fav">Is a favourite character</label>
                   <input type="checkbox" id="is_fav" name="isfavchar">
-              </p>
-              <p class="tooltip" title="Whether or not this character is a DnD version, or if they are a DnD only character">
-                  <label for="is_dnd">Is a DnD character:</label>
-                  <input type="checkbox" id="is_dnd" onchange="dndCheck()" name="isdndchar">
               </p>
               <!-- 
                   In PHP, the checkbox will be set based off of what is retreived from the database and the tabs will be set based off of that. 
@@ -344,8 +368,10 @@ $validUser = $_SESSION['validUser'];
               </p>
               <?php
                    if($_SESSION['validUser']){
-                      echo "<label for='applysettings'>&nbsp;</label>";
-                      echo "<input type='submit' class='clicky-button clicky-button-two' name='submit_settings' value='Apply Settings'id='applysettings'>";
+                      echo "<label for='settingsbutton'>&nbsp;</label>";
+                      //echo "<input type='submit' class='clicky-button clicky-button-two' name='submit_settings' value='Apply Settings'id='applysettings'>";
+                      echo "<button type='submit' id='settingsbutton' class='clicky-button clicky-button-two' name='apply_settings'>Apply Settings</button>";
+
                    }
                ?>
           </form>
@@ -397,18 +423,6 @@ $validUser = $_SESSION['validUser'];
                 omegaTab.style.display = "none";
             }
         }
-        
-        function dndCheck(){
-            var dnd = document.getElementById("is_dnd");
-            var dndTab = document.getElementById("dnd_page");
-            
-            if(dnd.checked){
-                dndTab.style.display="block";
-            } else{
-                dndTab.style.display="none";
-            }
-        }
-        
         
         $('.textbox').on('input', function () {
             this.style.height = 'auto'; 

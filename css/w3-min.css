@@ -6,15 +6,18 @@ There have also been heavy modifications, removals and additions to the original
 /* Creating the classes to set fonts */
 
 .coming{ font-family: 'coming'; }
-
 .handlee { font-family: 'handlee'; }
-
 
 /* General style rules for everywhere */
 a{ text-decoration: none; }
-
 ul li a{ text-decoration: none; }
 
+iframe{
+    margin-left:5rem;
+    width:90%;
+    border: none;
+    height: 45rem;
+}
 
 /* The boxes that everything is displayed in*/
 .box{
@@ -45,21 +48,13 @@ ul li a{ text-decoration: none; }
 
 /* Colours! */
 .pale-purple{ background-color: #f1edf8; }
-
 .light-purple{ background-color: #c5b5e3; }
-
 .light-purple2{ background-color: #d3c7e9; }
-
 .light-purple3{ background-color: #dc96e8!important; }
-
 .light-purple4{ background-color: #b19cd9; }
-
 .light-gray{ background-color: #f1f1f1!important; }
-
 .purple{ background-color: #9c27b0!important; }
-
 .black{ background-color: #000!important; }
-
 
 /* */ 
 
@@ -78,10 +73,12 @@ ul li a{ text-decoration: none; }
     margin-top: 2.5%;
     border: none;
     height: 70%;
-    margin-left: 7.5%;
-    width: 85%;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
     border-radius: 10px;
 }
+
 
 /* Lists*/
 .link-list{ margin-left: 2.5%; }
@@ -132,8 +129,15 @@ ul li a{ text-decoration: none; }
     overflow: auto
 }
 
-.bar-block .w3-dropdown-hover, .w3-dropdown-click { width: 100%; }
+.charselect{
+    width: 50%;
+    border: 0.5px solid black;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    font-family: 'coming';
+}
 
+.bar-block .w3-dropdown-hover, .w3-dropdown-click { width: 100%; }
 .bar-block .w3-dropdown-hover .w3-dropdown-content, .w3-dropdown-click .w3-dropdown-content { min-width: 100%; }
 
 .bar-block .w3-dropdown-hover .nav-button,
@@ -159,7 +163,6 @@ ul li a{ text-decoration: none; }
 }
 
 .w3-bar .nav-button .w3-tab{ white-space: normal; }
-
 .centre, .bar-item, .tab-item{ text-align: center; }
 
 .textinput{
@@ -232,11 +235,8 @@ ul li a{ text-decoration: none; }
 }
 
 .show-block, .show { display: block!important; }
-
 .show-inline-block { display: inline-block!important; }
-
 .card, .card-2 { box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); }
-
 .card-4{ box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19); }
 
 .animate-left {
@@ -252,7 +252,6 @@ ul li a{ text-decoration: none; }
 }
 
 .xlarge { font-size: 24px!important }
-
 .container, container2,  .w3-panel { padding: 0.01em 16px; }
 
 .w3-panel {
@@ -387,15 +386,10 @@ ul li a{ text-decoration: none; }
 }
 
 .w3-info-display{ font-weight: 600; }
-
 .w3-info-section span, .w3-data-span{ font-family: 'delius'; }
-
 .w3-img{ float: left; }
-
 .label{ width: auto; }
-
 .sep{ margin: 0% 10%; }
-
 .sep2{ margin: 0% 2.55%; }
 
 .data-entry{
@@ -403,7 +397,6 @@ ul li a{ text-decoration: none; }
     width: 15rem;
     height: 3rem;
 }
-
 
 /* Small displays, Mobile devices. */
 @media (max-width:600px) {
@@ -416,9 +409,7 @@ ul li a{ text-decoration: none; }
         width: 85%;
     }
     .hide-small { display: none!important; }
-
     .tab-item{ text-align: center; }
-    
     .w3-dropdown-click.w3-mobile .w3-btn, .w3-dropdown-click.w3-mobile .nav-button { width: 100%; }
     
     .description{

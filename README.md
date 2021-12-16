@@ -39,12 +39,12 @@ Just as it says, it's a total rewrite of the entire site.
 
  ## To do List:
  - [x] Add / fix user permissions.
- - [] Add a lockout policy to auto logout after a preset amount of time.
- - Create a custom admin user interface instead of using external 'PHPMyAdmin".
- - [] Fix the improper logout and properly destroy the session.
- - [] Implement a functionality for users to be able to edit and delete their own information.
- - [] Add a way for characters to be shared. No point in creating a character if you can't chare it with others, after all.
- - [] Image uploads. For character appearances. Make it work.
+ - [ ] Add a lockout policy to auto logout after a preset amount of time.
+ - [ ] Create a custom admin user interface instead of using external 'PHPMyAdmin".
+ - [ ] Fix the improper logout and properly destroy the session.
+ - [ ] Implement a functionality for users to be able to edit and delete their own information.
+ - [ ] Add a way for characters to be shared. No point in creating a character if you can't share it with others, after all.
+ - [ ] Image uploads. For character appearances. Make it work.
 
 
 ## Credits

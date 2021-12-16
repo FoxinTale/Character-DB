@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <?php
 session_start();
-    $user_name = "";
-
+    $user_name = "Aubrey";
+    // Hardcoded values so I can develop easily without constantly having to login. Makes it so much easier.
+    // Obviously, this will be removed in production and testing.
+/*
     if(isset($_SESSION['username'])){
       $user_name = $_SESSION['username'];
     }
@@ -13,7 +15,12 @@ session_start();
     } else {
        $validUser = true;
     }
-    $_SESSION["validUser"] = $validUser;
+  $_SESSION["validUser"] = $validUser;
+ */
+   $validUser = true;
+   $_SESSION['validUser'] = true;
+   $_SESSION['username'] = "Aubrey";
+   $_SESSION['userID'] = 1;
 
 ?>
 
@@ -30,39 +37,39 @@ session_start();
     <body class="mainpage">
         <nav class="sidebar bar-block collapse animate-left card" style="z-index:3;width:250px;" id="sidenav">
             <a class="bar-item nav-button hide large" href="javascript:void(0)" onclick="closenav()">Close <i class="fa fa-remove"></i></a>
-            <a class="bar-item nav-button" href="javascript:framerender('home.php')">Home</a>
+            <a class="bar-item nav-button" href='home.php' target='pages')">Home</a>
             <div>
                 <a class="bar-item nav-button" onclick="dropdown('creation')" href="javascript:void(0)">Create New...<i class="fa fa-caret-down"></i></a>
                 <div id="creation" class="hide">
-                    <a class="bar-item nav-button" href="javascript:framerender('newability.php')">Ability / Power / Spell</a>
-                    <a class="bar-item nav-button" href="javascript:framerender('newchar.php')">Character</a>
-                    <a class="bar-item nav-button" href="javascript:framerender('newitem.php')" style="display:none;">Item</a>
-                    <a class="bar-item nav-button" href="javascript:framerender('newweapon.php')">Weapon</a>
+                    <a class="bar-item nav-button" href='newability.php' target='pages'>Ability / Power / Spell</a>
+                    <a class="bar-item nav-button" href='newchar.php' target='pages'>Character</a>
+                    <a class="bar-item nav-button" href='newitem.php' target='pages' style="display:none;">Item</a>
+                    <a class="bar-item nav-button" href='newweapon.php' target='pages'>Weapon</a>
                 </div>
             </div>
-            <a id="dnd_page" class="bar-item nav-button" href="javascript:framerender('dnd.php')" style="display:none">DnD Land</a>
+            <a id="dnd_page" class="bar-item nav-button" href='dnd.php' target='pages' style="display:none">DnD Land</a>
             <hr class="nav-hr">
             <p class="bar-item">View...</p>
-            <a class="bar-item nav-button" href="javascript:framerender('abilities.php')">Abilities / Powers / Spells</a>
-            <a class="bar-item nav-button" href="javascript:framerender('chars.php')">Characters</a>
-            <a class="bar-item nav-button" href="javascript:framerender('items.php')" style="display:none;">Items</a>
-            <a class="bar-item nav-button" href="javascript:framerender('weapons.php')">Weapons</a>
+            <a class="bar-item nav-button" href='abilities.php' target='pages'>Abilities / Powers / Spells</a>
+            <a class="bar-item nav-button" href='chars.php' target='pages'>Characters</a>
+            <a class="bar-item nav-button" href='items.php' target='pages' style="display:none;">Items</a>
+            <a class="bar-item nav-button" href='weapons.php' target='pages'>Weapons</a>
             <hr class="nav-hr">
-            <a class="bar-item nav-button" href="javascript:framerender('resources.php')">Resources</a>
-            <a class="bar-item nav-button" href="javascript:framerender('credits.php')">Credits</a>
-            <a class="bar-item nav-button" href="javascript:framerender('aboutsite.php')">About Site</a>
+            <a class="bar-item nav-button" href='aboutsite.php' target='pages'>About Site</a>
+            <a class="bar-item nav-button" href='resources.php' target='pages'>Resources</a>
+            <a class="bar-item nav-button" href='credits.php' target='pages'>Credits</a>
             <hr class="nav-hr">
             <?php
                 if(isset($_SESSION['isAdmin'])){
                     if($_SESSION['isAdmin']){
-                        echo "<a class='bar-item nav-button' href=\"javascript:framerender('admin.php')\">Admin Panel</a>";
+                        echo "<a class='bar-item nav-button' href='admin.php' target='pages'>Admin Panel</a>";
                     }
                 }
                if($validUser){
-                   echo "<a class='bar-item nav-button' href=\"javascript:framerender('logout.php')\">Close Journal</a>";
+                   echo "<a class='bar-item nav-button' href='logout.php' target='pages'>Close Journal</a>";
                } else {
-                   echo "<a class='bar-item nav-button' href=\"javascript:framerender('newprofile.php')\">Create Journal</a>";
-                   echo "<a class='bar-item nav-button' href=\"javascript:framerender('login.php')\">Open Journal</a>";
+                   echo "<a class='bar-item nav-button' href'newprofile.php' target='pages'>Create Journal</a>";
+                   echo "<a class='bar-item nav-button' href='login.php' target='pages'>Open Journal</a>";
                }
             ?>
         </nav>
@@ -78,7 +85,8 @@ session_start();
                 Why? I did not feel like repeating myself (this nav page) on every page so I settled on this way.
                 While I do not remember exactly *why* I did it this way, I think I had issues with the iframe not doing things I wanted it to.
             -->
-            <div class="minipage" id="container"></div>
+          <!--  <div class="minipage" id="container"></div> -->
+            <iframe id="pageframe" name="pages" src="home.php"></iframe>
             <script type="text/javascript" src="scripts/main.js"></script>
             <footer>Aubrey - 2021</footer>
         </div>

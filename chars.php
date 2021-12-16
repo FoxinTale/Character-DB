@@ -2,6 +2,7 @@
 <?php
 session_start();
 require('inc/functions.php');
+require('inc/prints.php');
 //$username = $_SESSION["username"];
 $userID = $_SESSION['userID'];
 //$admin = $_SESSION["isadmin"];

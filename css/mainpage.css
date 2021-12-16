@@ -37,16 +37,6 @@ h1{
     text-align: center;
 }
 
-#container{
-    margin-top: 2.5%;
-    border: none;
-    height: 70%;
-    margin-left: 15%;
-    width: 75%;
-    border-radius: 10px;
-}
-
-
 body{
     background-image: url(../images/sunset.png);
     background-size: cover;

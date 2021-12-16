@@ -2,10 +2,8 @@
     <head>
         <meta charset="UTF-8">
         <title>About the site</title>
-        <!--
         <link rel="stylesheet" href="css/fonts.css">
         <link rel="stylesheet" href="css/w3-min.css">
-        -->
     </head>
     <body>
         <section class="box4 light-purple">
@@ -29,6 +27,14 @@
             <p class="coming">
                 The next step up was Web Development 2, which involved PHP and mySQL. Perfect! So, the final project in that class was the first iteration of this very website. PHP is an eldritch abomination to work with, but I would still prefer it over bloated javascript and CSS frameworks, as the majority of the site is plain ol' HTML + CSS anyways. The first iteration was completed over about six weeks, so things were left out that really should have been initially included. Over one year later, I got the motivation to come back, rewrite and add the features I meant to. That is the second iteration and what you're currently looking at. 
             </p>
+        </section>
+        <section class='box4 light-purple'>
+            <p class='coming'>Fun facts about this site:</p>
+            <ul class='coming'>
+                <li>For the most part, this site is just pure HTML and CSS, with not a lot of javascript bloat.</li>
+                <li>Only javascript framework used is jQuery, no other frameworks, or libraries are used.</li>
+                <li>It's open source! <a href="https://github.com/FoxinTale/Character-DB" target="_blank">Check out the source on Github</a></li>
+            </ul>
         </section>
     </body>
 </html>
