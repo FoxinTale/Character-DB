@@ -5,12 +5,20 @@ There have also been heavy modifications, removals and additions to the original
 
 /* Creating the classes to set fonts */
 
-.coming{ font-family: 'coming'; }
-.handlee { font-family: 'handlee'; }
+.coming{
+    font-family: 'coming';
+}
+.handlee {
+    font-family: 'handlee';
+}
 
 /* General style rules for everywhere */
-a{ text-decoration: none; }
-ul li a{ text-decoration: none; }
+a{
+    text-decoration: none;
+}
+ul li a{
+    text-decoration: none;
+}
 
 iframe{
     margin-left:5rem;
@@ -47,16 +55,32 @@ iframe{
 }
 
 /* Colours! */
-.pale-purple{ background-color: #f1edf8; }
-.light-purple{ background-color: #c5b5e3; }
-.light-purple2{ background-color: #d3c7e9; }
-.light-purple3{ background-color: #dc96e8!important; }
-.light-purple4{ background-color: #b19cd9; }
-.light-gray{ background-color: #f1f1f1!important; }
-.purple{ background-color: #9c27b0!important; }
-.black{ background-color: #000!important; }
+.pale-purple{
+    background-color: #f1edf8;
+}
+.light-purple{
+    background-color: #c5b5e3;
+}
+.light-purple2{
+    background-color: #d3c7e9;
+}
+.light-purple3{
+    background-color: #dc96e8!important;
+}
+.light-purple4{
+    background-color: #b19cd9;
+}
+.light-gray{
+    background-color: #f1f1f1!important;
+}
+.purple{
+    background-color: #9c27b0!important;
+}
+.black{
+    background-color: #000!important;
+}
 
-/* */ 
+/* */
 
 .display-text{
     margin-left: 2.5%;
@@ -67,7 +91,9 @@ iframe{
     padding:0.75rem;
 }
 
-.mainpage{ transition: margin-left .4s; }
+.mainpage{
+    transition: margin-left .4s;
+}
 
 .minipage{
     margin-top: 2.5%;
@@ -81,14 +107,18 @@ iframe{
 
 
 /* Lists*/
-.link-list{ margin-left: 2.5%; }
+.link-list{
+    margin-left: 2.5%;
+}
 
 .link-list li{
     list-style-type: none;
     padding-bottom: 0.5rem;
 }
 
-.link-list li a { font-family: 'malireg';}
+.link-list li a {
+    font-family: 'malireg';
+}
 
 .w3-btn,
 .nav-button {
@@ -108,7 +138,9 @@ iframe{
     -ms-user-select: none;
 }
 
-.w3-btn:hover, .clicky-button:hover { box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+.w3-btn:hover, .clicky-button:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
 .clicky-button{
     padding: 0.5rem;
@@ -137,8 +169,12 @@ iframe{
     font-family: 'coming';
 }
 
-.bar-block .w3-dropdown-hover, .w3-dropdown-click { width: 100%; }
-.bar-block .w3-dropdown-hover .w3-dropdown-content, .w3-dropdown-click .w3-dropdown-content { min-width: 100%; }
+.bar-block .w3-dropdown-hover, .w3-dropdown-click {
+    width: 100%;
+}
+.bar-block .w3-dropdown-hover .w3-dropdown-content, .w3-dropdown-click .w3-dropdown-content {
+    min-width: 100%;
+}
 
 .bar-block .w3-dropdown-hover .nav-button,
 .w3-dropdown-click{
@@ -162,8 +198,12 @@ iframe{
     outline: 0;
 }
 
-.w3-bar .nav-button .w3-tab{ white-space: normal; }
-.centre, .bar-item, .tab-item{ text-align: center; }
+.w3-bar .nav-button .w3-tab{
+    white-space: normal;
+}
+.centre, .bar-item, .tab-item{
+    text-align: center;
+}
 
 .textinput{
     display: block;
@@ -188,20 +228,30 @@ iframe{
     font-family: 'handlee';
 }
 
-.infotab label, .container2 label{ width: 15rem; }
+.infotab label, .container2 label{
+    width: 15rem;
+}
 
 /* .w3-select option{ font-family: 'coming'; } */
 
 @media (min-width:993px) {
-    .w3-modal-content { width: 900px; }
-    .hide-large { display: none!important; }
-    .sidebar.collapse { display: block!important; }
+    .w3-modal-content {
+        width: 900px;
+    }
+    .hide-large {
+        display: none!important;
+    }
+    .sidebar.collapse {
+        display: block!important;
+    }
 }
 
 
 @media (max-width:992px) {
-    .sidebar.collapse { display: none; }
-    
+    .sidebar.collapse {
+        display: none;
+    }
+
     .mainpage {
         margin-left: 0!important;
         margin-right: 0!important;
@@ -221,7 +271,9 @@ iframe{
     z-index: 2;
 }
 
-.hide { display: none!important; }
+.hide {
+    display: none!important;
+}
 
 .container:after,
 .container:before,
@@ -234,32 +286,48 @@ iframe{
     clear: both;
 }
 
-.show-block, .show { display: block!important; }
-.show-inline-block { display: inline-block!important; }
-.card, .card-2 { box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); }
-.card-4{ box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19); }
+.show-block, .show {
+    display: block!important;
+}
+.show-inline-block {
+    display: inline-block!important;
+}
+.card, .card-2 {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+.card-4{
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
 .animate-left {
     position: relative;
     animation: animateleft 0.4s;
 }
 
-.animate-opacity { animation: opac 0.8s }
+.animate-opacity {
+    animation: opac 0.8s
+}
 
 .nav-button:hover {
     color: #000!important;
     background-color: #ccc!important;
 }
 
-.xlarge { font-size: 24px!important }
-.container, container2,  .w3-panel { padding: 0.01em 16px; }
+.xlarge {
+    font-size: 24px!important
+}
+.container, container2,  .w3-panel {
+    padding: 0.01em 16px;
+}
 
 .w3-panel {
     margin-top: 16px;
     margin-bottom: 16px
 }
 
-.shadow-816{  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); } /* So called because it's 8 by 16 pixels. */
+.shadow-816{
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+} /* So called because it's 8 by 16 pixels. */
 
 .textbox{
     width: 50%;
@@ -385,12 +453,24 @@ iframe{
     font-size: 1.5em;
 }
 
-.w3-info-display{ font-weight: 600; }
-.w3-info-section span, .w3-data-span{ font-family: 'delius'; }
-.w3-img{ float: left; }
-.label{ width: auto; }
-.sep{ margin: 0% 10%; }
-.sep2{ margin: 0% 2.55%; }
+.w3-info-display{
+    font-weight: 600;
+}
+.w3-info-section span, .w3-data-span{
+    font-family: 'delius';
+}
+.w3-img{
+    float: left;
+}
+.label{
+    width: auto;
+}
+.sep{
+    margin: 0% 10%;
+}
+.sep2{
+    margin: 0% 2.55%;
+}
 
 .data-entry{
     margin-left: 0.75rem;
@@ -401,17 +481,23 @@ iframe{
 /* Small displays, Mobile devices. */
 @media (max-width:600px) {
     .textbox{
-        margin-left: 1rem;   
+        margin-left: 1rem;
         width: 85%;
     }
     .textinput, .w3-select{
-        margin-left: 1rem;   
+        margin-left: 1rem;
         width: 85%;
     }
-    .hide-small { display: none!important; }
-    .tab-item{ text-align: center; }
-    .w3-dropdown-click.w3-mobile .w3-btn, .w3-dropdown-click.w3-mobile .nav-button { width: 100%; }
-    
+    .hide-small {
+        display: none!important;
+    }
+    .tab-item{
+        text-align: center;
+    }
+    .w3-dropdown-click.w3-mobile .w3-btn, .w3-dropdown-click.w3-mobile .nav-button {
+        width: 100%;
+    }
+
     .description{
         padding-right: 10px;
         padding-left: 10px;

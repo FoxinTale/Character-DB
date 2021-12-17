@@ -10,7 +10,6 @@
             <p class="display-text coming">
                 Over the years of coming up with various characters, I noticed I was running into an issue. I had quite a few documents (text files, google docs, word documents) and even some written documents of character information I had accumulated over the years. This became an issue when I needed to track down a document that may be years old to see if  what I had written down was sensible, or just for future reference. I'm a messy person, even digitally so I lose things. Losing a character's information can be confusing when you need to go back and wonder "Is this how they would react in this situation?". So I set out to find a solution.
             </p>
-
         </section>
         <section class="box4 light-purple">
             <p class="coming">

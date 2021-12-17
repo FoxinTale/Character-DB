@@ -2,12 +2,10 @@
 <?php session_start(); ?>
 <head>
     <meta charset="UTF-8">
-    <title>New Weapon</title>
-    <!--
+    <title>New Ability, Power or Spell</title>
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/w3-min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    -->
 </head>
 <body>
     <div class='box light-purple container2 shadow-816'>
@@ -66,17 +64,17 @@
                 <input type="text" id="spelltags" name="spell_tags" class='textinput'>
             </p>
             <?php
-                if($_SESSION['validUser']){
-                    echo "<label for='ability_button'>&nbsp;</label>";
-                    echo "<input type='submit' class='clicky-button clicky-button-two' id='ability_button' value='Add Spell/Ability/Power!'>";   
-                }
+            if ($_SESSION['validUser']) {
+                echo "<label for='ability_button'>&nbsp;</label>";
+                echo "<input type='submit' class='clicky-button clicky-button-two' id='ability_button' value='Add Spell/Ability/Power!'>";
+            }
             ?>
         </form>
         <script type="text/javascript">
             $('.textbox').on('input', function () {
                 this.style.height = 'auto';
 
-                this.style.height = 
+                this.style.height =
                         (this.scrollHeight) + 'px';
             });
         </script>

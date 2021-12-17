@@ -47,7 +47,6 @@ session_start();
                     <a class="bar-item nav-button" href='newweapon.php' target='pages'>Weapon</a>
                 </div>
             </div>
-            <a id="dnd_page" class="bar-item nav-button" href='dnd.php' target='pages' style="display:none">DnD Land</a>
             <hr class="nav-hr">
             <p class="bar-item">View...</p>
             <a class="bar-item nav-button" href='abilities.php' target='pages'>Abilities / Powers / Spells</a>

@@ -17,6 +17,6 @@ $userID = $_SESSION['userID'];
 </head>
 <body>
     <?php
-        getallchars($db, $userID);
+    getallchars($db, $userID);
     ?>
 </body>

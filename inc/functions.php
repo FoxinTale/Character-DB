@@ -1,5 +1,6 @@
 <?php
 require_once 'open_db.php';
+require_once 'sanitychecks.php';
 define('CHARSET', 'ISO-8859-1');
 define('REPLACE_FLAGS', ENT_COMPAT | ENT_XHTML);
 /*
@@ -144,13 +145,6 @@ function getid($db, $charname) {
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
     $statement->closeCursor();
     return $results[0]['char_id'];
-}
-
-//nc = Null Checking
-function nc($data) {
-    if (!isset($data)) {
-        echo "Not yet added";
-    }
 }
 
 function addchar($db, $charinfo, $userID) {
@@ -523,14 +517,47 @@ function getspellinfos($spelldata) {
     }
 }
 
-function getcharinfo($db, $charname) {
-    $query = "select * from char_info where char_name = :charname;";
+function getCharInfo($db, $charID) {
+    $query = "select * from characters where Char_ID= :charID";
     $statement = $db->prepare($query);
-    $statement->bindValue(':charname', $charname);
+    $statement->bindValue(':charID', $charID);
     $statement->execute();
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
     $statement->closeCursor();
-    return $results[0];
+    if(!empty($results)){
+        return $results[0];
+    } else {
+        return fillCharInfo($results);
+    }
+}
+
+function getCharOmega($db, $charID){
+    $query = "SELECT * from char_omegatime where Omega_Char_ID = :charID;";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':charID', $charID);
+    $statement->execute();
+    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $statement->closeCursor();
+    
+    if(!empty($results)){
+        return $results[0];
+    } else {
+        return fillOmegaInfo($results);
+    }
+}
+
+function getCharSettings($db, $charID){
+    $query = "select * from char_settings where Char_Settings_Char_ID = :charID;";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':charID', $charID);
+    $statement->execute();
+    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $statement->closeCursor();
+    if(!empty($results)){
+        return $results[0];
+    } else {
+        return $results;   
+    }
 }
 
 function getcharappear($db, $charname) {

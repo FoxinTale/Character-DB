@@ -53,7 +53,7 @@ if (isset($_POST["check_username"])) {
                     <label for='email'>Email</label>
                     <input type='text' class="textinput" id='email' value=''>
                     <br>
-                     <label for='email2'>Confirm Email</label>
+                    <label for='email2'>Confirm Email</label>
                     <input type='text' class="textinput" id='email2' value=''>
                     <br>
                     <label for="create">&nbsp;</label>

@@ -1,0 +1,25 @@
+body{
+    background-image: url(../images/sunset.png);
+    background-size: cover;
+}
+
+main{
+    margin: 5%;
+}
+
+.w3-tab{
+    border:1px solid black;
+}
+
+.display{
+    font-family: coming;
+    font-size: 14px;
+    width: 80%;
+}
+
+@media (max-width:600px) {
+    .display{
+        margin-left: 1rem;
+        width: 50%;
+    }
+}
