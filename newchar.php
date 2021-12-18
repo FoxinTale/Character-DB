@@ -6,8 +6,9 @@ require 'inc/prints.php';
 $validUser = $_SESSION['validUser'];
 
 if (isset($_POST["new_char"])) {
-    $charInfo = datacheck($_POST);
-    if (!addchar($db, $charInfo, $_SESSION['userID'])) {
+    $charInfo = datacheck($_POST, 6);
+
+    if (!addCharacter($db, $charInfo, $_SESSION['userID'])) {
         echo "Something went wrong trying to add this character.";
     } else {
         echo "Character was successfully added!";
@@ -15,7 +16,28 @@ if (isset($_POST["new_char"])) {
 }
 
 if (isset($_POST["add_app"])) {
-    print_r($_POST);
+    $charAppearance = datacheck($_POST, 11);
+
+    if (!addAppearance($db, $charAppearance)) {
+        echo "Something went wrong adding the appearance info.";
+    } else {
+        echo "Appearance info successfully added!";
+    }
+}
+
+if (isset($_POST["add_pers"])) {
+    $charPers = datacheck($_POST, 17);
+    print_r($charPers);
+}
+
+if (isset($_POST["add_otinfo"])) {
+    $otinfo = datacheck($_POST, 6);
+
+    if (!addOmegaInfo($db, $otinfo)) {
+        echo "Something went wrong trying to add the information.";
+    } else {
+        echo "Information successfully added";
+    }
 }
 
 if (isset($_POST["apply_settings"])) {
@@ -133,8 +155,12 @@ if (isset($_POST["apply_settings"])) {
                     <textarea id="charskin" name="char_skin" class='textbox'></textarea>
                 </p>
                 <p class="tooltip" title="Unique identifying features, if any. Birthmarks, scars, tattoos, ect...">
-                    <label for="charweight">Unique Features: </label>
+                    <label for="charunique">Unique Features: </label>
                     <textarea id="charunique" name="char_unique" class='textbox'></textarea>
+                </p>
+                <p class="tooltip" title="Any thing else relating to their appearance that doesn't fit elsewhere">
+                    <label for="appearother">Other: </label>
+                    <textarea id="appearother" name="appear_other" class='textbox'></textarea>
                 </p>
             </div>
             <?php
@@ -158,6 +184,10 @@ if (isset($_POST["apply_settings"])) {
             <p class="tooltip" title="The personality type. Can be Meyers-Briggs (Big 16), Big 5, or any other type.">
                 <label for="charperstype">Personality Type: </label>
                 <input type="text" id="charperstype" class='textinput' name="pers_type">
+            </p>
+            <p class="tooltip" title="The moral alignment of this character.">
+                <label for="charpersalign">Alignment: </label>
+                <input type="text" id="charpersalign" class='textinput' name="pers_align">
             </p>
             <p class="tooltip" title="Enables or disables listing detailed personality aspects.">
                 <label for="advperscheck">Enable/Disable Detailed Personality:</label>
@@ -216,7 +246,7 @@ if (isset($_POST["apply_settings"])) {
             <?php
             if ($validUser) {
                 echo "<label for='persbutton'>&nbsp;</label>";
-                echo "<input type='submit' class='clicky-button clicky-button-two' name='submit_pers' value='Add Personality Info'id='persbutton'>";
+                echo "<button type='submit' id='persbutton' class='clicky-button clicky-button-two' name='add_pers'>Add Personality Info</button>";
             }
             ?>
         </form>
@@ -257,7 +287,7 @@ if (isset($_POST["apply_settings"])) {
             <?php
             if ($_SESSION['validUser']) {
                 echo "<label for='racebutton'>&nbsp;</label>";
-                echo "<input type='submit' class='clicky-button clicky-button-two' name='submit_race' value='Add Race Info'id='racebutton'>";
+                echo "<button type='submit' id='racebutton' class='clicky-button clicky-button-two' name='add_race'>Add Race Info</button>";
             }
             ?>
         </form>
@@ -283,18 +313,18 @@ if (isset($_POST["apply_settings"])) {
                 <label for="omegadesc">Backstory / History: </label>
                 <textarea id="omegadesc" name="omega_desc" class='textbox'></textarea>
             </p>
-            <p class="tooltip" title="Why did they come to the timeline? How did they hear of the timeline?">
-                <label for="omegareason">Reason for joining: </label>
-                <textarea id="omegareason" name="omega_reason" class='textbox'></textarea>
-            </p>
             <p class="tooltip" title="What this character's involvement with the main story is. Did they interact with canon characters in your AU? Did they do something to affect the story? That sort of thing.">
                 <label for="omegastory">Involvement in the story: </label>
                 <textarea id="omegastory" name="omega_story" class='textbox'></textarea>
             </p>
+            <p class="tooltip" title="Why did they come to the timeline? How did they hear of the timeline?">
+                <label for="omegareason">Reason for joining: </label>
+                <textarea id="omegareason" name="omega_reason" class='textbox'></textarea>
+            </p>
             <?php
             if ($_SESSION['validUser']) {
                 echo "<label for='omegabutton'>&nbsp;</label>";
-                echo "<input type='submit' class='clicky-button clicky-button-two' name='submit_omega' value='Add OT Info'id='omegabutton'>";
+                echo "<button type='submit' id='omegabutton' class='clicky-button clicky-button-two' name='add_otinfo'>Add OT Info</button>";
             }
             ?>
         </form>
@@ -345,7 +375,7 @@ if (isset($_POST["apply_settings"])) {
                 <?php
                 if ($_SESSION['validUser']) {
                     echo "<label for='otherbutton'>&nbsp;</label>";
-                    echo "<input type='submit' class='clicky-button clicky-button-two' name='submit_other' value='Add Info'id='otherbutton'>";
+                    echo "<button type='submit' id='otherbutton' class='clicky-button clicky-button-two' name='add_other'>Add Info</button>";
                 }
                 ?>
         </form>
@@ -372,7 +402,6 @@ if (isset($_POST["apply_settings"])) {
             <?php
             if ($_SESSION['validUser']) {
                 echo "<label for='settingsbutton'>&nbsp;</label>";
-                //echo "<input type='submit' class='clicky-button clicky-button-two' name='submit_settings' value='Apply Settings'id='applysettings'>";
                 echo "<button type='submit' id='settingsbutton' class='clicky-button clicky-button-two' name='apply_settings'>Apply Settings</button>";
             }
             ?>

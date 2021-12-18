@@ -336,6 +336,10 @@ iframe{
     margin-bottom: 1rem;
 }
 
+.w3-tab{
+    border: 1px solid black;
+}
+
 .w3-tab .tab-item{
     padding: 8px 16px;
     float: left;
@@ -346,7 +350,7 @@ iframe{
     white-space: normal;
     margin: 5px 0px 5px 5px;
     border-radius: 5px;
-    border: 1px solid black;
+    border: 1px dotted black;
     margin-top: 10px;
     margin-bottom: 10px;
 }

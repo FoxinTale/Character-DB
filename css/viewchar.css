@@ -11,10 +11,12 @@ main{
     border:1px solid black;
 }
 
-.display{
-    font-family: coming;
-    font-size: 14px;
-    width: 80%;
+.textdisplay{
+    margin-left: 20%;
+    border:2px dotted black;
+    border-radius: 5px;
+    padding: 0.75rem;
+    margin-bottom: 2rem;
 }
 
 @media (max-width:600px) {
