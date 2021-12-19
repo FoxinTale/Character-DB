@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <?php
 session_start();
-$user_name = "Aubrey";
+
 // Hardcoded values so I can develop easily without constantly having to login. Makes it so much easier.
 // Obviously, this will be removed in production and testing.
-/*
-  if(isset($_SESSION['username'])){
-  $user_name = $_SESSION['username'];
-  }
-
-  $validUser = false;
-  if($user_name == "" || NULL){
-  $validUser = false;
-  } else {
+  $user_name = "Aubrey";
   $validUser = true;
-  }
-  $_SESSION["validUser"] = $validUser;
- */
-$validUser = true;
-$_SESSION['validUser'] = true;
-$_SESSION['username'] = "Aubrey";
-$_SESSION['userID'] = 1;
+  $_SESSION['validUser'] = true;
+  $_SESSION['username'] = "Aubrey";
+  $_SESSION['userID'] = 1;
+
+
+/*
+$user_name = "";
+if (isset($_SESSION['username'])) {
+    $user_name = $_SESSION['username'];
+}
+
+$validUser = false;
+if ($user_name == "" || NULL) {
+    $validUser = false;
+} else {
+    $validUser = true;
+}
+$_SESSION["validUser"] = $validUser;
+
+*/
 ?>
 
 <html>
@@ -37,6 +42,7 @@ $_SESSION['userID'] = 1;
         <nav class="sidebar bar-block collapse animate-left card" style="z-index:3;width:250px;" id="sidenav">
             <a class="bar-item nav-button hide large" href="javascript:void(0)" onclick="closenav()">Close <i class="fa fa-remove"></i></a>
             <a class="bar-item nav-button" href='home.php' target='pages')">Home</a>
+            <hr class="nav-hr">
             <div>
                 <a class="bar-item nav-button" onclick="dropdown('creation')" href="javascript:void(0)">Create New...<i class="fa fa-caret-down"></i></a>
                 <div id="creation" class="hide">
@@ -47,11 +53,15 @@ $_SESSION['userID'] = 1;
                 </div>
             </div>
             <hr class="nav-hr">
-            <p class="bar-item">View...</p>
-            <a class="bar-item nav-button" href='abilities.php' target='pages'>Abilities / Powers / Spells</a>
-            <a class="bar-item nav-button" href='chars.php' target='pages'>Characters</a>
-            <a class="bar-item nav-button" href='items.php' target='pages'>Items</a>
-            <a class="bar-item nav-button" href='weapons.php' target='pages'>Weapons</a>
+            <div>
+                <a class="bar-item nav-button" onclick="dropdown('view')" href="javascript:void(0)">View...<i class="fa fa-caret-down"></i></a>
+                <div id="view" class="hide">            
+                    <a class="bar-item nav-button" href='abilities.php' target='pages'>Abilities / Powers / Spells</a>
+                    <a class="bar-item nav-button" href='chars.php' target='pages'>Characters</a>
+                    <a class="bar-item nav-button" href='items.php' target='pages'>Items</a>
+                    <a class="bar-item nav-button" href='weapons.php' target='pages'>Weapons</a>
+                </div>
+            </div>
             <hr class="nav-hr">
             <a class="bar-item nav-button" href='aboutsite.php' target='pages'>About Site</a>
             <a class="bar-item nav-button" href='credits.php' target='pages'>Credits</a>
@@ -67,7 +77,7 @@ $_SESSION['userID'] = 1;
             if ($validUser) {
                 echo "<a class='bar-item nav-button' href='logout.php' target='pages'>Close Journal</a>";
             } else {
-                echo "<a class='bar-item nav-button' href'newprofile.php' target='pages'>Create Journal</a>";
+                echo "<a class='bar-item nav-button' href='newprofile.php' target='pages'>Create Journal</a>";
                 echo "<a class='bar-item nav-button' href='login.php' target='pages'>Open Journal</a>";
             }
             ?>

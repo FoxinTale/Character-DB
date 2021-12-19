@@ -80,7 +80,6 @@ iframe{
     background-color: #000!important;
 }
 
-/* */
 
 .display-text{
     margin-left: 2.5%;
@@ -118,6 +117,11 @@ iframe{
 
 .link-list li a {
     font-family: 'malireg';
+}
+
+.nav-hr{
+    margin-left: 7.5%;
+    margin-right: 7.5%;
 }
 
 .w3-btn,
@@ -506,7 +510,29 @@ iframe{
         padding-right: 10px;
         padding-left: 10px;
     }
+    
+    
+}/* Profile creation page content.*/
+
+.valid {
+  color: green;
 }
+
+.valid:before {
+  position: relative;
+  left: -35px;
+}
+
+.invalid {
+  color: red;
+}
+
+.invalid:before {
+  position: relative;
+  left: -35px;
+}
+
+/* */
 
 /*  Specific items on specific pages  */
 #main{

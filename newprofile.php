@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <?php
 //session_start();
-// include 'inc/functions.php';
+include 'inc/functions.php';
 
 if (isset($_POST["newprofile"])) {
     if (adduser($db, $_POST["user_name"], $_POST["password"])) {
         $_SESSION['username'] = $_POST["user_name"];
-        header("Location: main.php");
+        header("Location: index.php");
     }
 }
 
@@ -64,7 +64,7 @@ if (isset($_POST["check_username"])) {
                     <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
                     <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
                     <p id="number" class="invalid">A <b>number</b></p>
-                    <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                    <p id="length" class="invalid">Minimum <b>6 characters</b></p>
                 </section>
             </div>
             <script type="text/javascript" src="scripts/passverify.js"></script>

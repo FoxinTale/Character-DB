@@ -1,28 +1,67 @@
 <?php
 
 // Mainly for veiwing a character, literal sanity checks for invalid or missing data.
+// Also, Hah! Sanity, PHP has none of it.
+$comments = array(" Not yet added to this character", "Perhaps this info has not been added", "Not applicable", "Placeholder content", 
+    "This is not the info you are looking for.", "Maybe this character does not exist yet.");
+//$commentsSize = 0;
 
 function fillCharInfo($charInfo) {
-    $charInfo[2] = "404 - Character not found";
-    $charInfo[3] = "404, The Error, What the hell is that?, WTF";
-    $charInfo[4] = "A thing here for a character that doesn't really exist in the database.";
-    $charInfo[5] = "Who knows. It can never be found to ask it how old it is.";
-    $charInfo[6] = "Errors don't have a gender...or do they?";
-    $charInfo[7] = "Errors have a race? Sh*t.";
+    $comments = $GLOBALS['comments'];
+    $commentsSize = sizeof($comments) - 1;
+    
+    for($x = 2; $x < 8; $x++){
+        $num = rand(0, $commentsSize);
+        $charInfo[$x] = $comments[$num];
+    }
     return $charInfo;
 }
 
-function fillAppInfo($appInfo){
 
+function fillAppInfo($appInfo){
+    $comments = $GLOBALS['comments'];
+    $commentsSize = sizeof($comments) - 1;
+    
+    for($x = 2; $x < 12; $x++){
+        $num = rand(0, $commentsSize);
+        $appInfo[$x] = $comments[$num];
+    }
     return $appInfo;
 }
 
+
 function fillCharPers($persInfo){
-    $persInfo[2] = "It just is. It's an error.";
-    $persInfo[3] = "Does an error even have a personality in the first place?";
-    $persInfo[4] = " Probably chaotic neutral.";
-    $persInfo[5] = 0;
+    $comments = $GLOBALS['comments'];
+    $commentsSize = sizeof($comments) - 1;
+    
+    for($x = 2; $x < 18; $x++){
+        $num = rand(0, $commentsSize);
+        $persInfo[$x] = $comments[$num];
+    }
     return $persInfo;
+}
+
+
+function fillCharOther($otherInfo){
+    $comments = $GLOBALS['comments'];
+    $commentsSize = sizeof($comments) - 1;
+    
+    for($x = 2; $x < 18; $x++){
+        $num = rand(0, $commentsSize);
+        $otherInfo[$x] = $comments[$num];
+    }
+    return $otherInfo;
+}
+
+function fillRaceInfo($raceInfo){
+    $comments = $GLOBALS['comments'];
+    $commentsSize = sizeof($comments) - 1;
+    
+    for($x = 2; $x < 18; $x++){
+        $num = rand(0, $commentsSize);
+        $raceInfo[$x] = $comments[$num];
+    }
+    return $raceInfo;
 }
 
 function fillOmegaInfo($charOmega) {

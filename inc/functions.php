@@ -78,7 +78,7 @@ function verify_login($userdata, $username, $password) {
             $_SESSION['username'] = $username;
             $_SESSION['userID'] = $userID;
             $_SESSION['isAdmin'] = $userIsAdmin;
-            header("Location: index.php");
+            header("Location: home.php");
         } else {
             echo "<script>window.onload = function() { document.getElementById('errorbox').value = 'Invalid Password'}</script>";
         }
@@ -243,23 +243,21 @@ function addRace($db, $race) {
 }
 
 function addOther($db, $other) {
-    $query = "INSERT INTO char_other(char_name, other_theme, other_quotes, other_quirks, other_quirkinfo, other_weak, other_backstory, other_bday, other_zodiac, other_hobbies, other_other)
-        VALUES(:name,:theme, :quotes, :quirk, :quirkdesc, :weak, :backstory, :bday, :zodiac, :hobbies, :other);";
+    $query = "INSERT INTO char_other(Other_Char_ID, other_theme, other_quotes, other_quirks, other_quirkdesc, other_weak, other_birthday, other_zodiac, other_hobbies, other_other)
+        VALUES(:charID, :theme, :quotes, :quirk, :quirkdesc, :weak, :bday, :zodiac, :hobbies, :other);";
     $statement = $db->prepare($query);
-    $statement->bindValue(':name', $other[0]);
+    $statement->bindValue(':charID', $other[0]);
     $statement->bindValue(':theme', $other[1]);
     $statement->bindValue(':quotes', $other[2]);
     $statement->bindValue(':quirk', $other[3]);
     $statement->bindValue(':quirkdesc', $other[4]);
     $statement->bindValue(':weak', $other[5]);
-    $statement->bindValue(':backstory', $other[6]);
-    $statement->bindValue(':bday', $other[7]);
-    $statement->bindValue(':zodiac', $other[8]);
-    $statement->bindValue(':hobbies', $other[9]);
-    $statement->bindValue(':other', $other[10]);
+    $statement->bindValue(':bday', $other[6]);
+    $statement->bindValue(':zodiac', $other[7]);
+    $statement->bindValue(':hobbies', $other[8]);
+    $statement->bindValue(':other', $other[9]);
     $success = $statement->execute();
     $statement->closeCursor();
-    otherupdate($db, $other[0]);
     return $success;
 }
 
@@ -301,70 +299,6 @@ function addOmegaInfo($db, $post) {
     return $success;
 }
 
-function additem($db, $item, $username) {
-    $query = "INSERT INTO item(user_name, item_name, char_name, item_desc, item_appear, item_type, item_size, item_loc, item_effects, item_cond, item_value)
-            VALUES(:user, :itemname, :charname, :itemdesc, :itemappear, :itemtype, :itemsize, :itemloc, :itemeffects, :itemcond, :itemvalue);";
-    $statement = $db->prepare($query);
-    $statement->bindValue(':user', $username);
-    $statement->bindValue(':itemname', $item[0]);
-    $statement->bindValue(':charname', $item[1]);
-    $statement->bindValue(':itemdesc', $item[2]);
-    $statement->bindValue(':itemappear', $item[3]);
-    $statement->bindValue(':itemtype', $item[4]);
-    $statement->bindValue(':itemsize', $item[5]);
-    $statement->bindValue(':itemloc', $item[6]);
-    $statement->bindValue(':itemeffects', $item[7]);
-    $statement->bindValue(':itemcond', $item[8]);
-    $statement->bindValue(':itemvalue', $item[9]);
-    $success = $statement->execute();
-    $statement->closeCursor();
-    return $success;
-}
-
-function addweap($db, $weapon, $username) {
-    $query = "INSERT INTO weapon(user_nanme, weap_name, char_name, weap_desc, weap_appear, weap_type, weap_size, weap_hand, weap_effect, weap_cond, weap_value)
-                VALUES (:user, :weapname, :charname, :weapdesc, :weapappear, :weaptype, :weapsize, :weaphand, :weapeffect, :weapcond, :weapvalue);";
-    $statement = $db->prepare($query);
-    $statement->bindValue(':user', $username);
-    $statement->bindValue(':weapname', $weapon[0]);
-    $statement->bindValue(':charname', $weapon[1]);
-    $statement->bindValue(':weapdesc', $weapon[2]);
-    $statement->bindValue(':weapappear', $weapon[3]);
-    $statement->bindValue(':weaptype', $weapon[4]);
-    $statement->bindValue(':weapsize', $weapon[5]);
-    $statement->bindValue(':weaphand', $weapon[6]);
-    $statement->bindValue(':weapeffect', $weapon[7]);
-    $statement->bindValue(':weapcond', $weapon[8]);
-    $statement->bindValue(':weapvalue', $weapon[9]);
-    $success = $statement->execute();
-    $statement->closeCursor();
-    return $success;
-}
-
-function addspell($db, $spell, $username) {
-    $query = "INSERT INTO spell(user_name, spell_name, char_name, spell_desc, spell_desc_ext, spell_type, spell_school, spell_range,
-            spell_duration, spell_cast, spell_dmg, spell_level, spell_ritual, spell_materials) VALUES(:user, :spellname, :charname,
-            :spelldesc, :spelldescext, :spelltype, :spellschool, :spellrange, :spellduration, :spellcast, :spelldmg,
-            :spelllevel, :spellritual, :spellmaterials);";
-    $statement = $db->prepare($query);
-    $statement->bindValue(':user', $username);
-    $statement->bindValue(':spellname', $spell[0]);
-    $statement->bindValue(':charname', $spell[1]);
-    $statement->bindValue(':spelldesc', $spell[2]);
-    $statement->bindValue(':spelldescext', $spell[3]);
-    $statement->bindValue(':spelltype', $spell[4]);
-    $statement->bindValue(':spellschool', $spell[5]);
-    $statement->bindValue(':spellrange', $spell[6]);
-    $statement->bindValue(':spellduration', $spell[7]);
-    $statement->bindValue(':spellcast', $spell[8]);
-    $statement->bindValue(':spelldmg', $spell[9]);
-    $statement->bindValue(':spelllevel', $spell[10]);
-    $statement->bindValue(':spellritual', $spell[11]);
-    $statement->bindValue(':spellmaterials', $spell[12]);
-    $success = $statement->execute();
-    $statement->closeCursor();
-    return $success;
-}
 
 function getallchars($db, $userID) {
     $query = "select * from characters where Char_User_ID = :userID;";
@@ -395,7 +329,6 @@ function charnamedrop($namearr, $info, $text) {
         array_push($IDs, $namearr[$x]['Char_ID']);
         array_push($names, $namearr[$x]['Char_Name']);
     }
-
     echo "<p class='tooltip' title='Which character $info'>";
     echo "<label for='chardropdown' id='charnamelabel' >$text: </label>";
     echo "<select id='chardropdown' class='charselect' name='charnamelist'>";
@@ -409,44 +342,18 @@ function charnamedrop($namearr, $info, $text) {
     echo '</p>';
 }
 
-function getother($db, $charname) {
-    $query = "select * from char_other where char_name = :charname;";
+function getCharOther($db, $charID) {
+    $query = "select * from char_other where Other_Char_ID = :charID;";
     $statement = $db->prepare($query);
-    $statement->bindValue(':charname', $charname);
+    $statement->bindValue(':charID', $charID);
     $statement->execute();
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
     $statement->closeCursor();
-    return $results;
-}
-
-function getallitems($db, $username) {
-    $query = "select * from item where user_name = :user;";
-    $statement = $db->prepare($query);
-    $statement->bindValue(':user', $username);
-    $statement->execute();
-    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-    $statement->closeCursor();
-    getiteminfos($results);
-}
-
-function getallweaps($db, $username) {
-    $query = "select * from weapon where user_name = :user;";
-    $statement = $db->prepare($query);
-    $statement->bindValue(':user', $username);
-    $statement->execute();
-    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-    $statement->closeCursor();
-    getweapinfos($results);
-}
-
-function getallspells($db, $username) {
-    $query = "select * from spell where user_name = :user;";
-    $statement = $db->prepare($query);
-    $statement->bindValue(':user', $username);
-    $statement->execute();
-    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-    $statement->closeCursor();
-    getspellinfos($results);
+    if(!empty($results)){
+        return dataUncheck($results[0]);
+    } else {
+        return fillCharOther($results); 
+    }
 }
 
 function getCharRace($db, $charID) {
@@ -459,31 +366,7 @@ function getCharRace($db, $charID) {
     if (!empty($results)) {
         return dataUncheck($results[0]);
     } else {
-        return $results;
-    }
-}
-
-function getweapinfos($weapdata) {
-    $weapcount = count($weapdata);
-    for ($x = 0; $x < $weapcount; $x++) {
-        $weapinfo = $weapdata[$x];
-        printweapinfo($weapinfo);
-    }
-}
-
-function getiteminfos($itemdata) {
-    $itemcount = count($itemdata);
-    for ($x = 0; $x < $itemcount; $x++) {
-        $iteminfo = $itemdata[$x];
-        printiteminfo($iteminfo);
-    }
-}
-
-function getspellinfos($spelldata) {
-    $spellcount = count($spelldata);
-    for ($x = 0; $x < $spellcount; $x++) {
-        $spellinfo = $spelldata[$x];
-        printspellinfo($spellinfo);
+        return fillRaceInfo($results);
     }
 }
 
@@ -525,7 +408,7 @@ function getCharAppearance($db, $charID) {
     if (!empty($results)) {
         return dataUncheck($results[0]);
     } else {
-        return $results;
+        return fillAppInfo($results);
     }
 }
 
@@ -554,20 +437,6 @@ function getCharSettings($db, $charID) {
         return $results[0];
     } else {
         return $results;
-    }
-}
-
-function getcharstats($db, $charname) {
-    $query = "select * from char_stat where char_name = :charname;";
-    $statement = $db->prepare($query);
-    $statement->bindValue(':charname', $charname);
-    $statement->execute();
-    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-    $statement->closeCursor();
-    if (!empty($results)) {
-        return $results[0];
-    } else {
-        
     }
 }
 

@@ -33,7 +33,7 @@ passin.onkeyup = function () {
         number.classList.add("invalid");
     }
 
-    if (passin.value.length >= 8) {
+    if (passin.value.length >= 6) {
         length.classList.remove("invalid");
         length.classList.add("valid");
     } else {

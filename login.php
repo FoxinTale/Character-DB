@@ -18,6 +18,7 @@
     </head>
     <body>
         <div id="forms" class="box light-purple2">
+            <p>Currently, you will need to refresh the page after logging in to get the login action to work.</p>
             <form id="login" class = 'container2' method="post" action="login.php">
                 <input type="text" readonly id="errorbox">
                 <br>

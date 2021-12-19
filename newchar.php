@@ -56,7 +56,12 @@ if (isset($_POST["add_otinfo"])) {
 
 if (isset($_POST["add_other"])){
    $otherInfo = dataCheck($_POST);
-   print_r($otherInfo);
+   
+   if(!addOther($db, $otherInfo)){
+       echo "Something went wrong trying to add the information.";
+   } else {
+       echo "Information successfully added";
+   }
 }
 
 if (isset($_POST["apply_settings"])) {

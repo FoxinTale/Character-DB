@@ -7,8 +7,9 @@ $charInfo = getCharInfo($db, $charID);
 $charAppear = getCharAppearance($db, $charID);
 $charPers = getCharPers($db, $charID);
 $charRace = getCharRace($db, $charID);
-$charSettings = getCharSettings($db, $charID);
 $charOmega = getCharOmega($db, $charID); //Get it even if it's not true, we handle it anyways. 
+$charOther = getCharOther($db, $charID);
+$charSettings = getCharSettings($db, $charID);
 
 $omegaTimeline = false; // When you mistakenly invalidate the entire timeline in one single line of code. Oops.
 
@@ -120,12 +121,10 @@ if (!empty($charSettings)) {
             <p class="tooltip" title="Their personality description.">
                 <label for="persdesc">Personality Description:</label>
                 <section id="charpersdesc" class="textdisplay"><?php echo $charPers[2]; ?></section>
-            </p>
-            <p>
+            </p><p>
                 <label for="charperstype">Personality Type: </label>
                 <span id="charperstype" class='display'><?php echo $charPers[3]; ?></span>
-            </p>
-            <p>
+            </p><p>
                 <label for="persalign">Alignment: </label>
                 <span id="persalign" class='display'><?php echo $charPers[4]; ?></span>
             </p>
@@ -192,16 +191,14 @@ if (!empty($charSettings)) {
             <p>
                 <label for="racename">Name: </label>
                 <section id="racename" class='display'><?php echo $charRace[2]; ?></section>
-            </p>
-            <p>
+            </p><p>
                 <label for="racedesc">Description: </label>
                 <section id="racedesc" class='display'><?php echo $charRace[3]; ?></section>
             </p>
             <p class="tooltip" title="Traits, abilities and aspects specific to this race.">
                 <label for="racetraits">Racial Aspects: </label>
                 <section id="racetraits" class='display'><?php echo $charRace[4]; ?></section>
-            </p>
-            <p>
+            </p><p>
                 <label for="racetraits">Race Background: </label>
                 <section id="racetraits" class='display'><?php echo $charRace[5]; ?></section>
             </p>
@@ -225,8 +222,7 @@ if (!empty($charSettings)) {
             <p>
                 <label for="omegastory">Involvement in the story: </label>
                 <section id="omegastory" class='textdisplay'><?php echo $charOmega[5]; ?></section>
-            </p>
-            <p>
+            </p><p>
                 <label for="omegareason">Reason for joining the OT: </label>
                 <section id="omegareason" class='textdisplay'><?php echo $charOmega[6]; ?></section>
             </p>
@@ -238,40 +234,32 @@ if (!empty($charSettings)) {
             <hr>
             <p>
                 <label for="othertheme">Theme Song: </label>
-                <input type="text" id="othertheme" name="other_theme" class='textinput'>
-            </p>
-            <p>
+                <span id="othertheme" class='display'><?php echo $charOther[2]; ?></span>
+            </p><p>
                 <label for="otherquotes">Quotes: </label>
-                <textarea id="otherquotes" name="other_quotes" class='textbox'></textarea>
-            </p>
-            <p>
+                <span id="otherquotes" class='display'><?php echo $charOther[3]; ?></span>
+            </p><p>
                 <label for="otherquirks">Quirks: </label>
-                <textarea id="otherquirks" name="other_quirks" class='textbox'></textarea>
-            </p>
-            <p>
+                <span id="otherquirks" class='display'><?php echo $charOther[4]; ?></span>
+            </p><p>
                 <label for="otherquirksdesc">Quirk Description: </label>
-                <textarea id="otherquirksdesc" name="other_quirksdesc" class='textbox'></textarea>
-            </p>
-            <p>
+                <section id="otherquirksdesc" class='textdisplay'><?php echo $charOther[5]; ?></section>
+            </p><p>
                 <label for="otherweak">Weaknesses: </label>
-                <textarea id="otherweak" name="other_weak" class='textbox'></textarea>
-            </p>
-            <p>
+                <section id="otherweak" class='textdisplay'><?php echo $charOther[6]; ?></section>
+            </p><p>
                 <label for="otherbday">Birthday: </label>
-                <input type="text" id="otherbday" name="other_bday" class='textinput'>
-            </p>
-            <p>
+                <span id="otherbday" class='display'><?php echo $charOther[7]; ?></span>
+            </p><p>
                 <label for="otherzodiac">Zodiac: </label>
-                <input type="text" id="otherzodiac" name="other_zodiac" class='textinput'>
-            </p>
-            <p>
+                <span id="otherzodiac" class='display'><?php echo $charOther[8]; ?></span>
+            </p><p>
                 <label for="otherhobbies">Hobbies: </label>
-                <textarea id="otherhobbies" name="other_hobbies" class='textbox'></textarea>
-            </p>
-            <p>
+                <section id="otherhobbies" class='textdisplay'><?php echo $charOther[9]; ?></section>
+            </p><p>
                 <label for="otherother">Other: </label>
-                <textarea id="otherother" name="other_other" class='textbox'></textarea>
-            <p>
+                <section id="otherother" class='textdisplay'><?php echo $charOther[10]; ?></section>
+            </p>
         </div>
         <script type="text/javascript">
             function opentab(pagename) {
