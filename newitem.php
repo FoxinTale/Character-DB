@@ -54,7 +54,8 @@
             <?php
             if ($_SESSION['validUser']) {
                 echo "<label for='item_button'>&nbsp;</label>";
-                echo "<input type='submit' class='clicky-button clicky-button-two' id='item_button' value='Add Item'>";
+                echo "<p id='item_button' class='clicky-button clicky-button-two'>Button placeholder. This page will be reworked.</p>" ;
+                //echo "<input type='submit' class='clicky-button clicky-button-two' id='item_button' value='Add Item'>";
             }
             ?> 
         </form>

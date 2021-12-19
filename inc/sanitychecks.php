@@ -12,12 +12,17 @@ function fillCharInfo($charInfo) {
     return $charInfo;
 }
 
-function fillAppData(){
-    
+function fillAppInfo($appInfo){
+
+    return $appInfo;
 }
 
-function fillPersData(){
-    
+function fillCharPers($persInfo){
+    $persInfo[2] = "It just is. It's an error.";
+    $persInfo[3] = "Does an error even have a personality in the first place?";
+    $persInfo[4] = " Probably chaotic neutral.";
+    $persInfo[5] = 0;
+    return $persInfo;
 }
 
 function fillOmegaInfo($charOmega) {

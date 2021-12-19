@@ -5,7 +5,7 @@ A character database I made to store character information for folks to use.
 ### 2021 Rewrite
 A total overhaul of the back end and front end, stripping out unused content leaving less bugs, adding a whole lot of new features.
 
-####What changed this time?
+#### What changed this time?
 - Rewrote every page to use a single CSS file...becuase I felt like it.
 - Removed the immediate need to log in, and the site can be browsed without the need to log in now, which in turn fixed the authentication bypass issues.
 - Added more fields for data entry.
@@ -18,6 +18,10 @@ A total overhaul of the back end and front end, stripping out unused content lea
 - The large text boxes actually expand as you type now.
 - Overhauled the mySQL backend by modelling a new database, which adds  more features.
 - Properly handled HTML encoded characters when displayed. 
+- Gracefully handled if there's no input from the user, it auto-fuills the area.
+- Reworked and overhauled how individual characters are displayed.
+- Figured out how to make characters be sharable with other people. 
+- Handled it if the shared link is an invalid character ID number.
 
 
 

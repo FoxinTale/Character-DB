@@ -127,56 +127,34 @@ function adduserdata($db, $username, $password) {
 }
 
 //encodes HTML chars to attempt to protect against SQL injection. 
-function datacheck($post, $maxSize) {
+function dataCheck($post) {
     $arr = array();
     foreach ($post as $key => $value) {
         if ($value == null) {
-            $value = "N/A";
-            // This should not happen, due to the required field elements.
-            // If it does, summon Safety Pig.
-        } else if ($value != null || $value != '') {
+            $value = "Not applicable to this character, or this has not yet been added.";
+            array_push($arr, $value);
+        } else {
             $value = str_replace("\r\n", "<br>", $value);
             array_push($arr, htmlspecialchars($value));
         }
     }
-    $arr = indexCheck($arr, $maxSize);
     return $arr;
 }
 
 // Un-encodes any HTML special characters that were entered.
-function datauncheck($content) {
+function dataUncheck($content) {
     $arr = array();
     foreach ($content as $key => $value) {
         if ($value == null || $value == "") {
             $value = "N/A";
             // This should not happen, due to the required field elements.
             // If it does, summon Safety Pig.
+            
         } else if ($value != null || $value != '') {
             array_push($arr, htmlspecialchars_decode($value));
         }
     }
     return $arr;
-}
-
-// For checking if anything is missing in the array.
-function indexCheck($array, $maxSize) {
-    $actualSize = sizeof($array);
-
-    if ($actualSize < $maxSize) {
-        for ($x = $actualSize; $x < $maxSize; $x++) {
-            $array[$x] = "N/A";
-        }
-    }
-    return $array;
-}
-
-//nc = Null Checking
-function nc($data) {
-    if (!isset($data)) {
-        echo "Not yet added";
-    } else {
-        echo $data;
-    }
 }
 
 function addCharacter($db, $charinfo, $userID) {
@@ -219,11 +197,10 @@ function addAppearance($db, $appear) {
     return $success;
 }
 
-function addpers($db, $pers) {
+function addPersonality($db, $pers) {
     $query = "INSERT INTO char_pers(Pers_Char_ID, Pers_Text, Pers_Type, Pers_Alignment, Pers_IsAdv,  Pers_Activity, Pers_Agree, Pers_Assert, Pers_Conf, 
-              Pers_Discipline, Pers_EmoCap, Pers_Friendly, Pers_Honesty, Pers_Intel, Pers_Manners, Pers_Rebel, Pers_Other) VALUES 
-              (:charID, :text, :type, :align, :persAdv, :act, :agree, :assert, :conf, :disc, :emocap, :friend, :honesty, :intel, :manners, :rebel, :other);";
-
+              Pers_Discipline, Pers_EmoCap, Pers_Friendly, Pers_Honesty, Pers_Intel, Pers_Manners, Pers_Positivity, Pers_Rebel) VALUES 
+              (:charID, :text, :type, :align, :persAdv, :act, :agree, :assert, :conf, :disc, :emocap, :friend, :honesty, :intel, :manners, :pos, :rebel);";
     $statement = $db->prepare($query);
     $statement->bindValue(':charID', $pers[0]);
     $statement->bindValue(':text', $pers[1]);
@@ -244,30 +221,28 @@ function addpers($db, $pers) {
     $statement->bindValue(':honesty', $pers[12]);
     $statement->bindValue(':intel', $pers[13]);
     $statement->bindValue(':manners', $pers[14]);
-    $statement->bindValue(':rebel', $pers[15]);
-    $statement->bindValue(':other', $pers[16]);
+    $statement->bindValue(':pos', $pers[15]);
+    $statement->bindValue(':rebel', $pers[16]);
     $success = $statement->execute();
     $statement->closeCursor();
     return $success;
 }
 
-function addrace($db, $race) {
-    $query = "INSERT INTO char_race(char_name, race_name, race_home, race_age, race_height, race_aspect, race_desc)
-	VALUES(:name, :racename, :racehome, :raceage, :raceheight, :raceaspect, :racedesc);";
+function addRace($db, $race) {
+    $query = "INSERT INTO char_race(Race_Char_ID, Race_Name, Race_Desc, Race_Aspects, Race_Background)
+	VALUES(:charID, :racename, :racedesc, :raceaspect,  :racebg);";
     $statement = $db->prepare($query);
-    $statement->bindValue(':name', $race[0]);
+    $statement->bindValue(':charID', $race[0]);
     $statement->bindValue(':racename', $race[1]);
-    $statement->bindValue(':racehome', $race[2]);
-    $statement->bindValue(':raceage', $race[3]);
-    $statement->bindValue(':raceheight', $race[4]);
-    $statement->bindValue(':raceaspect', $race[5]);
-    $statement->bindValue(':racedesc', $race[6]);
+    $statement->bindValue(':racedesc', $race[2]);
+    $statement->bindValue(':raceaspect', $race[3]);
+    $statement->bindValue(':racebg', $race[4]);
     $success = $statement->execute();
     $statement->closeCursor();
     return $success;
 }
 
-function addother($db, $other) {
+function addOther($db, $other) {
     $query = "INSERT INTO char_other(char_name, other_theme, other_quotes, other_quirks, other_quirkinfo, other_weak, other_backstory, other_bday, other_zodiac, other_hobbies, other_other)
         VALUES(:name,:theme, :quotes, :quirk, :quirkdesc, :weak, :backstory, :bday, :zodiac, :hobbies, :other);";
     $statement = $db->prepare($query);
@@ -288,7 +263,7 @@ function addother($db, $other) {
     return $success;
 }
 
-function addsettings($db, $post) {
+function addSettings($db, $post) {
     $isFav = $isOmega = 0;
     if (isset($post['isfavchar'])) {
         $isFav = 1;
@@ -474,17 +449,17 @@ function getallspells($db, $username) {
     getspellinfos($results);
 }
 
-function getrace($db, $charname) {
-    $query = "select * from char_race where char_name = :name;";
+function getCharRace($db, $charID) {
+    $query = "select * from char_race where Race_Char_ID = :charID;";
     $statement = $db->prepare($query);
-    $statement->bindValue(':name', $charname);
+    $statement->bindValue(':charID', $charID);
     $statement->execute();
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
     $statement->closeCursor();
-    if (empty($results)) {
-        return $results;
+    if (!empty($results)) {
+        return dataUncheck($results[0]);
     } else {
-        return $results[0];
+        return $results;
     }
 }
 
@@ -520,7 +495,7 @@ function getCharInfo($db, $charID) {
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
     $statement->closeCursor();
     if (!empty($results)) {
-        return datauncheck($results[0]);
+        return dataUncheck($results[0]);
     } else {
         return fillCharInfo($results);
     }
@@ -534,9 +509,9 @@ function getCharPers($db, $charID) {
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
     $statement->closeCursor();
     if (!empty($results)) {
-        return datauncheck($results[0]);
+        return dataUncheck($results[0]);
     } else {
-        return $results;
+        return fillCharPers($results);
     }
 }
 
@@ -548,7 +523,7 @@ function getCharAppearance($db, $charID) {
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
     $statement->closeCursor();
     if (!empty($results)) {
-        return datauncheck($results[0]);
+        return dataUncheck($results[0]);
     } else {
         return $results;
     }
@@ -562,7 +537,7 @@ function getCharOmega($db, $charID) {
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
     $statement->closeCursor();
     if (!empty($results)) {
-        return datauncheck($results[0]);
+        return dataUncheck($results[0]);
     } else {
         return fillOmegaInfo($results);
     }
@@ -570,20 +545,6 @@ function getCharOmega($db, $charID) {
 
 function getCharSettings($db, $charID) {
     $query = "select * from char_settings where Char_Settings_Char_ID = :charID;";
-    $statement = $db->prepare($query);
-    $statement->bindValue(':charID', $charID);
-    $statement->execute();
-    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-    $statement->closeCursor();
-    if (!empty($results)) {
-        return $results[0];
-    } else {
-        return $results;
-    }
-}
-
-function getCharAppear($db, $charID) {
-    $query = "select * from char_appearance where Appear_Char_ID = :charID;";
     $statement = $db->prepare($query);
     $statement->bindValue(':charID', $charID);
     $statement->execute();
@@ -614,6 +575,7 @@ function printallchars($allchars) {
     $charcount = count($allchars);
     for ($x = 0; $x < $charcount; $x++) {
         $charinfo = $allchars[$x];
+        $charinfo = datauncheck($charinfo);
         printcharinfo($charinfo);
     }
 }

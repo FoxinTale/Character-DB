@@ -115,39 +115,26 @@ function printspellinfo($spellinfo) {
 }
 
 function printcharinfo($charinfo) {
-    $charID = $charinfo['Char_ID'];
-    $charName = htmlspecialchars_decode($charinfo['Char_Name']);
-    $charShortNames = htmlspecialchars_decode($charinfo['Char_ShortName']);
-    $charShortDesc = htmlspecialchars_decode($charinfo['Char_ShortDesc']);
-    $charAge = $charinfo['Char_Age'];
-    $charGender = htmlspecialchars_decode($charinfo['Char_Gender']);
-    $charRaceName = htmlspecialchars_decode($charinfo['Char_RaceName']);
-
-    echo "<form class='light-purple box container coming' method='get' target='_blank' action='viewchar.php'>";
-        echo "<input type='text' hidden readonly name='char_ID' value='$charID'>";
+    echo "<form class='light-purple box container coming infotab' method='get' target='_blank' action='viewchar.php'>";
+        echo "<input type='text' hidden readonly name='char_ID' value='$charinfo[1]'>";
         echo '<p>';
             echo "<label for='char_name'>Name:</label>";
-            echo "<input type='text' readonly class='textdisplay' id='char_name' value=\"$charName\">";
-        echo '</p>';
-        echo '<p>';
+            echo "<span id='char_name' class='display'>$charinfo[2]</span>";
+        echo '</p><p>';
             echo "<label for='charalias'>Nicknames &amp; Aliases:</label>";
-            echo "<input type='text' readonly class='textdisplay' id='charalias' value=\"$charShortNames\">";
-        echo '</p>';
-        echo '<p>';
+            echo "<span id='charalias' class='display'>$charinfo[3]</span>";
+        echo '</p><p>';
             echo "<label for='shortdesc'>Short Description: </label>";
-            echo "<textarea readonly id='shortdesc' class='textbox textdisplay'>$charShortDesc</textarea>";
-        echo '</p>';
-        echo '<p>';
+            echo "<section id='shortdesc' class='textdisplay'>$charinfo[4]</section>";
+        echo '</p><p>';
             echo "<label for='char_age'>Age: </label>";
-            echo "<input type='text' readonly class='textdisplay' id='char_age' value=\"$charAge\">";
-        echo '</p>';
-        echo '<p>';
+            echo "<span id='char_age'  class='display'>$charinfo[5]</span>";
+        echo '</p><p>';
             echo "<label for='char_gender'>Gender: </label>";
-            echo "<input type='text' readonly class='textdisplay' id='char_gender' value=\"$charGender\">";
-        echo '</p>';
-        echo '<p>';
-            echo "<label for='char_racename>Race: </label>";
-            echo "<input type='text' readonly class='displaytext' id='char_racename' value=\"$charRaceName\">";
+            echo "<span id='char_gender' class='display'>$charinfo[6]</span>";
+        echo '</p><p>';
+            echo "<label for='char_racename'>Race: </label>";
+            echo "<span id='char_racename' class='displaytext'>$charinfo[7]</span>";
         echo '</p>';
             echo "<label for='morecharinfo'>&nbsp;</label>";
             echo "<input type='submit' class='clicky-button clicky-button-two' id='morecharinfo' value='More Info'>";

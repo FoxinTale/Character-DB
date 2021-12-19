@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <?php
 session_start();
-    $user_name = "Aubrey";
-    // Hardcoded values so I can develop easily without constantly having to login. Makes it so much easier.
-    // Obviously, this will be removed in production and testing.
+$user_name = "Aubrey";
+// Hardcoded values so I can develop easily without constantly having to login. Makes it so much easier.
+// Obviously, this will be removed in production and testing.
 /*
-    if(isset($_SESSION['username'])){
-      $user_name = $_SESSION['username'];
-    }
+  if(isset($_SESSION['username'])){
+  $user_name = $_SESSION['username'];
+  }
 
-     $validUser = false;
-    if($user_name == "" || NULL){
-        $validUser = false;
-    } else {
-       $validUser = true;
-    }
+  $validUser = false;
+  if($user_name == "" || NULL){
+  $validUser = false;
+  } else {
+  $validUser = true;
+  }
   $_SESSION["validUser"] = $validUser;
  */
-   $validUser = true;
-   $_SESSION['validUser'] = true;
-   $_SESSION['username'] = "Aubrey";
-   $_SESSION['userID'] = 1;
-
+$validUser = true;
+$_SESSION['validUser'] = true;
+$_SESSION['username'] = "Aubrey";
+$_SESSION['userID'] = 1;
 ?>
 
 <html>
@@ -43,7 +42,7 @@ session_start();
                 <div id="creation" class="hide">
                     <a class="bar-item nav-button" href='newability.php' target='pages'>Ability / Power / Spell</a>
                     <a class="bar-item nav-button" href='newchar.php' target='pages'>Character</a>
-                    <a class="bar-item nav-button" href='newitem.php' target='pages' style="display:none;">Item</a>
+                    <a class="bar-item nav-button" href='newitem.php' target='pages'>Item</a>
                     <a class="bar-item nav-button" href='newweapon.php' target='pages'>Weapon</a>
                 </div>
             </div>
@@ -51,25 +50,26 @@ session_start();
             <p class="bar-item">View...</p>
             <a class="bar-item nav-button" href='abilities.php' target='pages'>Abilities / Powers / Spells</a>
             <a class="bar-item nav-button" href='chars.php' target='pages'>Characters</a>
-            <a class="bar-item nav-button" href='items.php' target='pages' style="display:none;">Items</a>
+            <a class="bar-item nav-button" href='items.php' target='pages'>Items</a>
             <a class="bar-item nav-button" href='weapons.php' target='pages'>Weapons</a>
             <hr class="nav-hr">
             <a class="bar-item nav-button" href='aboutsite.php' target='pages'>About Site</a>
-            <a class="bar-item nav-button" href='resources.php' target='pages'>Resources</a>
             <a class="bar-item nav-button" href='credits.php' target='pages'>Credits</a>
+            <a class="bar-item nav-button" href='resources.php' target='pages'>Resources</a>
+            <a class="bar-item nav-button" href='todo.php' target='pages'>Site To-Do List</a>
             <hr class="nav-hr">
             <?php
-                if(isset($_SESSION['isAdmin'])){
-                    if($_SESSION['isAdmin']){
-                        echo "<a class='bar-item nav-button' href='admin.php' target='pages'>Admin Panel</a>";
-                    }
+            if (isset($_SESSION['isAdmin'])) {
+                if ($_SESSION['isAdmin']) {
+                    echo "<a class='bar-item nav-button' href='admin.php' target='pages'>Admin Panel</a>";
                 }
-               if($validUser){
-                   echo "<a class='bar-item nav-button' href='logout.php' target='pages'>Close Journal</a>";
-               } else {
-                   echo "<a class='bar-item nav-button' href'newprofile.php' target='pages'>Create Journal</a>";
-                   echo "<a class='bar-item nav-button' href='login.php' target='pages'>Open Journal</a>";
-               }
+            }
+            if ($validUser) {
+                echo "<a class='bar-item nav-button' href='logout.php' target='pages'>Close Journal</a>";
+            } else {
+                echo "<a class='bar-item nav-button' href'newprofile.php' target='pages'>Create Journal</a>";
+                echo "<a class='bar-item nav-button' href='login.php' target='pages'>Open Journal</a>";
+            }
             ?>
         </nav>
         <div class="overlay hide-large w3-animate-opacity" onclick="closenav()" style="cursor:pointer" id="overlay"></div>
@@ -77,14 +77,16 @@ session_start();
             <i id="minimenu" class="fa fa-bars w3-button hide-large xlarge" onclick="opennav()"></i>
             <h1>The Character Journal</h1>
             <?php
-                if($validUser){ echo "<span id='userdisplay'>$user_name</span>"; }
+            if ($validUser) {
+                echo "<span id='userdisplay'>$user_name</span>";
+            }
             ?>
             <!--
                 The following element is how all pages are displayed. I am basically abusing a div as an iframe here with jQuery.
                 Why? I did not feel like repeating myself (this nav page) on every page so I settled on this way.
                 While I do not remember exactly *why* I did it this way, I think I had issues with the iframe not doing things I wanted it to.
             -->
-          <!--  <div class="minipage" id="container"></div> -->
+            <!--  <div class="minipage" id="container"></div> -->
             <iframe id="pageframe" name="pages" src="home.php"></iframe>
             <script type="text/javascript" src="scripts/main.js"></script>
             <footer>Aubrey - 2021</footer>

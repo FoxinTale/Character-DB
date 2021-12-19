@@ -6,7 +6,7 @@ require 'inc/prints.php';
 $validUser = $_SESSION['validUser'];
 
 if (isset($_POST["new_char"])) {
-    $charInfo = datacheck($_POST, 6);
+    $charInfo = dataCheck($_POST);
 
     if (!addCharacter($db, $charInfo, $_SESSION['userID'])) {
         echo "Something went wrong trying to add this character.";
@@ -16,7 +16,7 @@ if (isset($_POST["new_char"])) {
 }
 
 if (isset($_POST["add_app"])) {
-    $charAppearance = datacheck($_POST, 11);
+    $charAppearance = dataCheck($_POST, 11);
 
     if (!addAppearance($db, $charAppearance)) {
         echo "Something went wrong adding the appearance info.";
@@ -26,12 +26,26 @@ if (isset($_POST["add_app"])) {
 }
 
 if (isset($_POST["add_pers"])) {
-    $charPers = datacheck($_POST, 17);
-    print_r($charPers);
+    $charPers = dataCheck($_POST);
+    
+    if(!addPersonality($db, $charPers)){
+        echo "Something went wrong adding the personality";
+    } else {
+        echo "Personality successfully added!";
+    }
+}
+
+if(isset($_POST["add_race"])){
+    $charRace = dataCheck($_POST);
+    if(!addRace($db, $charRace)){
+        echo "Something went wrong adding the race info";
+    } else {
+        echo "Race info successfully added!";
+    }
 }
 
 if (isset($_POST["add_otinfo"])) {
-    $otinfo = datacheck($_POST, 6);
+    $otinfo = dataCheck($_POST);
 
     if (!addOmegaInfo($db, $otinfo)) {
         echo "Something went wrong trying to add the information.";
@@ -40,8 +54,13 @@ if (isset($_POST["add_otinfo"])) {
     }
 }
 
+if (isset($_POST["add_other"])){
+   $otherInfo = dataCheck($_POST);
+   print_r($otherInfo);
+}
+
 if (isset($_POST["apply_settings"])) {
-    if (!addsettings($db, $_POST)) {
+    if (!addSettings($db, $_POST)) {
         echo "Something went wrong trying to apply the settings";
     } else {
         echo "Settings successfully applied!";
@@ -71,9 +90,10 @@ if (isset($_POST["apply_settings"])) {
         <p>This is where you enter data for all your characters</p>
         <p>Some things you cannot leave empty, while others you can. It'll complain if it cannot be left empty.</p>
         <p>Any item can be one word, or a sentence if desired. </p>
-        <p>If you need help filling some boxes, head over to the resources page.</p>
+        <p>If you need help filling some boxes, head over to the resources page. This currently does not save your stuff if you switch pages, so type up in a document before going there.</p>
         <br>
         <p>I decided on a character needing to be selected to add information to, this way one can add multiple characters, or add information later.</p>
+        <p><b>Currently, you cannot edit data once it is entered. Make sure it is as you want it before submitting. I'm working on having things be editable.</b></p>
         <p>Last note, some of the formatting / display may be messy. That will be fixed eventually.</p>
         <hr>
         <p><b>You must add the character information first, and then add the others from there.</b></p> 
@@ -260,29 +280,21 @@ if (isset($_POST["apply_settings"])) {
         <hr>
         <form id="charspecies" method="post">
             <?php getcharnames($db, $_SESSION['userID'], "to create a race for.", "Select a character"); ?>
-            <p class="tooltip" title="The name of the species / race.">
+            <p class="tooltip" title="The name of the species / race, also include what the name means, if it has a meaning, otherwise, not required.">
                 <label for="racename">Name: </label>
-                <input type="text" id="racename" name="race_name" class='textinput'>
+                <textarea id="racename" name="race_name" class='textbox'></textarea>
             </p>
-            <p class="tooltip" title="Home planet / galaxy / universe. Yes, even if an alternate Earth.">
-                <label for="racehome">Home / Origin: </label>
-                <textarea id="racehome" name="race_home" class='textbox'></textarea>
-            </p>
-            <p class="tooltip" title="The average age of this race. If not human years, please specify the scale.">
-                <label for="raceage">Average Age: </label>
-                <input type="text" id="raceage" name="race_age" class='textinput'>
-            </p>
-            <p class="tooltip" title="Average size. Please list something measurable.">
-                <label for="racesize">Average Height: </label>
-                <input type="text" id="racesize" name="race_size" class='textinput'>
+            <p class="tooltip" title="A full, detailed description of the race. Perhaps average age, height, size for example.">
+                <label for="racedesc">Description: </label>
+                <textarea id="racedesc" name="race_desc" class='textbox'></textarea>
             </p>
             <p class="tooltip" title="Traits, abilities and aspects specific to this race.">
                 <label for="racetraits">Racial Aspects: </label>
-                <textarea id="racetraits" name="race_traits" class='textbox'></textarea>
+                <textarea id="racetraits" name="race_aspect" class='textbox'></textarea>
             </p>
-            <p class="tooltip" title="A full, detailed description of the race.">
-                <label for="racedesc">Description: </label>
-                <textarea id="racedesc" name="race_desc" class='textbox'></textarea>
+            <p class="tooltip" title="How this race came to be mayhaps, if applicable. Or where they're from...">
+                <label for="racetraits">Race Background: </label>
+                <textarea id="racetraits" name="race_background" class='textbox'></textarea>
             </p>
             <?php
             if ($_SESSION['validUser']) {
@@ -390,11 +402,6 @@ if (isset($_POST["apply_settings"])) {
                 <label for="is_fav">Is a favourite character</label>
                 <input type="checkbox" id="is_fav" name="isfavchar">
             </p>
-            <!-- 
-                In PHP, the checkbox will be set based off of what is retreived from the database and the tabs will be set based off of that. 
-                The value retreived from the database will probably determine if a checked one is what is displayed vial an if statement.
-                The property is literally called "checked"
-            -->
             <p class="tooltip" title="Whether or not this character is part of the Omega Timeline. If you have to ask what this is, you don't need to check it.">
                 <label for="is_omega">Is part of the Omega Timeline:</label>
                 <input type="checkbox" id="is_omega" onchange="omegaCheck()" name="isomegachar">

@@ -5,6 +5,8 @@ $charID = $_GET['char_ID'];
 
 $charInfo = getCharInfo($db, $charID);
 $charAppear = getCharAppearance($db, $charID);
+$charPers = getCharPers($db, $charID);
+$charRace = getCharRace($db, $charID);
 $charSettings = getCharSettings($db, $charID);
 $charOmega = getCharOmega($db, $charID); //Get it even if it's not true, we handle it anyways. 
 
@@ -31,6 +33,7 @@ if (!empty($charSettings)) {
     <body>
         <main>
             <div class="w3-tab pale-purple">
+                <button class="tab-item button tablink" onclick="opentab('general_info')">General Info</button>
                 <button class="tab-item button tablink" onclick="opentab('character_info')">Character Info</button>
                 <button class="tab-item button tablink" onclick="opentab('character_appearance')">Appearance</button>
                 <button class="tab-item button tablink" onclick="opentab('character_personality')">Personality</button>
@@ -41,6 +44,9 @@ if (!empty($charSettings)) {
                 }
                 ?>
                 <button class="tab-item button tablink" onclick="opentab('character_other')">Other</button>
+            </div>
+            <div id="general_info" class="light-purple box container infotab">
+                
             </div>
             <div id='character_info' class="light-purple box container infotab">
                 <h3 class="display-header">Character Information</h3>
@@ -54,7 +60,7 @@ if (!empty($charSettings)) {
                     <span id="charalias" class='display'><?php echo $charInfo[3]; ?></span>
                 </p><p>
                     <label for="shortdesc">Short Description: </label>
-                    <span id="shortdesc" class='display'><?php echo $charInfo[4]; ?></span>
+                    <section id="shortdesc" class='textdisplay'><?php echo $charInfo[4]; ?></section>
                 </p><p>
                     <label for="charage">Age: </label>
                     <span id="charage" class="display"><?php echo $charInfo[5]; ?></span>
@@ -70,14 +76,14 @@ if (!empty($charSettings)) {
                 <h3 class="display-header">Character Appearance</h3>
                 <hr>
                 <p>
-                    <label for="charapp">Appearance Description: </label>
+                <label for="charapp">Appearance Description: </label>
                 <section id="charapp" class='textdisplay'><?php echo $charAppear[2]; ?></section>
                 </p>
                 <?php
                 if ($charAppear[3] == 0) {
-                    echo "<div style=\"display=none;\">";
+                    echo "<div class='hiddendiv'>";
                 } else {
-                    echo '<div>';
+                    echo "<div class='visiblediv'>";
                 }
                 ?>
                 <p>
@@ -113,64 +119,70 @@ if (!empty($charSettings)) {
             <hr>
             <p class="tooltip" title="Their personality description.">
                 <label for="persdesc">Personality Description:</label>
-                <textarea id="charpersdesc" class="textbox" name="pers_desc"></textarea>
+                <section id="charpersdesc" class="textdisplay"><?php echo $charPers[2]; ?></section>
             </p>
-            <p class="tooltip" title="The personality type. Can be Meyers-Briggs (Big 16), Big 5, or any other type.">
+            <p>
                 <label for="charperstype">Personality Type: </label>
-                <input type="text" id="charperstype" class='textinput' name="pers_type">
+                <span id="charperstype" class='display'><?php echo $charPers[3]; ?></span>
             </p>
-            <p class="tooltip" title="Enables or disables listing detailed personality aspects.">
-                <label for="advperscheck">Enable/Disable Detailed Personality:</label>
-                <input type="checkbox" id="advperscheck" onchange="persCheck()" class="w3-checkbox"  name="hasadvpers">
+            <p>
+                <label for="persalign">Alignment: </label>
+                <span id="persalign" class='display'><?php echo $charPers[4]; ?></span>
             </p>
-            <div id="adv_pers" style="display:none">
-                <p class="tooltip" title="The lifestyle of this character. Are they lazy, active? Something different?">
+            <?php
+                if ($charPers[5] == 0) {
+                    echo "<div class='hiddendiv'>";
+                } else {
+                    echo "<div class='visiblediv'>";
+                }
+            ?>
+                <p class="tooltip" title="The lifestyle of this character.">
                     <label for="charact">Activity: </label>
-                    <input type="text" id="charact" class='textinput' name="char_act">
+                    <span id="charact" class='display'><?php echo $charPers[6]; ?></span>
                 </p>
                 <p class="tooltip" title="How agreeable, or cooperative this character is.">
                     <label for="charagree">Agreeableness: </label>
-                    <input type="text" id="charagree" class='textinput' name="char_agree">
+                    <span id="charagree" class='display'><?php echo $charPers[7]; ?></span>
                 </p>
                 <p class="tooltip" title="How assertive, or how well this character can lead others.">
                     <label for="charassert">Assertiveness: </label>
-                    <input type="text" id="charassert" class='textinput' name="char_assert">
+                    <span id="charassert" class='display'><?php echo $charPers[8]; ?></span>
                 </p>
                 <p class="tooltip" title="How confident this character is with themselves and their choices.">
                     <label for="charconf">Confidence: </label>
-                    <input type="text" id="charconf" class='textinput' name="char_conf">
+                    <span id="charconf" class='display'><?php echo $charPers[9]; ?></span>
                 </p>
                 <p class="tooltip" title="How disciplined, or motivated this character is.">
                     <label for="chardisc">Discipline: </label>
-                    <input type="text" id="chardisc" class='textinput' name="char_disc">
+                    <span id="chardisc" class='display'><?php echo $charPers[10]; ?></span>
                 </p>
                 <p class="tooltip" title="How well the character can recognize, express and control their emotions.">
                     <label for="charemocap">Emotional Capacity: </label>
-                    <input type="text" id="charemocap" class='textinput' name="char_emocap">
+                    <span id="charemocap" class='display'><?php echo $charPers[11]; ?></span>
                 </p>
                 <p class="tooltip" title="How friendly this character is.">
                     <label for="charfriend">Friendliness: </label>
-                    <input type="text" id="charfriend" class='textinput' name="char_friend">
+                    <span id="charfriend" class='display'><?php echo $charPers[12]; ?></span>
                 </p>
                 <p class="tooltip" title="How honest this character is with others.">
                     <label for="charhonest">Honesty: </label>
-                    <input type="text" id="charhonest" class='textinput' name="char_honest">
+                    <span id="charhonest" class='display'><?php echo $charPers[13]; ?></span>
                 </p>
                 <p class="tooltip" title="How smart, or intelligent this character is.">
                     <label for="charintel">Intelligence: </label>
-                    <input type="text" id="charintel" class='textinput' name="char_intel">
+                    <span id="charintel" class='display'><?php echo $charPers[14]; ?></span>
                 </p>
                 <p class="tooltip" title="How polite or rude this character is.">
                     <label for="charmanners">Manners: </label>
-                    <input type="text" id="charmanners" class='textinput' name="char_manners">
+                    <span id="charmanners" class='display'><?php echo $charPers[15]; ?></span>
                 </p>
-                <p class="tooltip" title="This character's general outlook on life. Are they upbeat, depressed...something different?">
+                <p class="tooltip" title="This character's general outlook on life.">
                     <label for="charpos">Positivity: </label>
-                    <input type="text" id="charpos" class='textinput' name="char_pos">
+                    <span id="charpos" class='display'><?php echo $charPers[16]; ?></span>
                 </p>
                 <p class="tooltip" title="How likely this character is to rebel against a given plan, situation or rules.">
                     <label for="charrebel">Rebelliousness: </label>
-                    <input type="text" id="charrebel" class='textinput' name="char_rebel">
+                    <span id="charrebel" class='display'><?php echo $charPers[17]; ?></span>
                 </p>
             </div>
         </div>
@@ -179,27 +191,19 @@ if (!empty($charSettings)) {
             <hr>
             <p>
                 <label for="racename">Name: </label>
-                <input type="text" id="racename" name="race_name" class='textinput'>
-            </p>
-            <p>
-                <label for="racehome">Home / Origin: </label>
-                <textarea id="racehome" name="race_home" class='textbox'></textarea>
-            </p>
-            <p>
-                <label for="raceage">Average Age: </label>
-                <input type="text" id="raceage" name="race_age" class='textinput'>
-            </p>
-            <p>
-                <label for="racesize">Average Height: </label>
-                <input type="text" id="racesize" name="race_size" class='textinput'>
-            </p>
-            <p>
-                <label for="racetraits">Racial Aspects: </label>
-                <textarea id="racetraits" name="race_traits" class='textbox'></textarea>
+                <section id="racename" class='display'><?php echo $charRace[2]; ?></section>
             </p>
             <p>
                 <label for="racedesc">Description: </label>
-                <textarea id="racedesc" name="race_desc" class='textbox'></textarea>
+                <section id="racedesc" class='display'><?php echo $charRace[3]; ?></section>
+            </p>
+            <p class="tooltip" title="Traits, abilities and aspects specific to this race.">
+                <label for="racetraits">Racial Aspects: </label>
+                <section id="racetraits" class='display'><?php echo $charRace[4]; ?></section>
+            </p>
+            <p>
+                <label for="racetraits">Race Background: </label>
+                <section id="racetraits" class='display'><?php echo $charRace[5]; ?></section>
             </p>
         </div>
         <div id="character_omega" class="light-purple box shadow-816 container infotab" style="display:none;">
@@ -211,21 +215,20 @@ if (!empty($charSettings)) {
             <hr>
             <p>
                 <label for="omegaaudesc">Alternate Universe (AU): </label>
-            <section id="omegaaudesc" class='textdisplay'><?php echo $charOmega[2]; ?></section>
-            </p>
-            <p>
+                <section id="omegaaudesc" class='textdisplay'><?php echo $charOmega[2]; ?></section>
+            </p><p>
                 <label for="omegapers">Personality (if different from main) : </label>
-            <section id="omegapers" class='textdisplay'><?php echo $charOmega[3]; ?></section>
+                <section id="omegapers" class='textdisplay'><?php echo $charOmega[3]; ?></section>
             </p>
-            <label for="omegadesc">Backstory / History: </label>
-            <section id="omegadesc" class='textdisplay'><?php echo $charOmega[4]; ?></section>
+                <label for="omegadesc">Backstory / History: </label>
+                <section id="omegadesc" class='textdisplay'><?php echo $charOmega[4]; ?></section>
             <p>
                 <label for="omegastory">Involvement in the story: </label>
-            <section id="omegastory" class='textdisplay'><?php echo $charOmega[5]; ?></section>
+                <section id="omegastory" class='textdisplay'><?php echo $charOmega[5]; ?></section>
             </p>
             <p>
                 <label for="omegareason">Reason for joining the OT: </label>
-            <section id="omegareason" class='textdisplay'><?php echo $charOmega[6]; ?></section>
+                <section id="omegareason" class='textdisplay'><?php echo $charOmega[6]; ?></section>
             </p>
         </div>
         <div id="character_other"  class="light-purple box shadow-816 container infotab" style="display:none;">

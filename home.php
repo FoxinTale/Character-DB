@@ -32,6 +32,7 @@
             <ul>
                 <li>"Home" will bring you right back to this page.</li>
                 <li>The resources page has links to various off site character generators.</li>
+                <li>Finally, things I am planning to add or am currently working on are over on the todo page.</li>
             </ul>
         </section>
     </main>

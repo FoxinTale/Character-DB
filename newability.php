@@ -66,7 +66,8 @@
             <?php
             if ($_SESSION['validUser']) {
                 echo "<label for='ability_button'>&nbsp;</label>";
-                echo "<input type='submit' class='clicky-button clicky-button-two' id='ability_button' value='Add Spell/Ability/Power!'>";
+                echo "<p id='ability_button' class='textinput'>Button placeholder.</p>" ;
+                //echo "<input type='submit' class='clicky-button clicky-button-two' id='ability_button' value='Add Spell/Ability/Power!'>";
             }
             ?>
         </form>
