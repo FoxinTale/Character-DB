@@ -550,3 +550,8 @@ iframe{
     font-size: 125%;
 }
 
+#infobox{
+    font-size: 150%;
+    border: none;
+    background-color: transparent;
+}

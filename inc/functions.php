@@ -34,16 +34,6 @@ define('REPLACE_FLAGS', ENT_COMPAT | ENT_XHTML);
   (__/ (__/
  */
 
-function userinf($db, $username) {
-    $query = "SELECT * from user_info where user_name = :username;";
-    $statement = $db->prepare($query);
-    $statement->bindValue(':username', $username);
-    $statement->execute();
-    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-    $statement->closeCursor();
-    return $results;
-}
-
 function getuserinfo($db, $username, $password) {
     $query = "SELECT * from users;";
     $statement = $db->prepare($query);
@@ -96,12 +86,16 @@ function checkpass($db, $username, $password) {
     return password_verify($password, $hash);
 }
 
-function adduser($db, $username, $password) {
-    $user = htmlspecialchars($username);
-    $encrypt_password = password_hash($password, PASSWORD_DEFAULT);
-    adduserdata($db, $user, $encrypt_password);
-    $_SESSION['username'] = $user;
-    header('Location: index.php');
+function addUser($db, $userData) {
+    $query = "INSERT INTO users (User_Name, User_Password, User_Email) VALUES (:username, :password, :email);";
+    $password = password_hash($userData[1], PASSWORD_DEFAULT);
+    $statement = $db->prepare($query);
+    $statement->bindValue(':username', $userData[0]);
+    $statement->bindValue(':password', $password);
+    $statement->bindValue(':email', $userData[2]);
+    $success = $statement->execute();
+    $statement->closeCursor();
+    return $success;
 }
 
 function existing_username($db, $username) {
@@ -111,20 +105,9 @@ function existing_username($db, $username) {
     $statement->execute();
     $exists = $statement->fetch();
     $statement->closeCursor();
-    return $exists;
+    return $exists[0];
 }
 
-function adduserdata($db, $username, $password) {
-    $query = "INSERT INTO users (User_Name, User_Password, User_Email) VALUES (:username, :password, :email);";
-    $statement = $db->prepare($query);
-    $email = "";
-    $statement->bindValue(':username', $username);
-    $statement->bindValue(':password', $password);
-    $statement->bindValue(':email', $email);
-    $success = $statement->execute();
-    $statement->closeCursor();
-    return $success;
-}
 
 //encodes HTML chars to attempt to protect against SQL injection. 
 function dataCheck($post) {
@@ -149,7 +132,6 @@ function dataUncheck($content) {
             $value = "N/A";
             // This should not happen, due to the required field elements.
             // If it does, summon Safety Pig.
-            
         } else if ($value != null || $value != '') {
             array_push($arr, htmlspecialchars_decode($value));
         }
@@ -299,7 +281,6 @@ function addOmegaInfo($db, $post) {
     return $success;
 }
 
-
 function getallchars($db, $userID) {
     $query = "select * from characters where Char_User_ID = :userID;";
     $statement = $db->prepare($query);
@@ -349,10 +330,10 @@ function getCharOther($db, $charID) {
     $statement->execute();
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
     $statement->closeCursor();
-    if(!empty($results)){
+    if (!empty($results)) {
         return dataUncheck($results[0]);
     } else {
-        return fillCharOther($results); 
+        return fillCharOther($results);
     }
 }
 

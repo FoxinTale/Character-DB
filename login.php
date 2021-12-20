@@ -33,7 +33,7 @@
                 <br>
                 <p>
                     <label for="login_button">&nbsp;</label>
-                    <input type="submit" class="clicky-button clicky-button-two" id="login_button" name='letmein' value="Log-in">
+                    <input type="submit" id="login_button" class="clicky-button clicky-button-two" name='letmein' value="Log-in">
                 </p>    
             </form>
          </div>
