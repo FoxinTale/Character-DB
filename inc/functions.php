@@ -225,8 +225,8 @@ function addRace($db, $race) {
 }
 
 function addOther($db, $other) {
-    $query = "INSERT INTO char_other(Other_Char_ID, other_theme, other_quotes, other_quirks, other_quirkdesc, other_weak, other_birthday, other_zodiac, other_hobbies, other_other)
-        VALUES(:charID, :theme, :quotes, :quirk, :quirkdesc, :weak, :bday, :zodiac, :hobbies, :other);";
+    $query = "INSERT INTO char_other(Other_Char_ID, other_theme, other_quotes, other_quirks, other_quirkdesc, other_weak, other_birthday, other_zodiac, other_hobbies, other_sexuality, other_soul, other_other)
+        VALUES(:charID, :theme, :quotes, :quirk, :quirkdesc, :weak, :bday, :zodiac, :hobbies, :sexuality, :soul, :other);";
     $statement = $db->prepare($query);
     $statement->bindValue(':charID', $other[0]);
     $statement->bindValue(':theme', $other[1]);
@@ -237,7 +237,9 @@ function addOther($db, $other) {
     $statement->bindValue(':bday', $other[6]);
     $statement->bindValue(':zodiac', $other[7]);
     $statement->bindValue(':hobbies', $other[8]);
-    $statement->bindValue(':other', $other[9]);
+    $statement->bindValue(':sexuality', $other[9]);
+    $statement->bindValue(':soul', $other[10]);
+    $statement->bindValue(':other', $other[11]);
     $success = $statement->execute();
     $statement->closeCursor();
     return $success;

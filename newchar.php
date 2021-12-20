@@ -385,6 +385,14 @@ if (isset($_POST["apply_settings"])) {
                 <label for="otherhobbies">Hobbies: </label>
                 <textarea id="otherhobbies" name="other_hobbies" class='textbox'></textarea>
             </p>
+            <p class="tooltip" title="If applicable.">
+                <label for="othersexuality">Sexuality: </label>
+                <input type="text" id="othersexuality" name="other_sexuality" class='textinput'>
+            </p>
+             <p class="tooltip" title="Soul type. If you don't know what this means, leave it blank.">
+                <label for="othersoul">Soul Type: </label>
+                <input type="text" id="othersoul" name="other_soul" class='textinput'>
+            </p>
             <p class="tooltip" title="Any other thing that doesn't have its own area goes here.">
                 <label for="otherother">Other: </label>
                 <textarea id="otherother" name="other_other" class='textbox'></textarea>

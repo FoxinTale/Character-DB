@@ -115,7 +115,7 @@ function printspellinfo($spellinfo) {
 }
 
 function printcharinfo($charinfo) {
-    echo "<form class='light-purple box container coming infotab' method='get' target='_blank' action='viewchar.php'>";
+    echo "<form class='light-purple box container coming infotab chardisplay' method='get' target='_blank' action='viewchar.php'>";
         echo "<input type='text' hidden readonly name='char_ID' value='$charinfo[0]'>";
         echo '<p>';
             echo "<label for='char_name'>Name:</label>";

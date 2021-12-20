@@ -257,8 +257,14 @@ if (!empty($charSettings)) {
                 <label for="otherhobbies">Hobbies: </label>
                 <section id="otherhobbies" class='textdisplay'><?php echo $charOther[9]; ?></section>
             </p><p>
+                <label for="othersexuality">Sexuality: </label>
+                <span id="othersexuality" class='display'><?php echo $charOther[10]; ?></span>
+            </p><p>
+                <label for="othersoul">Soul Type: </label>
+                <span id="othersoul" class='display'><?php echo $charOther[11]; ?></span>
+            </p><p>
                 <label for="otherother">Other: </label>
-                <section id="otherother" class='textdisplay'><?php echo $charOther[10]; ?></section>
+                <section id="otherother" class='textdisplay'><?php echo $charOther[12]; ?></section>
             </p>
         </div>
         <script type="text/javascript">
