@@ -30,8 +30,10 @@
                 <li>Rework the item entry page.</li>
                 <li>Rework the weapon entry page</li>
                 <li>Rework the Ability / Power / Spell entry page.</li>
-                <li><i>The ability to upload pictures for appearance. Ideally multiple pictures if desired.</i></li>
+                <li><i>The ability to upload pictures for appearance (and more). Ideally multiple pictures if desired.</i></li>
                 <li>Have checking the favourite box in character settings actually do something.</li>
+				<li>Fix the login info not updating once logged in.</li>
+				<li>Create the item, weapon and spell display pages.</li>
             </ul>
         </section>
     </main>
