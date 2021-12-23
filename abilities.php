@@ -12,7 +12,5 @@ $username = $_SESSION["username"];
     <link rel="stylesheet" href="css/w3-min.css">
 </head>
 <body>
-    <?php
-    getallspells($db, $username);
-    ?>
+
 </body>

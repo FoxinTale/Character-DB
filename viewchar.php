@@ -23,7 +23,7 @@ if (!empty($charSettings)) {
 ?>
 <html>
     <head>
-        <meta charset="UTF-8">
+        <meta charset="iso-8859-1">
         <title>Viewing Character - <?php echo $charInfo[2]; ?></title>
         <link href="https://unpkg.com/@csstools/normalize.css" rel="stylesheet" />
         <link rel="stylesheet" href="css/fonts.css">

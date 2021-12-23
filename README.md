@@ -19,7 +19,7 @@ A total overhaul of the back end and front end, stripping out unused content lea
 - Overhauled the mySQL backend by modelling a new database, which adds  more features.
 - Properly handled HTML encoded characters when displayed. 
 - Gracefully handled if there's no input from the user, it auto-fuills the area.
-- Reworked and overhauled how individual characters are displayed.
+- Reworked and overhauled how individual characters are displayed...I hated the accordians.
 - Figured out how to make characters be sharable with other people. 
 - Handled it if the shared link is an invalid character ID number.
 
@@ -45,9 +45,9 @@ Just as it says, it's a total rewrite of the entire site.
  - [x] Add / fix user permissions.
  - [ ] Add a lockout policy to auto logout after a preset amount of time.
  - [ ] Create a custom admin user interface instead of using external 'PHPMyAdmin".
- - [ ] Fix the improper logout and properly destroy the session.
+ - [x] Fix the improper logout and properly destroy the session.
  - [ ] Implement a functionality for users to be able to edit and delete their own information.
- - [ ] Add a way for characters to be shared. No point in creating a character if you can't share it with others, after all.
+ - [x] Add a way for characters to be shared. No point in creating a character if you can't share it with others, after all. (It was HTTP GET request using the charID).
  - [ ] Image uploads. For character appearances. Make it work.
 
 

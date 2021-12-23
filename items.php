@@ -14,7 +14,5 @@ $username = $_SESSION["username"];
     <script type="text/javascript" src="scripts/expanding.jquery.js"></script>
 </head>
 <body>
-    <?php
-    getallitems($db, $username);
-    ?>
+
 </body>

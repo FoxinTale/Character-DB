@@ -19,7 +19,7 @@
             <p class = "description">Currently in progress items, in no particular order:</p>
             <hr class="sep">
             <ul>
-                <li>Currently, nothing.</li>
+                <li>Currently, nothing. I'm taking a break on this for now.</li>
             </ul>
         </section>
         <section class="light-purple2 box2">

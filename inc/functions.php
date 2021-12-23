@@ -68,22 +68,11 @@ function verify_login($userdata, $username, $password) {
             $_SESSION['username'] = $username;
             $_SESSION['userID'] = $userID;
             $_SESSION['isAdmin'] = $userIsAdmin;
-            header("Location: home.php");
+            header("Location: index.php");
         } else {
             echo "<script>window.onload = function() { document.getElementById('errorbox').value = 'Invalid Password'}</script>";
         }
     }
-}
-
-function checkpass($db, $username, $password) {
-    $query = "SELECT User_Password FROM users WHERE User_Name = :user";
-    $statement = $db->prepare($query);
-    $statement->bindValue(':user', $username);
-    $statement->execute();
-    $result = $statement->fetch();
-    $statement->closeCursor();
-    $hash = $result['User_Password'];
-    return password_verify($password, $hash);
 }
 
 function addUser($db, $userData) {
@@ -107,7 +96,6 @@ function existing_username($db, $username) {
     $statement->closeCursor();
     return $exists[0];
 }
-
 
 //encodes HTML chars to attempt to protect against SQL injection. 
 function dataCheck($post) {
@@ -272,12 +260,12 @@ function addOmegaInfo($db, $post) {
     $query = "INSERT INTO char_omegatime(Omega_Char_ID, Omega_AU, Omega_Pers, Omega_History, Omega_Story, Omega_Reason) 
             VALUES (:charID, :au, :pers, :history, :story, :reason);";
     $statement = $db->prepare($query);
-    $statement->bindValue(':charID', $post[0]); // charnamelist
-    $statement->bindValue(':au', $post[1]); // omegaau_desc
-    $statement->bindValue(':pers', $post[2]); // omega_pers
-    $statement->bindValue(':history', $post[3]); // omega_desc
-    $statement->bindValue(':story', $post[4]); // omega_story
-    $statement->bindValue(':reason', $post[5]); // omega_reason
+    $statement->bindValue(':charID', $post[0]);
+    $statement->bindValue(':au', $post[1]);
+    $statement->bindValue(':pers', $post[2]);
+    $statement->bindValue(':history', $post[3]);
+    $statement->bindValue(':story', $post[4]);
+    $statement->bindValue(':reason', $post[5]);
     $success = $statement->execute();
     $statement->closeCursor();
     return $success;
@@ -301,7 +289,6 @@ function getcharnames($db, $userID, $info, $text) {
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
     $statement->closeCursor();
     charnamedrop($results, $info, $text);
-    //print_r($results);
 }
 
 function charnamedrop($namearr, $info, $text) {

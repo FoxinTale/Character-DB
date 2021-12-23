@@ -15,29 +15,67 @@
         <hr class="sep2">
         <p class="coming display-text">Basic and detailed character information: </p>
         <ul class="link-list">
-            <li><a href="https://www.seventhsanctum.com/index-char.php" target="_blank"> General character info I.</a></li>
-            <li><a href="https://www.character-generator.org.uk/detailed/" target="_blank"> General character info II.</a></li>
-            <li><a href="https://www.character-generator.org.uk" target="_blank"> General character info III.</a></li>
+            <li><a href="https://www.character-generator.org.uk/detailed/" target="_blank"> General character info I.</a></li>
+            <li><a href="https://www.character-generator.org.uk" target="_blank"> General character info II.</a></li>
         </ul>
+        <br>
+        
+        <p class="coming display-text">General, all purpose generators.</p>
+        <ul class="link-list">
+            <li><a href="https://www.seventhsanctum.com/index-char.php" target="_blank">"Seventh Sanctum" Character Info</a></li>
+            <li><a href=" https://www.fantasynamegenerators.com/" target="_blank">Fantasy Generators "treasure trove".</a></li>
+        </ul>
+        <br>
+        
         <p class="coming display-text">Names: </p>
         <ul class="link-list">
             <li><a href="https://www.name-generator.org.uk/nickname/" target="_blank">Nicknames</a></li>
             <li><a href="https://www.name-generator.org.uk/male/" target="_blank">Names I</a></li>
             <li><a href="https://www.name-generator.org.uk/female/" target="_blank">Names II</a></li>
+            <li><a href=" https://www.fantasynamegenerators.net/fantasy-name-generators/" target="_blank">Names III</a></li>
         </ul>
+        <br>
+        
         <p class="coming display-text">Appearance: </p>
         <ul class="link-list">
             <li><a href="https://www.rangen.co.uk/chars/appgen.php" vtarget="_blank">Appearance I</a></li>
         </ul>
+        <br>
+        
         <p class="coming display-text">Personality: </p>
         <ul class="link-list">
             <li><a href="https://www.rangen.co.uk/chars/pergen.php" target="_blank">Personality I</a></li>
             <li><a href="https://springhole.net/writing_roleplaying_randomators/interests.htm" target="_blank">Personality II</a></li>
+            <li><a href=" https://theverymask.wordpress.com/2018/02/20/personality-generator/" target="_blank">Personality III</a></li>
         </ul>
+        <br>
+        
+        <p class="coming display-text">Backstory: </p>
+        <ul class="link-list">
+            <li><a href="https://www.fantasynamegenerators.com/backstory-descriptions.php" target="_blank">Backstory I</a></li>
+            <li><a href="https://www.aonprd.com/RandomBackground.aspx" target="_blank">Backstory II</a></li>
+            <li><a href="https://www.fantasynamegenerators.net/backstory-descriptions/" target="_blank">Backstory III</a></li>
+            <li></li>
+            <li><a href=" https://www.quotev.com/quiz/12549134/Hows-Your-OC-Backstory-Edition">A small backstory test</a></li>
+        </ul>
+        <br>
+        
+        <p class='coming display-text'>
+            Personality tests. Before taking any of these, try and get a general idea of what you want this character to be like.  
+            <br> Then, once you take one of these tests/quizzes, for every question ask yourself "Is this what this character would do?",
+            <br>"Is this how they would think or act?". Do your best to put yourself into the mind of this character and try to answer as them.
+        </p>
+        <ul class="link-list">
+            <li><a href="https://bigfive-test.com/" target="_blank">The Big Five</a></li>
+        </ul>
+        <br>
+        
         <p class="coming display-text">Species: </p>
         <ul class="link-list">
             <li><a href="https://www.rangen.co.uk/world/speciesgen.php" target="_blank">Species I</a></li>
         </ul>
+        <br>
+        
         <hr class="sep2">
         <p class="coming display-text">Character and general roleplay advice: </p>
         <ul class="link-list">
