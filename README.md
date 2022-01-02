@@ -4,6 +4,7 @@ A character database I made to store character information for folks to use.
 
 ### 2021 Rewrite
 A total overhaul of the back end and front end, stripping out unused content leaving less bugs, adding a whole lot of new features.
+As this will go into 2022, the rewrite was started in mid December 2021, which is why it is called the 2021 rewrite.
 
 #### What changed this time?
 - Rewrote every page to use a single CSS file...becuase I felt like it.
@@ -18,7 +19,7 @@ A total overhaul of the back end and front end, stripping out unused content lea
 - The large text boxes actually expand as you type now.
 - Overhauled the mySQL backend by modelling a new database, which adds  more features.
 - Properly handled HTML encoded characters when displayed. 
-- Gracefully handled if there's no input from the user, it auto-fuills the area.
+- Gracefully handled if there's no input from the user, it auto-fills the area in the database.
 - Reworked and overhauled how individual characters are displayed...I hated the accordians.
 - Figured out how to make characters be sharable with other people. 
 - Handled it if the shared link is an invalid character ID number.
@@ -42,6 +43,7 @@ Just as it says, it's a total rewrite of the entire site.
 
 
  ## To do List:
+ - [x] Get HTTPS on the domain so stuff is encrypted.
  - [x] Add / fix user permissions.
  - [ ] Add a lockout policy to auto logout after a preset amount of time.
  - [ ] Create a custom admin user interface instead of using external 'PHPMyAdmin".
@@ -49,6 +51,9 @@ Just as it says, it's a total rewrite of the entire site.
  - [ ] Implement a functionality for users to be able to edit and delete their own information.
  - [x] Add a way for characters to be shared. No point in creating a character if you can't share it with others, after all. (It was HTTP GET request using the charID).
  - [ ] Image uploads. For character appearances. Make it work.
+ - [ ] Add profile customuisation, such as changing ones username.
+ - [ ] Password reset functionality.
+ - [ ] Exportable (downloadable) information, probably in a json or XML format. 
 
 
 ## Credits

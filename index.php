@@ -10,6 +10,7 @@ session_start();
   $_SESSION['validUser'] = true;
   $_SESSION['username'] = "Aubrey";
   $_SESSION['userID'] = 1;
+  $_SESSION['isAdmin'] = 1;
  //*/
 
 /*
@@ -42,58 +43,60 @@ $_SESSION["validUser"] = $validUser;
     <body class="mainpage">
         <nav  id="sidenav" class="sidebar bar-block collapse animate-left card" style="z-index:3;width:250px;">
             <a class="bar-item nav-button hide large" href="javascript:void(0)" onclick="closenav()">Close <i class="fa fa-remove"></i></a>
-            <a class="bar-item nav-button" href='home.php' target='pages'>Home</a>
+            <a class="bar-item nav-button" href="javascript:setFrameSrc('home.php')">Home</a>
             <hr class="nav-hr">
             <div>
                 <a class="bar-item nav-button" onclick="dropdown('creation')" href="javascript:void(0)">Create New...<i class="fa fa-caret-down"></i></a>
                 <div id="creation" class="hide">
-                    <a class='bar-item nav-button' href='newability.php' target='pages'>Ability / Power / Spell</a>
-                    <a class='bar-item nav-button' href='newchar.php' target='pages'>Character</a>
-                    <a class='bar-item nav-button' href='newitem.php' target='pages'>Item</a>
-                    <a class='bar-item nav-button' href='newweapon.php' target='pages'>Weapon</a>
+                    <a class='bar-item nav-button' href="javascript:setFrameSrc('newability.php')">Ability / Power / Spell</a>
+                    <a class='bar-item nav-button' href="javascript:setFrameSrc('newchar.php')">Character</a>
+                    <a class='bar-item nav-button' href="javascript:setFrameSrc('newitem.php')">Item</a>
+                    <a class='bar-item nav-button' href="javascript:setFrameSrc('newweapon.php')">Weapon</a>
                 </div>
             </div>
             <hr class="nav-hr">
             <?php
             if($validUser){
+                // Edit makes sense. However, I put the view as part of this because no point in viewing anything if the user is not logged in.
+                // This PHP is also staggered/formatted like this to look pretty here. Serves no functional purpose other than looking like good HTML.
                 echo '<div>';
                     echo "<a class='bar-item nav-button' onclick=\"dropdown('edit')\" href=\"javascript:void(0)\">Edit...<i class='fa fa-caret-down'></i></a>";
                         echo "<div id='edit' class='hide'>";
-                            echo "<a class='bar-item nav-button' href='abilities.php' target='pages'>Abilities / Powers / Spells</a>";
-                            echo "<a class='bar-item nav-button' href='editchar.php' target='pages'>Characters</a>";
-                            echo "<a class='bar-item nav-button' href='items.php' target='pages'>Items</a>";
-                            echo "<a class='bar-item nav-button' href='weapons.php' target='pages'>Weapons</a>";
+                            echo "<a class='bar-item nav-button' href=\"javascript:setFrameSrc('abilities.php')\">Abilities / Powers / Spells</a>";
+                            echo "<a class='bar-item nav-button' href=\"javascript:setFrameSrc('charselect.php')\">Characters</a>";
+                            echo "<a class='bar-item nav-button' href=\"javascript:setFrameSrc('items.php')\">Items</a>";
+                            echo "<a class='bar-item nav-button' href=\"javascript:setFrameSrc('weapons.php')\">Weapons</a>";
                         echo '</div>';
                     echo '</div>';
                 echo "<hr class='nav-hr'>";
                 echo '<div>';
                     echo "<a class='bar-item nav-button' onclick=\"dropdown('view')\" href=\"javascript:void(0)\">View...<i class='fa fa-caret-down'></i></a>";
                         echo "<div id='view' class='hide'>";            
-                            echo "<a class='bar-item nav-button' href='abilities.php' target='pages'>Abilities / Powers / Spells</a>";
-                            echo "<a class='bar-item nav-button' href='chars.php' target='pages'>Characters</a>";
-                            echo "<a class='bar-item nav-button' href='items.php' target='pages'>Items</a>";
-                            echo "<a class='bar-item nav-button' href='weapons.php' target='pages'>Weapons</a>";
+                            echo "<a class='bar-item nav-button' href=\"javascript:setFrameSrc('abilities.php')\">Abilities / Powers / Spells</a>";
+                            echo "<a class='bar-item nav-button' href=\"javascript:setFrameSrc('chars.php')\">Characters</a>";
+                            echo "<a class='bar-item nav-button' href=\"javascript:setFrameSrc('items.php')\">Items</a>";
+                            echo "<a class='bar-item nav-button' href=\"javascript:setFrameSrc('weapons.php')\">Weapons</a>";
                         echo '</div>';
                 echo '</div>';
                 echo "<hr class='nav-hr'>";
             } 
             ?>
-            <a class='bar-item nav-button' href='aboutsite.php' target='pages'>About Site</a>
-            <a class='bar-item nav-button' href='credits.php' target='pages'>Credits</a>
-            <a class='bar-item nav-button' href='resources.php' target='pages'>Resources</a>
-            <a class='bar-item nav-button' href='todo.php' target='pages'>Site To-Do List</a>
+            <a class='bar-item nav-button' href="javascript:setFrameSrc('aboutsite.php')">About Site</a>
+            <a class='bar-item nav-button' href="javascript:setFrameSrc('credits.php')">Credits</a>
+            <a class='bar-item nav-button' href="javascript:setFrameSrc('resources.php')">Resources</a>
+            <a class='bar-item nav-button' href="javascript:setFrameSrc('todo.php')">Site To-Do List</a>
             <hr class="nav-hr">
             <?php
-            if (isset($_SESSION['isAdmin'])) {
-                if ($_SESSION['isAdmin']) {
+            if (isset($_SESSION['isAdmin'])) { // Check if it actually exists
+                if ($_SESSION['isAdmin']) { // If so, check its value.
                     echo "<a class='bar-item nav-button' href='admin.php' target='pages'>Admin Panel</a>";
                 }
             }
             if ($validUser) {
-                echo "<a class='bar-item nav-button' href='logout.php' target='pages'>Close Journal</a>";
+                echo "<a class='bar-item nav-button' href='logout.php'>Close Journal</a>";
             } else {
-                echo "<a class='bar-item nav-button' href='newprofile.php' target='pages'>Create Journal</a>";
-                echo "<a class='bar-item nav-button' href='login.php' target='pages'>Open Journal</a>";
+                echo "<a class='bar-item nav-button' href=\"javascript:setFrameSrc('newprofile.php')\">Create Journal</a>";
+                echo "<a class='bar-item nav-button' href=\"javascript:setFrameSrc('login.php')\">Open Journal</a>";
             }
             ?>
         </nav>
@@ -106,77 +109,30 @@ $_SESSION["validUser"] = $validUser;
                 echo "<span id='userdisplay'>$user_name</span>";
             }
             ?>
-            <!--
-                The following element is how all pages are displayed. I am basically abusing a div as an iframe here with jQuery.
-                Why? I did not feel like repeating myself (this nav page) on every page so I settled on this way.
-                While I do not remember exactly *why* I did it this way, I think I had issues with the iframe not doing things I wanted it to.
-            -->
-            <!--<div class="minipage" id="container"></div> --> 
-            <iframe id="pageframe" name="pages" src="home.php"></iframe>
+
+            <iframe id="pageframe" name="pages">
+                <p>I-frames aren't supported. Sorry. Use a browser that doesn't suck.</p>
+            </iframe>
             <script type="text/javascript">
-                //window.onload = load_it();
-                /*
-                var containerHidden = false;
-                var frameHidden = false;
-                var container = document.getElementById("container");
-                var frame = document.getElementById("pageframe");
-                */
-                function load_it() {
-                    //hideFrame();
-                    jQuery(document).ready(function ($) {
-                        $("#container").load("home.php");
-                    });
+                window.onload  = setFrameSrc("home.php");
+               var frame = document.getElementById("pageframe");
+               
+               pageframe.onload = function(){
+                 console.log(pageframe.src);
+               };
+
+                function setFrameSrc(url){
+                    pageframe.src = url;
                 }
 
-                function framerender(url) {
-                    jQuery(document).ready(function ($) {
-                        $("#container").load(url);
-                    });
-                }
-                
-                /*     
-                function containerRender(url){
-                    hideDiv();
-                    showFrame();
-                    setBools(false, true);
-                    frame.src = url;
-                }
-
-                function hideFrame(){
-                    frame.style.visibility = "hidden";
-                    frame.style.height = "0px";
-                    frame.style.width = "0px";
-                }
-
-                function showFrame({
-                    frame.style.visibility = "visible";
-                    frame.style.width = "90%";
-                    frame.style.border = "none";
-                    //margin-left:5rem;
-                    //height: 45rem;
-                }
-
-                function showDiv(){
-                    container.style.display = "block";
-                    container.style.border = "none";
-                    container.style.width = "90%";
-                    container.style.height = "70%";
-                    container.style.margin = "2.5% 5% 0% 5%";
-                }
-
-                function hideDiv(){
-                    container.style.width = "0px";
-                    container.style.height = "0px";
-                    container.style.display = "none";
-                }
-
-                function setBools(var one, var two){
-                    containerHidden = one;
-                    frameHidden = two;
-                }
-                 */
+                window.onmessage = function(event){
+                    if (event.data === 'login' || event.data === 'logout') {
+                        window.location.reload(true);
+                        setFrameSrc('home.php');
+                    }
+                };
             </script>
-            <footer>Aubrey - 2021</footer>
+            <footer>Aubrey - 2022</footer>
         </div>
     </body>
     <noscript>Please turn scripts on to allow the page to render properly, and the navigation menu to work properly.</noscript> 

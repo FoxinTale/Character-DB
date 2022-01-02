@@ -11,8 +11,8 @@
             unset($_SESSION['validUser']);
             unset($_SESSION['user_ID']);
             unset($_SESSION['isAdmin']);
-            header('Location: home.php');
             session_destroy();
+            header('Location: index.php');
         ?>   
     </body>
 </html>

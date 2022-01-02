@@ -19,6 +19,7 @@ if (isset($_POST["check_username"])) {
     if ($exists[0] == 0) {
         echo "<script>window.onload = function() { document.getElementById('infobox').value = 'Username available.'}</script>";
     } else {
+        echo "aaaaaaaa";
         echo "<script>window.onload = function() { document.getElementById('infobox').value = 'Username taken.'}</script>";
     }
 }
@@ -35,7 +36,8 @@ if (isset($_POST["check_username"])) {
             <div class="box light-purple2">
                 <p class="display-text coming">
                     Yes, another account... One may not be a fan of creating accounts, but this makes linking characters, 
-                    items and weapons much easier. 
+                    items and weapons much easier. <br> Note: If you wish to be an administrator of this, contact me over Discord. 
+                    It can only be done from the back end.  Aubrey Jane #7563
                 </p>
                 <p class="display-text coming">
                     Please enter a valid email, as this is how you can reset your password if you forget it one day. Your email will never be given out to anyone, 
@@ -68,7 +70,7 @@ if (isset($_POST["check_username"])) {
 
                 </form>
                 <section id="message">
-                    <h3>Password should contain the following:</h3>
+                    <h3>Password must contain at least the following:</h3>
                     <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
                     <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
                     <p id="number" class="invalid">A <b>number</b></p>

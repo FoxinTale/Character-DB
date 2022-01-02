@@ -139,6 +139,26 @@ function printcharinfo($charinfo) {
             echo "<label for='morecharinfo'>&nbsp;</label>";
             echo "<input type='submit' class='clicky-button clicky-button-two' id='morecharinfo' value='More Info'>";
     echo '</form>';
-}
 
+}
+    
+function printEditBoxes($info){
+    $infoSize = sizeof($info);
+    for ($x = 0; $x < $infoSize; $x++) {
+        printEditBox($info[$x]);
+    }
+}
+    
+function printEditBox($data){
+    $data = dataUncheck($data);
+    echo "<form class='light-purple box container coming infotab smalldisplay' method='get'  action='editchar.php'>";
+        echo "<input type='text' hidden readonly name='char_ID' value='$data[0]>";
+        echo '<p>';
+            echo "<label for='char_name'>Name:</label>";
+            echo "<span id='char_name' class='display'>$data[1]</span>";
+        echo '</p>';
+        echo "<label for='morecharinfo'>&nbsp;</label>";
+        echo "<input type='submit' class='editbutton' id='morecharinfo' value='Edit!'>";
+    echo '</form>';
+}
 ?>

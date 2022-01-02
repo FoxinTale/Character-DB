@@ -80,7 +80,6 @@ iframe{
     background-color: #000!important;
 }
 
-
 .display-text{
     margin-left: 2.5%;
     margin-right: 2.5%;
@@ -88,6 +87,10 @@ iframe{
 
 .paragraph{
     padding:0.75rem;
+}
+
+.strike{
+    text-decoration: line-through;
 }
 
 .mainpage{
@@ -487,6 +490,30 @@ iframe{
     margin-left: 0.75rem;
     width: 15rem;
     height: 3rem;
+}
+
+.smalldisplay{
+    margin-left: 20%;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    width: 50%;
+}
+
+.smalldisplay span{
+    padding-left: 1rem;
+}
+
+.editbutton{
+    width: 100%;
+    padding: 0.25rem;
+}
+
+.hiddendiv{
+    display: none;
+}
+
+.visiblediv{
+    display:block;
 }
 
 /* Small displays, Mobile devices. */

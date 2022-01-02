@@ -5,72 +5,25 @@ require 'inc/functions.php';
 require 'inc/prints.php';
 $validUser = $_SESSION['validUser'];
 
-if (isset($_POST["new_char"])) {
-    $charInfo = dataCheck($_POST);
+$charID = htmlspecialchars($_GET['char_ID']); 
+$charInfo = getCharInfo($db, $charID);
+$charAppear = getCharAppearance($db, $charID);
+$charPers = getCharPers($db, $charID);
+$charRace = getCharRace($db, $charID);
+$charOmega = getCharOmega($db, $charID); //Get it even if it's not true, we handle it anyways. 
+$charOther = getCharOther($db, $charID);
+$charSettings = getCharSettings($db, $charID);
 
-    if (!addCharacter($db, $charInfo, $_SESSION['userID'])) {
-        echo "Something went wrong trying to add this character.";
+$omegaTimeline = false; // When you mistakenly invalidate the entire timeline in one single line of code. Oops.
+
+if (!empty($charSettings)) {
+    if ($charSettings["Char_IsOmegaTimeline"] == 1) {
+        $omegaTimeline = true; // Hey, it's validated again!
     } else {
-        echo "Character was successfully added!";
+        $omegaTimeline = false; // Ah, bollocks. Sorry folks!
     }
 }
 
-if (isset($_POST["add_app"])) {
-    $charAppearance = dataCheck($_POST, 11);
-
-    if (!addAppearance($db, $charAppearance)) {
-        echo "Something went wrong adding the appearance info.";
-    } else {
-        echo "Appearance info successfully added!";
-    }
-}
-
-if (isset($_POST["add_pers"])) {
-    $charPers = dataCheck($_POST);
-    
-    if(!addPersonality($db, $charPers)){
-        echo "Something went wrong adding the personality";
-    } else {
-        echo "Personality successfully added!";
-    }
-}
-
-if(isset($_POST["add_race"])){
-    $charRace = dataCheck($_POST);
-    if(!addRace($db, $charRace)){
-        echo "Something went wrong adding the race info";
-    } else {
-        echo "Race info successfully added!";
-    }
-}
-
-if (isset($_POST["add_otinfo"])) {
-    $otinfo = dataCheck($_POST);
-
-    if (!addOmegaInfo($db, $otinfo)) {
-        echo "Something went wrong trying to add the information.";
-    } else {
-        echo "Information successfully added";
-    }
-}
-
-if (isset($_POST["add_other"])){
-   $otherInfo = dataCheck($_POST);
-   
-   if(!addOther($db, $otherInfo)){
-       echo "Something went wrong trying to add the information.";
-   } else {
-       echo "Information successfully added";
-   }
-}
-
-if (isset($_POST["apply_settings"])) {
-    if (!addSettings($db, $_POST)) {
-        echo "Something went wrong trying to apply the settings";
-    } else {
-        echo "Settings successfully applied!";
-    }
-}
 ?>
 
 <head>
@@ -87,7 +40,11 @@ if (isset($_POST["apply_settings"])) {
         <button class="tab-item button tablink" onclick="opentab(event, 'character_appearance')">Appearance</button>
         <button class="tab-item button tablink" onclick="opentab(event, 'character_personality')">Personality</button>
         <button class="tab-item button tablink" onclick="opentab(event, 'character_race')">Race</button>
-        <button class="tab-item button tablink" id="omegalink" onclick="opentab(event, 'character_omega')" style="display:none;">Omega Timeline</button>
+        <?php
+            if ($omegaTimeline) {
+                echo "<button class='tab-item button tablink' id='omegalink' onclick=\"opentab(event, 'character_omega')\">Omega Timeline</button>";
+            }
+        ?>
         <button class="tab-item button tablink" onclick="opentab(event, 'character_other')">Other</button>
         <button class="tab-item button tablink" onclick="opentab(event, 'character_options')">Settings &amp; Options</button>
     </div>
@@ -110,32 +67,32 @@ if (isset($_POST["apply_settings"])) {
         <form id="charinfo" method="post">
             <p class="tooltip" title="This is the full name of the character">
                 <label for="charname">Full Name: </label>
-                <input type="text" class="textinput" required id="charname" name="char_name">
+                <input type="text" class="textinput" required id="charname" name="char_name" value="<?php echo $charInfo[2]; ?>">
             </p>
             <p class ="tooltip" title="Any nicknames, or shortened forms of their name.">
                 <label for="charalias">Alias(es): </label>
-                <input type="text" class="textinput" id="charalias" name="char_alias">
+                <input type="text" class="textinput" id="charalias" name="char_alias" value ="<?php echo $charInfo[3]; ?>">
             </p>
             <p class ="tooltip" title="A short, one to four sentence description of your character.">
                 <label for="shortdesc">Short Description: </label>
-                <textarea required id="shortdesc" name="short_desc" class='textbox'></textarea>
+                <textarea required id="shortdesc" name="short_desc" class='textbox'><?php echo $charInfo[4]; ?></textarea>
             </p>
             <p class="tooltip" title="The age of your character. Can be in years, or in terms of their lifespan.">
                 <label for="charage">Age: </label>
-                <input type="text"  required id="charage" class="textinput" name="char_age">
+                <input type="text"  required id="charage" class="textinput" name="char_age" value ="<?php echo $charInfo[5]; ?>">
             </p>
             <p class="tooltip" title="Their gender. Can be any one, or multiple.">
                 <label for="chargender">Gender: </label>
-                <input type="text" id="chargender" class="textinput" name="char_gender">
+                <input type="text" id="chargender" class="textinput" name="char_gender" value="<?php echo $charInfo[6]; ?>">
             </p>
             <p class="tooltip" title="Use the Race/Species section if they are not a human character. Otherwise, this is fine.">
                 <label for="charrace">Race / Species: </label>
-                <input type="text" id="charrace" class="textinput" name="char_race">
+                <input type="text" id="charrace" class="textinput" name="char_race" value="<?php echo $charInfo[7]; ?>">
             </p>
             <?php
             if ($validUser) {
                 echo "<label for='charbutton'>&nbsp;</label>";
-                echo "<button type='submit' id='charbutton' class='clicky-button clicky-button-two' name='new_char'>Add Character</button>";
+                echo "<button type='submit' id='charbutton' class='clicky-button clicky-button-two' name='new_char'>Update Character Info</button>";
             }
             ?>
         </form>
@@ -145,53 +102,58 @@ if (isset($_POST["apply_settings"])) {
         <p>You can hover over each entry to learn more about what it is.</p>
         <hr>
         <form id = "charapp" method="post">
-            <?php getcharnames($db, $_SESSION['userID'], "to add an appearance to.", "Select a character"); ?>
             <p class="tooltip" title="General Appearance">
                 <label for="charapp">Appearance Description: </label>
-                <textarea id="charapp" name="char_app" class='textbox'></textarea>
+                <textarea id="charapp" name="char_app" class='textbox'><?php echo $charAppear[2]; ?></textarea>
             </p>
             <p class="tooltip" title="Enables or disables listing detailed appearance.">
                 <label for="advappcheck">Enable/Disable Appearance Details:</label>
                 <input type="checkbox" id="advappcheck" onchange="appCheck()" class="w3-checkbox"  name="hasadvappear">
             </p>
-            <div id="adv_app" style="display:none;">
+            <?php
+                if ($charAppear[3] == 0) {
+                    echo "<div id='adv_app' class='hiddendiv'>";
+                } else {
+                    echo "<div id='adv_app' class='visiblediv'>";
+                }
+            ?>
                 <p class="tooltip" title="Eye shape if not human, and eye colour regardless.">
                     <label for="chareyes">Eye Description: </label>
-                    <textarea id="chareyes" name="char_eyes" class='textbox'></textarea>
+                    <textarea id="chareyes" name="char_eyes" class='textbox'><?php echo $charAppear[4]; ?></textarea>
                 </p>
                 <p class="tooltip" title="Hair colour, length and appearance.">
                     <label for="charhair">Hair Description: </label>
-                    <textarea id="charhair" name="char_hair" class='textbox'></textarea>
+                    <textarea id="charhair" name="char_hair" class='textbox'><?php echo $charAppear[5]; ?></textarea>
                 </p>
                 <p class="tooltip" title="This is really for if they aren't a human character. Elf, cat, wolf fox ears...ect.">
                     <label for="charears">Ears: </label>
-                    <input type="text" id="charears" class="textinput" name="char_ears">
+                    <input type="text" id="charears" class="textinput" name="char_ears" value="<?php echo $charAppear[6]; ?>">
                 </p>
                 <p class="tooltip" title="Height can be in any scale, as long as the units are provided.">
                     <label for="charheight">Height: </label>
-                    <input type="text" id="charheight" class="textinput" name="char_height">
+                    <input type="text" id="charheight" class="textinput" name="char_height" value="<?php echo $charAppear[7]; ?>">
                 </p>
                 <p class="tooltip" title="Weight can be in any scale, as long as the units are provided.">
                     <label for="charweight">Weight: </label>
-                    <input type="text" id="charweight" class="textinput" name="char_weight">
+                    <input type="text" id="charweight" class="textinput" name="char_weight" value="<?php echo $charAppear[8]; ?>">
                 </p>
                 <p class="tooltip" title="Skin tone, fur colour, or scales. And even something not listed.">
                     <label for="charskin">Skin: </label>
-                    <textarea id="charskin" name="char_skin" class='textbox'></textarea>
+                    <textarea id="charskin" name="char_skin" class='textbox'><?php echo $charAppear[9]; ?></textarea>
                 </p>
                 <p class="tooltip" title="Unique identifying features, if any. Birthmarks, scars, tattoos, ect...">
                     <label for="charunique">Unique Features: </label>
-                    <textarea id="charunique" name="char_unique" class='textbox'></textarea>
+                    <textarea id="charunique" name="char_unique" class='textbox'><?php echo $charAppear[10]; ?></textarea>
                 </p>
                 <p class="tooltip" title="Any thing else relating to their appearance that doesn't fit elsewhere">
                     <label for="appearother">Other: </label>
-                    <textarea id="appearother" name="appear_other" class='textbox'></textarea>
+                    <textarea id="appearother" name="appear_other" class='textbox'><?php echo $charAppear[11]; ?></textarea>
                 </p>
             </div>
             <?php
             if ($validUser) {
                 echo "<label for='app_button'>&nbsp;</label>";
-                echo "<button type='submit' id='app_button' class='clicky-button clicky-button-two' name='add_app'>Add Appearance Info</button>";
+                echo "<button type='submit' id='app_button' class='clicky-button clicky-button-two' name='update_app'>Update Appearance Info</button>";
             }
             ?>
         </form>
@@ -201,7 +163,6 @@ if (isset($_POST["apply_settings"])) {
         <p>You can hover over each entry to learn more about what it is.</p>
         <hr>
         <form id="char_pers" method="post">
-            <?php getcharnames($db, $_SESSION['userID'], "to add a personality to.", "Select a character"); ?>
             <p class="tooltip" title="Their personality description.">
                 <label for="persdesc">Personality Description:</label>
                 <textarea id="charpersdesc" class="textbox" name="pers_desc"></textarea>
@@ -218,7 +179,13 @@ if (isset($_POST["apply_settings"])) {
                 <label for="advperscheck">Enable/Disable Detailed Personality:</label>
                 <input type="checkbox" id="advperscheck" onchange="persCheck()" class="w3-checkbox"  name="hasadvpers">
             </p>
-            <div id="adv_pers" style="display:none">
+            <?php
+                if ($charPers[5] == 0) {
+                    echo "<div class='hiddendiv'>";
+                } else {
+                    echo "<div class='visiblediv'>";
+                }
+            ?>
                 <p class="tooltip" title="The lifestyle of this character. Are they lazy, active? Something different?">
                     <label for="charact">Activity: </label>
                     <input type="text" id="charact" class='textinput' name="char_act">
@@ -270,8 +237,8 @@ if (isset($_POST["apply_settings"])) {
             </div>
             <?php
             if ($validUser) {
-                echo "<label for='persbutton'>&nbsp;</label>";
-                echo "<button type='submit' id='persbutton' class='clicky-button clicky-button-two' name='add_pers'>Add Personality Info</button>";
+               echo "<label for='persbutton'>&nbsp;</label>";
+               echo "<button type='submit' id='persbutton' class='clicky-button clicky-button-two' name='update_pers'>Update Personality Info</button>";
             }
             ?>
         </form>
@@ -284,7 +251,6 @@ if (isset($_POST["apply_settings"])) {
         </p>
         <hr>
         <form id="charspecies" method="post">
-            <?php getcharnames($db, $_SESSION['userID'], "to create a race for.", "Select a character"); ?>
             <p class="tooltip" title="The name of the species / race, also include what the name means, if it has a meaning, otherwise, not required.">
                 <label for="racename">Name: </label>
                 <textarea id="racename" name="race_name" class='textbox'></textarea>
@@ -304,7 +270,7 @@ if (isset($_POST["apply_settings"])) {
             <?php
             if ($_SESSION['validUser']) {
                 echo "<label for='racebutton'>&nbsp;</label>";
-                echo "<button type='submit' id='racebutton' class='clicky-button clicky-button-two' name='add_race'>Add Race Info</button>";
+                echo "<button type='submit' id='racebutton' class='clicky-button clicky-button-two' name='update_race'>Update Race Info</button>";
             }
             ?>
         </form>
@@ -317,13 +283,12 @@ if (isset($_POST["apply_settings"])) {
         </p>
         <hr>
         <form id="charomega" method="post">
-            <?php getcharnames($db, $_SESSION['userID'], "to add information to.", "Select a muse"); ?>
             <p class="tooltip" title="A description of the AU this character or 'muse' is from. Please specify if it is from Undertale or Deltarune.">
                 <label for="omegaaudesc">Alternate Universe (AU): </label>
                 <textarea id="omegaaudesc" name="omegaau_desc" class='textbox'></textarea>
             </p>
             <p class="tooltip" title="A personality of the character. If this is an alternate version of them that has a different personality than is in the main personality section, otherwise leave blank.">
-                <label for="omegapers">Personality (if different from main) : </label>
+                <label for="omegapers">Personality (if different from main): </label>
                 <textarea id="omegapers" name="omega_pers" class='textbox'></textarea>
             </p>
             <p class="tooltip" title="The backstory of your character's life. Try to keep it short and simple, but also describe who they are and what they've done.">
@@ -341,7 +306,7 @@ if (isset($_POST["apply_settings"])) {
             <?php
             if ($_SESSION['validUser']) {
                 echo "<label for='omegabutton'>&nbsp;</label>";
-                echo "<button type='submit' id='omegabutton' class='clicky-button clicky-button-two' name='add_otinfo'>Add OT Info</button>";
+                echo "<button type='submit' id='omegabutton' class='clicky-button clicky-button-two' name='update_otinfo'>Update OT Info</button>";
             }
             ?>
         </form>
@@ -352,7 +317,6 @@ if (isset($_POST["apply_settings"])) {
         <p>You can hover over each entry to learn more about what it is.</p>
         <hr>
         <form id="charother" method="post">
-            <?php getcharnames($db, $_SESSION['userID'], "to add info to.", "Select a character"); ?>
             <p class="tooltip" title="Self-Explanatory. Can be just the name, the name and a link...whatever you wish.">
                 <label for="othertheme">Theme Song: </label>
                 <input type="text" id="othertheme" name="other_theme" class='textinput'>
@@ -399,8 +363,8 @@ if (isset($_POST["apply_settings"])) {
             <p>
                 <?php
                 if ($_SESSION['validUser']) {
-                    echo "<label for='otherbutton'>&nbsp;</label>";
-                    echo "<button type='submit' id='otherbutton' class='clicky-button clicky-button-two' name='add_other'>Add Info</button>";
+                   echo "<label for='otherbutton'>&nbsp;</label>";
+                   echo "<button type='submit' id='otherbutton' class='clicky-button clicky-button-two' name='update_other'>Update Info</button>";
                 }
                 ?>
         </form>
@@ -421,8 +385,8 @@ if (isset($_POST["apply_settings"])) {
             </p>
             <?php
             if ($_SESSION['validUser']) {
-                echo "<label for='settingsbutton'>&nbsp;</label>";
-                echo "<button type='submit' id='settingsbutton' class='clicky-button clicky-button-two' name='apply_settings'>Apply Settings</button>";
+               echo "<label for='settingsbutton'>&nbsp;</label>";
+               echo "<button type='submit' id='settingsbutton' class='clicky-button clicky-button-two' name='update_settings'>Update Settings</button>";
             }
             ?>
         </form>
@@ -441,7 +405,7 @@ if (isset($_POST["apply_settings"])) {
             document.getElementById(pagename).style.display = "block";
             evt.currentTarget.className += " light-purple2";
         }
-
+        
         function appCheck() {
             var appear = document.getElementById("advappcheck");
             var advapp = document.getElementById("adv_app");

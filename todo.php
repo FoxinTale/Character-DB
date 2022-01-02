@@ -1,5 +1,4 @@
 <!DOCTYPE html> 
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,21 +18,23 @@
             <p class = "description">Currently in progress items, in no particular order:</p>
             <hr class="sep">
             <ul>
-                <li>Currently, nothing. I'm taking a break on this for now.</li>
+                <li>The ability to edit and delete your own content. This is proving to be tricky, so it may take time.</li>
+                <li class='strike'>Fix the login info not updating once logged in.</li>
             </ul>
         </section>
         <section class="light-purple2 box2">
             <p class = "description">Planned to add in the future. Also in no particular order. Things that are in <i>italics</i> are high priority and will be added before other features on the list.</p>
             <hr class="sep">
             <ul>
-                <li><i>The ability to edit and delete your own content.</i></li>
                 <li>Rework the item entry page.</li>
                 <li>Rework the weapon entry page</li>
                 <li>Rework the Ability / Power / Spell entry page.</li>
                 <li><i>The ability to upload pictures for appearance (and more). Ideally multiple pictures if desired.</i></li>
-                <li>Have checking the favourite box in character settings actually do something.</li>
-	        <li>Fix the login info not updating once logged in.</li>
+                <li>Have checking the favourite box in character settings actually do something. Like.. I dunno, show a star by the character.</li>
                 <li>Create the item, weapon and spell display pages.</li>
+                <li>A proper page for administrative actions. It exists, but is empty right now.</li>
+                <li><i>Password reset functionality.</i> The only reason an email is required. Otherwise if you forget your password, you'd be screwed.</li>
+                <li>Exportable data. Perhaps in a downloadable XML or JSON format. (this one will be one of the last features to implement.</li>
             </ul>
         </section>
     </main>

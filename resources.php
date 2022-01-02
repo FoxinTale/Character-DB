@@ -38,7 +38,7 @@
         
         <p class="coming display-text">Appearance: </p>
         <ul class="link-list">
-            <li><a href="https://www.rangen.co.uk/chars/appgen.php" vtarget="_blank">Appearance I</a></li>
+            <li><a href="https://www.rangen.co.uk/chars/appgen.php" target="_blank">Appearance I</a></li>
         </ul>
         <br>
         
@@ -47,6 +47,7 @@
             <li><a href="https://www.rangen.co.uk/chars/pergen.php" target="_blank">Personality I</a></li>
             <li><a href="https://springhole.net/writing_roleplaying_randomators/interests.htm" target="_blank">Personality II</a></li>
             <li><a href=" https://theverymask.wordpress.com/2018/02/20/personality-generator/" target="_blank">Personality III</a></li>
+            <li><a href="https://perchance.org/detailed-character-personality" target="_blank">Personality IV</a></li>
         </ul>
         <br>
         

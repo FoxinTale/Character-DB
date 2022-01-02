@@ -1,10 +1,8 @@
 <?php
-
 // Mainly for veiwing a character, literal sanity checks for invalid or missing data.
 // Also, Hah! Sanity, PHP has none of it.
 $comments = array(" Not yet added to this character", "Perhaps this info has not been added", "Not applicable", "Placeholder content", 
     "This is not the info you are looking for.", "Maybe this character does not exist yet.");
-//$commentsSize = 0;
 
 function fillCharInfo($charInfo) {
     $comments = $GLOBALS['comments'];

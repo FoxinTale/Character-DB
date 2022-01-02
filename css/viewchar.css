@@ -11,14 +11,6 @@ main{
     border:1px solid black;
 }
 
-.hiddendiv{
-    display: none;
-}
-
-.visiblediv{
-    display:block;
-}
-
 .textdisplay{
     margin-left: 20%;
     border:2px dotted black;
@@ -26,6 +18,7 @@ main{
     padding: 0.75rem;
     margin-bottom: 2rem;
 }
+
 
 @media (max-width:600px) {
     .display{

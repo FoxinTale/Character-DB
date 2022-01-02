@@ -68,9 +68,9 @@ function verify_login($userdata, $username, $password) {
             $_SESSION['username'] = $username;
             $_SESSION['userID'] = $userID;
             $_SESSION['isAdmin'] = $userIsAdmin;
-            header("Location: index.php");
+            echo "<script>window.top.postMessage('login', '*');</script>";
         } else {
-            echo "<script>window.onload = function() { document.getElementById('errorbox').value = 'Invalid Password'}</script>";
+            echo "<script>window.onload = function() { documet.getElementById('errorbox').value = 'Invalid Password.'}</script>";
         }
     }
 }
@@ -290,6 +290,17 @@ function getcharnames($db, $userID, $info, $text) {
     $statement->closeCursor();
     charnamedrop($results, $info, $text);
 }
+
+function getallnames($db, $userID) {
+    $query = "select Char_ID, Char_Name from characters where Char_User_ID = :userID;";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':userID', $userID);
+    $statement->execute();
+    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $statement->closeCursor();
+    return $results; 
+}
+
 
 function charnamedrop($namearr, $info, $text) {
     $nameCount = count($namearr);

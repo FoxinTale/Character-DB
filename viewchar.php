@@ -1,7 +1,8 @@
 <!DOCTYPE html> 
 <?php
 require('inc/functions.php');
-$charID = $_GET['char_ID'];
+$charID = htmlspecialchars($_GET['char_ID']); // Protect against injection, even though it's just being gotten, and not stored.
+
 
 $charInfo = getCharInfo($db, $charID);
 $charAppear = getCharAppearance($db, $charID);
@@ -17,13 +18,13 @@ if (!empty($charSettings)) {
     if ($charSettings["Char_IsOmegaTimeline"] == 1) {
         $omegaTimeline = true; // Hey, it's validated again!
     } else {
-        $omegaTimeline = false; // Ah, bollocks. 
+        $omegaTimeline = false; // Ah, bollocks. Sorry folks!
     }
 }
 ?>
 <html>
     <head>
-        <meta charset="iso-8859-1">
+        <meta charset="UTF-8">
         <title>Viewing Character - <?php echo $charInfo[2]; ?></title>
         <link href="https://unpkg.com/@csstools/normalize.css" rel="stylesheet" />
         <link rel="stylesheet" href="css/fonts.css">
@@ -46,8 +47,12 @@ if (!empty($charSettings)) {
                 ?>
                 <button class="tab-item button tablink" onclick="opentab('character_other')">Other</button>
             </div>
-            <div id="general_info" class="light-purple box container infotab">
-                
+            <div id="general_info" class="light-purple box container infotab" style='display:none'>
+                 <p>
+			Few notes about this page. If you're on mobile, some of the formatting may be off. <br>
+			I haven't fixed this yet. Some types of HTML characters display unusually, like showing as black diamonds.<br>
+			I'm investigating why this happens. I think it is due to HTML character encoding methods.
+		</p>
             </div>
             <div id='character_info' class="light-purple box container infotab">
                 <h3 class="display-header">Character Information</h3>
