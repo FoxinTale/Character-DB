@@ -11,7 +11,9 @@
     <main>
         <section class="light-purple2 box2 paragraph coming">
             <p>
-               Welcome to my to-do list for this website.  
+                Welcome to my to-do list for this website.<br>
+                Things that are in <i>italics</i> are high priority and will be added before other features on the list.<br>
+               Things in <span class='strike'>strikethrough</span> have in theory, been fixed.
             </p>
         </section>
         <section class="light-purple2 box2">
@@ -19,11 +21,16 @@
             <hr class="sep">
             <ul>
                 <li>The ability to edit and delete your own content. This is proving to be tricky, so it may take time.</li>
+                <ul>
+                    <li>Fix things wrong with the edit page, listed below:</li>
+                    <li class='strike'>Fix HTML characters displaying in the textboxes. They should be new line characters.</li>
+                    <li>Fix the textboxes not expanding to fit the text that's in them on the edit page</li>
+                </ul>
                 <li class='strike'>Fix the login info not updating once logged in.</li>
             </ul>
         </section>
         <section class="light-purple2 box2">
-            <p class = "description">Planned to add in the future. Also in no particular order. Things that are in <i>italics</i> are high priority and will be added before other features on the list.</p>
+            <p class = "description">Planned to add in the future. Also in no particular order. </p>
             <hr class="sep">
             <ul>
                 <li>Rework the item entry page.</li>

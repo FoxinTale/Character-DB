@@ -12,6 +12,7 @@ $charOmega = getCharOmega($db, $charID); //Get it even if it's not true, we hand
 $charOther = getCharOther($db, $charID);
 $charSettings = getCharSettings($db, $charID);
 
+
 $omegaTimeline = false; // When you mistakenly invalidate the entire timeline in one single line of code. Oops.
 
 if (!empty($charSettings)) {
@@ -20,6 +21,7 @@ if (!empty($charSettings)) {
     } else {
         $omegaTimeline = false; // Ah, bollocks. Sorry folks!
     }
+
 }
 ?>
 <html>
