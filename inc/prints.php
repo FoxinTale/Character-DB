@@ -152,7 +152,7 @@ function printEditBoxes($info){
 function printEditBox($data){
     $data = dataUncheck($data);
     echo "<form class='light-purple box container coming infotab smalldisplay' method='get'  action='editchar.php'>";
-        echo "<input type='text' hidden readonly name='char_ID' value='$data[0]>";
+        echo "<input type='text' hidden readonly name='char_ID' value='$data[0]'>";
         echo '<p>';
             echo "<label for='char_name'>Name:</label>";
             echo "<span id='char_name' class='display'>$data[1]</span>";

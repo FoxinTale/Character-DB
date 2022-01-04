@@ -19,7 +19,6 @@ if (isset($_POST["check_username"])) {
     if ($exists[0] == 0) {
         echo "<script>window.onload = function() { document.getElementById('infobox').value = 'Username available.'}</script>";
     } else {
-        echo "aaaaaaaa";
         echo "<script>window.onload = function() { document.getElementById('infobox').value = 'Username taken.'}</script>";
     }
 }
@@ -60,7 +59,7 @@ if (isset($_POST["check_username"])) {
                     <input type='text' class="textinput" id='email2' name="email" value=''>
                     <br>
                     <label for="create">&nbsp;</label>
-                    <input class="clicky-button" type="submit" id ="create" name="newprofile" value="Create Account">
+                    <input class="clicky-button" type="submit" id ="create" name="newprofile" value="Create Journal">
                     <br>
                     <label for="checkname">&nbsp;</label>
                     <input type="submit" id="checkname" class="clicky-button clicky-button-two" name="check_username" value="Check Username Availability" >

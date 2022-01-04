@@ -8,9 +8,10 @@ if(isset($_SESSION['isAdmin'])){
     } else {
         // User is an admin and we output literally the entire admin page.
         // During development, it will be put here as normal, but once the page is done, 
+        echo "Under construction.";
     }
 } else {
-    echo "You sneaky, sneaky person you.";
+    echo "You sneaky, sneaky person you. And if you didn't do anything to see this, well something has broken. Please do tell me.";
 }
 
 ?>

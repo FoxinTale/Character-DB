@@ -5,6 +5,8 @@ require 'inc/functions.php';
 require 'inc/prints.php';
 $validUser = $_SESSION['validUser'];
 
+//This page is probably one of the most complex ones I've done so far.
+// It's kind of a hybrid of viewing a character and creating a new one, but centred on only one specific character.
 $charID = htmlspecialchars($_GET['char_ID']); 
 $charInfo = getCharInfo($db, $charID);
 $charAppear = getCharAppearance($db, $charID);
@@ -14,16 +16,33 @@ $charOmega = getCharOmega($db, $charID); //Get it even if it's not true, we hand
 $charOther = getCharOther($db, $charID);
 $charSettings = getCharSettings($db, $charID);
 
-
 // If you look at this in netbeans, it will complain about overwriting the variables. I want that to happen, so ignore it.
+//This one does not get "special treatment" because it is required to even g3et to the edit page, or in theory anyways.
 $charInfo = stringOps($charInfo);
-$charAppear = stringOps($charAppear);
-$charPers = stringOps($charPers);
-$charRace = stringOps($charRace);
-$charOmega = stringOps($charOmega);
-$charOther = stringOps($charOther);
 
-$omegaTimeline = false; // When you mistakenly invalidate the entire timeline in one single line of code. Oops.
+// This following mess is needed because I discovered that if the data was never really added to begin with, then problems arose.
+// The specific value this is checking is the ID of the related data. Simply, if it exists, then we have valid data.
+if(isset($charAppear[0])){
+    $charAppear = stringOps($charAppear);
+}
+
+if(isset($charPers[0])){
+    $charPers = stringOps($charPers);
+}
+
+if(isset($charRace[0])){
+    $charRace = stringOps($charRace);
+}
+
+if(isset($charOmega[0])){
+    $charOmega = stringOps($charOmega);
+}
+
+if(isset($charOther[0])){
+    $charOther = stringOps($charOther);
+}
+
+$omegaTimeline = false; // When you mistakenly invalidate the entire timeline in one single line of code...AGAIN. Oops.
 
 if (!empty($charSettings)) {
     if ($charSettings["Char_IsOmegaTimeline"] == 1) {
@@ -33,6 +52,7 @@ if (!empty($charSettings)) {
     }
 }
 
+// I had problems with the HTML encoded characters showing up as the <br> symbol. This is a nono, so I had to convert it back over.
 function stringOps($array){
     $arr = array();
     $size = sizeof($array);
@@ -44,12 +64,82 @@ function stringOps($array){
 }
 
 // This is needed for input boxes where the value is set. 
-// Turns out that values with double quotes in the  already broke things quite badly.
-// This fixes that. 
+// Turns out that values with double quotes in the name already broke things quite badly. This fixes that.
 function replaceQuotes($string){
     echo str_replace("\"", "&quot;", $string);
 }
 
+if (isset($_POST["update_char"])) {
+    $charInfo = dataCheck($_POST);
+
+    if (!updateCharInfo($db, $charInfo)) {
+       echo "Something went wrong trying to update this character.";
+    } else {
+        echo "Character info updated!";
+    }
+}
+
+if (isset($_POST["update_app"])) {
+    $charAppearance = dataCheck($_POST);
+
+    if (!updateCharAppearance($db, $charAppearance)) {
+        echo "Something went wrong updating the appearance info.";
+    } else {
+        echo "Appearance info successfully updated!";
+    }
+}
+
+if (isset($_POST["update_pers"])) {
+    $charPers = dataCheck($_POST);
+    
+    print_r($charPers);
+    /*
+    if(!addPersonality($db, $charPers)){
+        echo "Something went wrong updating the personality";
+    } else {
+        echo "Personality successfully updated!";
+    }
+     */
+}
+
+if(isset($_POST["update_race"])){
+    $charRace = dataCheck($_POST);
+    
+    if(!updateCharRace($db, $charRace)){
+        echo "Something went wrong updating the race info";
+    } else {
+        echo "Race info successfully updated!";
+    }
+}
+
+if (isset($_POST["update_otinfo"])) {
+    $otInfo = dataCheck($_POST);
+
+    if (!updateCharOmega($db, $otInfo)) {
+        echo "Something went wrong trying to update the information.";
+    } else {
+        echo "Information updated!";
+    }
+}
+
+if (isset($_POST["update_other"])){
+   $otherInfo = dataCheck($_POST);
+
+   if(!updateCharOther($db, $otherInfo)){
+       echo "Something went wrong trying to update the information.";
+   } else {
+       echo "Information updated!";
+   }
+}
+
+if (isset($_POST["update_settings"])) {
+    
+    if (!updateCharSettings($db, $_POST)) {
+        echo "Something went wrong trying to update the settings";
+    } else {
+        echo "Settings successfully updated!";
+    }
+}
 ?>
 
 <head>
@@ -110,10 +200,11 @@ function replaceQuotes($string){
                 <label for="charrace">Race / Species: </label>
                 <input type="text" id="charrace" class="textinput" name="char_race" value="<?php replaceQuotes($charInfo[7]); ?>">
             </p>
+            <input type='text' hidden readonly name='char_ID' value="<?php echo $charID; ?>">
             <?php
             if ($validUser) {
                 echo "<label for='charbutton'>&nbsp;</label>";
-                echo "<button type='submit' id='charbutton' class='clicky-button clicky-button-two' name='new_char'>Update Character Info</button>";
+                echo "<button type='submit' id='charbutton' class='clicky-button clicky-button-two' name='update_char'>Update Character Info</button>";
             }
             ?>
         </form>
@@ -123,6 +214,7 @@ function replaceQuotes($string){
         <p>You can hover over each entry to learn more about what it is.</p>
         <hr>
         <form id = "charapp" method="post">
+            <input type='text' hidden readonly name='app_char_ID' value="<?php echo $charID; ?>">
             <p class="tooltip" title="General Appearance">
                 <label for="charapp">Appearance Description: </label>
                 <textarea id="charapp" name="char_app" class='textbox'><?php echo $charAppear[2]; ?></textarea>
@@ -173,8 +265,16 @@ function replaceQuotes($string){
             </div>
             <?php
             if ($validUser) {
-                echo "<label for='app_button'>&nbsp;</label>";
-                echo "<button type='submit' id='app_button' class='clicky-button clicky-button-two' name='update_app'>Update Appearance Info</button>";
+                if(isset($charAppear[0])){
+                    echo "<label for='app_button'>&nbsp;</label>";
+                    echo "<button type='submit' id='app_button' class='clicky-button clicky-button-two' name='update_app'>Update Appearance Info</button>";
+                } else {
+                    echo "<label for='app_err'>&nbsp;</label>";
+                    echo "<p id='app_err'>
+                     You need to go to the new character page and add to this character via the dropdown menu on the respective tab first.<br>
+                     If you are seeing this, this means you have not added it to be able to edit it.
+                     </p>";
+                }
             }
             ?>
         </form>
@@ -294,6 +394,7 @@ function replaceQuotes($string){
                 <label for="racetraits">Race Background: </label>
                 <textarea id="racetraits" name="race_background" class='textbox'><?php echo $charRace[5]; ?></textarea>
             </p>
+            <input type='text' hidden readonly name='race_char_ID' value="<?php echo $charID; ?>">
             <?php
             if ($_SESSION['validUser']) {
                 echo "<label for='racebutton'>&nbsp;</label>";
@@ -330,6 +431,7 @@ function replaceQuotes($string){
                 <label for="omegareason">Reason for joining: </label>
                 <textarea id="omegareason" name="omega_reason" class='textbox'><?php echo $charOmega[6]; ?></textarea>
             </p>
+            <input type='text' hidden readonly name='omega_char_ID' value="<?php echo $charID; ?>">
             <?php
             if ($_SESSION['validUser']) {
                 echo "<label for='omegabutton'>&nbsp;</label>";
@@ -346,7 +448,7 @@ function replaceQuotes($string){
         <form id="charother" method="post">
             <p class="tooltip" title="Self-Explanatory. Can be just the name, the name and a link...whatever you wish.">
                 <label for="othertheme">Theme Song: </label>
-                <input type="text" id="othertheme" name="other_theme" class='textinput' value="<?php echo str_replace("\"", "&quot;", $charOther[2]); ?>">
+                <input type="text" id="othertheme" name="other_theme" class='textinput' value="<?php replaceQuotes($charOther[2]); ?>">
             </p>
             <p class="tooltip" title="Self-Explanatory.">
                 <label for="otherquotes">Quotes: </label>
@@ -388,6 +490,7 @@ function replaceQuotes($string){
                 <label for="otherother">Other: </label>
                 <textarea id="otherother" name="other_other" class='textbox'><?php echo $charOther[12]; ?></textarea>
             <p>
+              <input type='text' hidden readonly name='other_char_ID' value="<?php echo $charID; ?>">
                 <?php
                 if ($_SESSION['validUser']) {
                    echo "<label for='otherbutton'>&nbsp;</label>";
@@ -403,12 +506,25 @@ function replaceQuotes($string){
         <form id="charoptions" method="post">
             <p class="tooltip" title="Whether or not this character is a favourite">
                 <label for="is_fav">Is a favourite character</label>
-                <input type="checkbox" id="is_fav" name="isfavchar">
+                <?php
+                  if($charSettings['Char_IsFav'] == 1){
+                       echo "<input type='checkbox' id='is_fav' name='isfavchar' checked>";
+                    } else {
+                       echo "<input type='checkbox' id='is_fav' name='isfavchar'>";
+                    }
+                ?>
             </p>
             <p class="tooltip" title="Whether or not this character is part of the Omega Timeline. If you have to ask what this is, you don't need to check it.">
                 <label for="is_omega">Is part of the Omega Timeline:</label>
-                <input type="checkbox" id="is_omega" onchange="omegaCheck()" name="isomegachar">
+                                <?php
+                  if($charSettings['Char_IsOmegaTimeline'] == 1){
+                       echo "<input type='checkbox' id='is_omega' onchange=\"omegaCheck()\" name='isomegachar' checked>";
+                    } else {
+                       echo "<input type='checkbox' id='is_omega' onchange=\"omegaCheck()\" name='isomegachar'>";
+                    }
+                ?>
             </p>
+             <input type='text' hidden readonly name='settings_char_ID' value="<?php echo $charID; ?>">
             <?php
             if ($_SESSION['validUser']) {
                echo "<label for='settingsbutton'>&nbsp;</label>";

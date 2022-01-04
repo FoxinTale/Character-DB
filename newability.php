@@ -64,11 +64,13 @@
                 <input type="text" id="spelltags" name="spell_tags" class='textinput'>
             </p>
             <?php
+            //No button at all. This page sucks.
+            /*
             if ($_SESSION['validUser']) {
                 echo "<label for='ability_button'>&nbsp;</label>";
-                echo "<p id='ability_button' class='textinput'>Button placeholder.</p>" ;
-                //echo "<input type='submit' class='clicky-button clicky-button-two' id='ability_button' value='Add Spell/Ability/Power!'>";
+                echo "<input type='submit' class='clicky-button clicky-button-two' id='ability_button' value='Add Spell/Ability/Power!'>";
             }
+             */
             ?>
         </form>
         <script type="text/javascript">

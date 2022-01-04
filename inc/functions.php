@@ -301,7 +301,6 @@ function getallnames($db, $userID) {
     return $results; 
 }
 
-
 function charnamedrop($namearr, $info, $text) {
     $nameCount = count($namearr);
     $names = $IDs = array();
@@ -430,38 +429,120 @@ function printallchars($allchars) {
     }
 }
 
-//This will let users delete their own items, if they choose to.
-function deletechar() {
-    
+//Updating or editing information, about damn time!
+
+function updateCharInfo($db, $info){
+    $query= "UPDATE characters SET Char_Name=:name, Char_ShortName=:aliases, Char_ShortDesc=:desc, Char_Age=:age, Char_Gender=:gender, Char_RaceName=:race WHERE  Char_ID=:charID;";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':name', $info[0]);
+    $statement->bindValue(':aliases', $info[1]);
+    $statement->bindValue(':desc', $info[2]);
+    $statement->bindValue(':age', $info[3]);
+    $statement->bindValue(':gender', $info[4]);
+    $statement->bindValue(':race', $info[5]);
+    $statement->bindValue(':charID', $info[6]);
+    $success = $statement->execute();
+    $statement->closeCursor();
+    return $success;
 }
 
-function deleteitem() {
+function updateCharAppearance($db, $appear){
+    $query = "UPDATE char_appearance SET Appear_Desc=:desc, Appear_Adv=:appearAdv, Appear_Eyes=:eyes, Appear_Hair=:hair, Appear_Ears=:ears, 
+        Appear_Height=:height, Appear_Weight=:weight, Appear_Skin=:skin, Appear_Unique=:unique, Appear_Other=:other WHERE Appear_Char_ID=:charID;";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':desc', $appear[1]);
+    if ($appear[2] == "on") {
+        $statement->bindValue(':appearAdv', 1);
+    } else {
+        $statement->bindValue(':appearAdv', 0);
+    }
     
+    $statement->bindValue(':eyes', $appear[3]);
+    $statement->bindValue(':hair', $appear[4]);
+    $statement->bindValue(':ears', $appear[5]);
+    $statement->bindValue(':height', $appear[6]);
+    $statement->bindValue(':weight', $appear[7]);
+    $statement->bindValue(':skin', $appear[8]);
+    $statement->bindValue(':unique', $appear[9]);
+    $statement->bindValue(':other', $appear[10]);
+    $statement->bindValue(':charID', $appear[0]);
+    $success = $statement->execute();
+    $statement->closeCursor();
+    return $success;
 }
 
-function deleteweap() {
-    
+
+
+function updateCharRace($db, $raceInfo){
+    $query = "UPDATE char_race SET Race_Name=:racename, Race_Desc=:racedesc, Race_Aspects=:raceaspect, Race_Background=:racebg WHERE Race_Char_ID=:charID;";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':racename', $raceInfo[0]);
+    $statement->bindValue(':racedesc', $raceInfo[1]);
+    $statement->bindValue(':raceaspect', $raceInfo[2]);
+    $statement->bindValue(':racebg', $raceInfo[3]);
+    $statement->bindValue(':charID', $raceInfo[4]);
+    $success = $statement->execute();
+    $statement->closeCursor();
+    return $success;
 }
 
-function deletespell() {
-    
+function updateCharOmega($db, $otInfo){
+    $query="UPDATE char_omegatime SET Omega_AU=:au, Omega_Pers=:pers, Omega_History=:history, Omega_Story=:story, Omega_Reason=:reason WHERE Omega_Char_ID=:charID";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':au', $otInfo[0]);
+    $statement->bindValue(':pers', $otInfo[1]);
+    $statement->bindValue(':history', $otInfo[2]);
+    $statement->bindValue(':story', $otInfo[3]);
+    $statement->bindValue(':reason', $otInfo[4]);
+    $statement->bindValue(':charID', $otInfo[5]);
+    $success = $statement->execute();
+    $statement->closeCursor();
+    return $success;
 }
 
-// This is how editing areas will work.
-function updatechar() {
-    
+function updateCharOther($db, $other){
+    $query = "UPDATE char_other SET other_theme=:theme, other_quotes=:quotes, other_quirks=:quirk, other_quirkdesc=:quirkdesc, other_weak=:weak, other_birthday=:bday,
+            other_zodiac=:zodiac, other_hobbies=:hobbies, other_sexuality=:sexuality, other_soul=:soul, other_other=:other WHERE Other_Char_ID=:charID;";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':theme', $other[0]);
+    $statement->bindValue(':quotes', $other[1]);
+    $statement->bindValue(':quirk', $other[2]);
+    $statement->bindValue(':quirkdesc', $other[3]);
+    $statement->bindValue(':weak', $other[4]);
+    $statement->bindValue(':bday', $other[5]);
+    $statement->bindValue(':zodiac', $other[6]);
+    $statement->bindValue(':hobbies', $other[7]);
+    $statement->bindValue(':sexuality', $other[8]);
+    $statement->bindValue(':soul', $other[9]);
+    $statement->bindValue(':other', $other[10]);
+    $statement->bindValue(':charID', $other[11]);
+    $success = $statement->execute();
+    $statement->closeCursor();
+    return $success;
 }
 
-function updateitem() {
-    
-}
 
-function updateweap() {
-    
+function updateCharSettings($db, $settings){
+    $isFav = $isOmega = 0;
+    if (isset($settings['isfavchar'])) {
+        $isFav = 1;
+    } else {
+        $isFav = 0;
+    }
+    if (isset($settings['isomegachar'])) {
+        $isOmega = 1;
+    } else {
+        $isOmega = 0;
+    }
+    $charID = htmlspecialchars($settings['settings_char_ID']);
+   
+    $query="UPDATE char_settings SET Char_IsFav=:isFav, Char_IsOmegaTimeline=:isOmega WHERE Char_Settings_Char_ID=:charID;";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':isFav', $isFav);
+    $statement->bindValue(':isOmega', $isOmega);
+    $statement->bindValue(':charID', $charID);
+    $success = $statement->execute();
+    $statement->closeCursor();
+    return $success;
 }
-
-function updatespell() {
-    
-}
-
 ?>

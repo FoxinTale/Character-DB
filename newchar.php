@@ -16,7 +16,7 @@ if (isset($_POST["new_char"])) {
 }
 
 if (isset($_POST["add_app"])) {
-    $charAppearance = dataCheck($_POST, 11);
+    $charAppearance = dataCheck($_POST);
 
     if (!addAppearance($db, $charAppearance)) {
         echo "Something went wrong adding the appearance info.";
@@ -98,7 +98,6 @@ if (isset($_POST["apply_settings"])) {
         <p>If you need help filling some boxes, head over to the resources page. This currently does not save your stuff if you switch pages, so type up in a document before going there.</p>
         <br>
         <p>I decided on a character needing to be selected to add information to, this way one can add multiple characters, or add information later.</p>
-        <p><b>Currently, you cannot edit data once it is entered. Make sure it is as you want it before submitting. I'm working on having things be editable.</b></p>
         <p>Last note, some of the formatting / display may be messy. That will be fixed eventually.</p>
         <hr>
         <p><b>You must add the character information first, and then add the others from there.</b></p> 
@@ -145,7 +144,7 @@ if (isset($_POST["apply_settings"])) {
         <p>You can hover over each entry to learn more about what it is.</p>
         <hr>
         <form id = "charapp" method="post">
-            <?php getcharnames($db, $_SESSION['userID'], "to add an appearance to.", "Select a character"); ?>
+            <?php if($validUser){getcharnames($db, $_SESSION['userID'], "to add an appearance to.", "Select a character"); }?>
             <p class="tooltip" title="General Appearance">
                 <label for="charapp">Appearance Description: </label>
                 <textarea id="charapp" name="char_app" class='textbox'></textarea>
@@ -201,7 +200,7 @@ if (isset($_POST["apply_settings"])) {
         <p>You can hover over each entry to learn more about what it is.</p>
         <hr>
         <form id="char_pers" method="post">
-            <?php getcharnames($db, $_SESSION['userID'], "to add a personality to.", "Select a character"); ?>
+            <?php if($validUser){getcharnames($db, $_SESSION['userID'], "to add a personality to.", "Select a character"); }?>
             <p class="tooltip" title="Their personality description.">
                 <label for="persdesc">Personality Description:</label>
                 <textarea id="charpersdesc" class="textbox" name="pers_desc"></textarea>
@@ -284,7 +283,7 @@ if (isset($_POST["apply_settings"])) {
         </p>
         <hr>
         <form id="charspecies" method="post">
-            <?php getcharnames($db, $_SESSION['userID'], "to create a race for.", "Select a character"); ?>
+            <?php if($validUser){getcharnames($db, $_SESSION['userID'], "to create a race for.", "Select a character"); }?>
             <p class="tooltip" title="The name of the species / race, also include what the name means, if it has a meaning, otherwise, not required.">
                 <label for="racename">Name: </label>
                 <textarea id="racename" name="race_name" class='textbox'></textarea>
@@ -317,7 +316,7 @@ if (isset($_POST["apply_settings"])) {
         </p>
         <hr>
         <form id="charomega" method="post">
-            <?php getcharnames($db, $_SESSION['userID'], "to add information to.", "Select a muse"); ?>
+            <?php if($validUser){getcharnames($db, $_SESSION['userID'], "to add information to.", "Select a muse"); }?>
             <p class="tooltip" title="A description of the AU this character or 'muse' is from. Please specify if it is from Undertale or Deltarune.">
                 <label for="omegaaudesc">Alternate Universe (AU): </label>
                 <textarea id="omegaaudesc" name="omegaau_desc" class='textbox'></textarea>
@@ -352,7 +351,7 @@ if (isset($_POST["apply_settings"])) {
         <p>You can hover over each entry to learn more about what it is.</p>
         <hr>
         <form id="charother" method="post">
-            <?php getcharnames($db, $_SESSION['userID'], "to add info to.", "Select a character"); ?>
+            <?php if($validUser){getcharnames($db, $_SESSION['userID'], "to add info to.", "Select a character"); }?>
             <p class="tooltip" title="Self-Explanatory. Can be just the name, the name and a link...whatever you wish.">
                 <label for="othertheme">Theme Song: </label>
                 <input type="text" id="othertheme" name="other_theme" class='textinput'>
@@ -410,7 +409,7 @@ if (isset($_POST["apply_settings"])) {
         <p>Various options for your character.</p>
         <hr>
         <form id="charoptions" method="post">
-            <?php getcharnames($db, $_SESSION['userID'], "to apply these to.", "Select a character"); ?>
+            <?php if($validUser){getcharnames($db, $_SESSION['userID'], "to apply these to.", "Select a character"); }?>
             <p class="tooltip" title="Whether or not this character is a favourite">
                 <label for="is_fav">Is a favourite character</label>
                 <input type="checkbox" id="is_fav" name="isfavchar">

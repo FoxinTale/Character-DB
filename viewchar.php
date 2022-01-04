@@ -3,7 +3,6 @@
 require('inc/functions.php');
 $charID = htmlspecialchars($_GET['char_ID']); // Protect against injection, even though it's just being gotten, and not stored.
 
-
 $charInfo = getCharInfo($db, $charID);
 $charAppear = getCharAppearance($db, $charID);
 $charPers = getCharPers($db, $charID);
@@ -11,7 +10,6 @@ $charRace = getCharRace($db, $charID);
 $charOmega = getCharOmega($db, $charID); //Get it even if it's not true, we handle it anyways. 
 $charOther = getCharOther($db, $charID);
 $charSettings = getCharSettings($db, $charID);
-
 
 $omegaTimeline = false; // When you mistakenly invalidate the entire timeline in one single line of code. Oops.
 
@@ -21,7 +19,6 @@ if (!empty($charSettings)) {
     } else {
         $omegaTimeline = false; // Ah, bollocks. Sorry folks!
     }
-
 }
 ?>
 <html>

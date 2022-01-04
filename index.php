@@ -89,7 +89,7 @@ $_SESSION["validUser"] = $validUser;
             <?php
             if (isset($_SESSION['isAdmin'])) { // Check if it actually exists
                 if ($_SESSION['isAdmin']) { // If so, check its value.
-                    echo "<a class='bar-item nav-button' href='admin.php' target='pages'>Admin Panel</a>";
+                    echo "<a class='bar-item nav-button' href=\"javascript:setFrameSrc('admin.php')\">Admin Panel</a>";
                 }
             }
             if ($validUser) {
@@ -114,7 +114,7 @@ $_SESSION["validUser"] = $validUser;
                 <p>I-frames aren't supported. Sorry. Use a browser that doesn't suck.</p>
             </iframe>
             <script type="text/javascript">
-                window.onload  = setFrameSrc("home.php");
+               window.onload  = setFrameSrc("home.php");
                var frame = document.getElementById("pageframe");
                
                pageframe.onload = function(){
