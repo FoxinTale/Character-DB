@@ -91,15 +91,12 @@ if (isset($_POST["update_app"])) {
 
 if (isset($_POST["update_pers"])) {
     $charPers = dataCheck($_POST);
-    
-    print_r($charPers);
-    /*
-    if(!addPersonality($db, $charPers)){
+
+    if(!updateCharPersonality($db, $charPers)){
         echo "Something went wrong updating the personality";
     } else {
         echo "Personality successfully updated!";
     }
-     */
 }
 
 if(isset($_POST["update_race"])){
@@ -284,6 +281,7 @@ if (isset($_POST["update_settings"])) {
         <p>You can hover over each entry to learn more about what it is.</p>
         <hr>
         <form id="char_pers" method="post">
+            <input type='text' hidden readonly name='pers_char_ID' value="<?php echo $charID; ?>">
             <p class="tooltip" title="Their personality description.">
                 <label for="persdesc">Personality Description:</label>
                 <textarea id="charpersdesc" class="textbox" name="pers_desc"><?php echo $charPers[2]; ?></textarea>

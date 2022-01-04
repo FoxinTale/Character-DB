@@ -4,16 +4,16 @@ session_start();
 
 // Hardcoded values so I can develop easily without constantly having to login. Makes it so much easier.
 // Obviously, this will be removed in production and testing.
-///*
+/*
   $user_name = "Aubrey";
   $validUser = true;
   $_SESSION['validUser'] = true;
   $_SESSION['username'] = "Aubrey";
   $_SESSION['userID'] = 1;
   $_SESSION['isAdmin'] = 1;
- //*/
+ */
 
-/*
+//
 $user_name = "";
 if (isset($_SESSION['username'])) {
     $user_name = $_SESSION['username'];
@@ -27,7 +27,7 @@ if ($user_name == "" || NULL) {
 }
 $_SESSION["validUser"] = $validUser;
 
-*/
+//*/
 ?>
 
 <html>

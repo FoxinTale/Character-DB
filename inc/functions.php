@@ -472,6 +472,37 @@ function updateCharAppearance($db, $appear){
 }
 
 
+function updateCharPersonality($db, $pers){
+    $query = "UPDATE char_pers SET Pers_Text=:text, Pers_Type=:type, Pers_Alignment=:align, Pers_IsAdv=:persAdv, Pers_Activity=:act, Pers_Agree=:agree, 
+            Pers_Assert=:assert, Pers_Conf=:conf, Pers_Discipline=:disc, Pers_EmoCap=:emocap, Pers_Friendly=:friend, Pers_Honesty=:honesty, Pers_Intel=:intel,
+            Pers_Manners=:manners, Pers_Positivity=:pos, Pers_Rebel=:rebel WHERE Pers_Char_ID=:charID;";
+    
+    $statement = $db->prepare($query);
+    $statement->bindValue(':text', $pers[1]);
+    $statement->bindValue(':type', $pers[2]);
+    $statement->bindValue(':align', $pers[3]);
+    if ($pers[4] == "on") {
+        $statement->bindValue(':persAdv', 1);
+    } else {
+        $statement->bindValue(':persAdv', 0);
+    }
+    $statement->bindValue(':act', $pers[5]);
+    $statement->bindValue(':agree', $pers[6]);
+    $statement->bindValue(':assert', $pers[7]);
+    $statement->bindValue(':conf', $pers[8]);
+    $statement->bindValue(':disc', $pers[9]);
+    $statement->bindValue(':emocap', $pers[10]);
+    $statement->bindValue(':friend', $pers[11]);
+    $statement->bindValue(':honesty', $pers[12]);
+    $statement->bindValue(':intel', $pers[13]);
+    $statement->bindValue(':manners', $pers[14]);
+    $statement->bindValue(':pos', $pers[15]);
+    $statement->bindValue(':rebel', $pers[16]);
+    $statement->bindValue(':charID', $pers[0]);
+    $success = $statement->execute();
+    $statement->closeCursor();
+    return $success;
+}
 
 function updateCharRace($db, $raceInfo){
     $query = "UPDATE char_race SET Race_Name=:racename, Race_Desc=:racedesc, Race_Aspects=:raceaspect, Race_Background=:racebg WHERE Race_Char_ID=:charID;";
